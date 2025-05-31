@@ -29,11 +29,11 @@ const Navbar = () => {
       // Start exit animation
       setIsExiting(true);
       setMenuItemsVisible(false);
-      // Wait for staggered exit (navLinks.length * 100ms for menu items + 100ms for download button)
+      // Wait for staggered exit (navLinks.length * 60ms for menu items + 60ms for download button)
       setTimeout(() => {
         setIsOpen(false);
         setIsExiting(false);
-      }, (navLinks.length + 1) * 100);
+      }, (navLinks.length + 1) * 60);
     }
   };
   
@@ -201,15 +201,15 @@ const Navbar = () => {
               const appear = menuItemsVisible && !isExiting;
               const disappear = isExiting && !menuItemsVisible;
               const delay = appear
-                ? `${index * 100}ms`
+                ? `${index * 60}ms`
                 : disappear
-                  ? `${index * 100}ms`
+                  ? `${index * 60}ms`
                   : '0ms';
               return (
                 <Link
                   key={link.name}
                   to={link.path}
-                  className={`block text-5xl font-normal text-gray-800 hover:text-[#6c2bc7] transition-all duration-300 ${
+                  className={`block text-5xl font-normal text-gray-800 hover:text-[#6c2bc7] transition-all duration-150 ${
                     menuItemsVisible && !isExiting
                       ? 'opacity-100 translate-x-0'
                       : (!menuItemsVisible && isExiting)
@@ -237,7 +237,7 @@ const Navbar = () => {
               href="https://play.google.com/store/apps/details?id=com.triply.app&pcampaignid=web_share"
               target="_blank"
               rel="noopener noreferrer"
-              className={`w-full text-center bg-black text-white py-4 rounded-full text-xl font-medium transition-all duration-300 ${
+              className={`w-full text-center bg-black text-white py-4 rounded-full text-xl font-medium transition-all duration-200 ${
                 menuItemsVisible && !isExiting
                   ? 'opacity-100 translate-y-0'
                   : (!menuItemsVisible && isExiting)
@@ -246,9 +246,9 @@ const Navbar = () => {
               }`}
               style={{
                 transitionDelay: menuItemsVisible && !isExiting
-                  ? `${navLinks.length * 100}ms`
+                  ? `${navLinks.length * 60}ms`
                   : (!menuItemsVisible && isExiting)
-                    ? `${(navLinks.length) * 100}ms`
+                    ? `${(navLinks.length) * 60}ms`
                     : '0ms',
                 fontFamily: "'Work Sans', sans-serif",
                 display: 'block',
