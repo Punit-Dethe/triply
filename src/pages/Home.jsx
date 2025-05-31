@@ -5,9 +5,13 @@ const Home = () => {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <div className="bg-[#F5EFFF] text-gray-800 pt-40 pb-24 -mt-24 md:pt-48">
+      <div className="relative text-[#F5EFFF] pt-40 pb-24 -mt-24 md:pt-48 overflow-hidden bg-cover bg-center" style={{
+        backgroundImage: 'url(/src/assets/hero.png)'
+      }}>
         {/* Spacer to account for fixed navbar */}
         <div className="h-24"></div>
+        
+        {/* Content */}
         <div className="container mx-auto px-4 text-center">
           <h1 className="text-5xl font-bold mb-8">Smarter Commutes, Happier Offices</h1>
           <p className="text-xl mb-10 max-w-3xl mx-auto leading-relaxed">
