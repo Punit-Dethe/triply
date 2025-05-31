@@ -29,11 +29,11 @@ const Navbar = () => {
       // Start exit animation
       setIsExiting(true);
       setMenuItemsVisible(false);
-      // Wait for reverse staggered exit (navLinks.length * 100ms for the last item)
+      // Wait for staggered exit (navLinks.length * 100ms for menu items + 100ms for download button)
       setTimeout(() => {
         setIsOpen(false);
         setIsExiting(false);
-      }, navLinks.length * 100);
+      }, (navLinks.length + 1) * 100);
     }
   };
   
@@ -197,13 +197,13 @@ const Navbar = () => {
           {/* Main navigation links - moved higher */}
           <div className="space-y-8 flex-1">
             {navLinks.map((link, index) => {
-              // For exit: reverse the delay order
+              // For exit: top to bottom (same as enter)
               const appear = menuItemsVisible && !isExiting;
               const disappear = isExiting && !menuItemsVisible;
               const delay = appear
                 ? `${index * 100}ms`
                 : disappear
-                  ? `${(navLinks.length - 1 - index) * 100}ms`
+                  ? `${index * 100}ms`
                   : '0ms';
               return (
                 <Link
@@ -248,7 +248,7 @@ const Navbar = () => {
                 transitionDelay: menuItemsVisible && !isExiting
                   ? `${navLinks.length * 100}ms`
                   : (!menuItemsVisible && isExiting)
-                    ? `0ms`
+                    ? `${(navLinks.length) * 100}ms`
                     : '0ms',
                 fontFamily: "'Work Sans', sans-serif",
                 display: 'block',
