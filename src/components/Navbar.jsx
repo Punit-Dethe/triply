@@ -43,8 +43,8 @@ const Navbar = () => {
 
   const navLinks = [
     { name: 'Home', path: '/' },
-    { name: 'About', path: '/about' },
     { name: 'Services', path: '/services' },
+    { name: 'About', path: '/about' },
     { name: 'Contact', path: '/contact' }
   ];
 
@@ -128,50 +128,78 @@ const Navbar = () => {
         </nav>
       </div>
 
-      {/* Mobile Menu */}
+      {/* Mobile Menu - Full Screen with Slide Animation from Right */}
       <div 
-        className={`md:hidden bg-white shadow-lg overflow-hidden transition-all duration-500 ease-[cubic-bezier(0.4, 0, 0.2, 1)] ${
-          isOpen ? 'max-h-screen' : 'max-h-0'
+        className={`fixed inset-0 z-[100] md:hidden transition-transform duration-500 ease-in-out ${
+          isOpen ? 'translate-x-0' : 'translate-x-full'
         }`}
+        style={{
+          backgroundColor: '#FFFAF5',
+          backgroundImage: 'linear-gradient(to right, #FFFAF5 60%, #FFE4D6 100%)',
+          width: '100vw',
+          height: '100vh',
+          overflowY: 'auto'
+        }}
       >
-        <div className="px-4 py-2 space-y-1">
-          {navLinks.map((link, index) => (
+        {/* Close button */}
+        <button
+          onClick={toggleMenu}
+          className="absolute top-4 right-4 p-2 focus:outline-none"
+          aria-label="Close menu"
+        >
+          <svg className="w-8 h-8 text-gray-800" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+
+        {/* Menu content */}
+        <div className="h-full flex flex-col justify-center pl-12 pr-6 py-20">
+          {/* Main navigation links */}
+          <div className="space-y-8">
+            {navLinks.map((link, index) => (
+              <Link
+                key={link.name}
+                to={link.path}
+                className={`block text-5xl font-normal text-gray-800 hover:text-[#FA812F] transition-all duration-300 ${
+                  menuItemsVisible 
+                    ? 'opacity-100 translate-x-0' 
+                    : 'opacity-0 translate-x-8'
+                }`}
+                style={{
+                  transitionDelay: menuItemsVisible ? `${index * 100}ms` : '0ms',
+                  fontFamily: "'Work Sans', sans-serif"
+                }}
+                onClick={() => {
+                  setMenuItemsVisible(false);
+                  setTimeout(() => setIsOpen(false), 300);
+                }}
+              >
+                {link.name}
+              </Link>
+            ))}
+          </div>
+
+          {/* Download button */}
+          <div className="mt-16">
             <Link
-              key={link.name}
-              to={link.path}
-              className={`block px-4 py-3 text-base font-semibold text-black hover:bg-orange-50 hover:text-[#FA812F] border-b border-gray-100 transform transition-all duration-300 ${
+              to="/download"
+              className={`inline-block bg-black text-white px-10 py-4 rounded-full text-xl font-medium transition-all duration-300 ${
                 menuItemsVisible 
                   ? 'opacity-100 translate-y-0' 
-                  : 'opacity-0 -translate-y-2'
+                  : 'opacity-0 -translate-y-4'
               }`}
               style={{
-                transitionDelay: menuItemsVisible ? `${index * 75}ms` : '0ms'
+                transitionDelay: menuItemsVisible ? `${(navLinks.length) * 75}ms` : '0ms',
+                fontFamily: "'Work Sans', sans-serif"
               }}
               onClick={() => {
                 setMenuItemsVisible(false);
                 setTimeout(() => setIsOpen(false), 300);
               }}
             >
-              {link.name}
+              Download
             </Link>
-          ))}
-          <Link
-            to="/download"
-            className={`block w-full text-center bg-[#FA812F] hover:bg-[#e67329] text-white px-4 py-3 text-base font-semibold rounded-lg mx-2 my-2 transform transition-all duration-300 ${
-              menuItemsVisible 
-                ? 'opacity-100 translate-y-0' 
-                : 'opacity-0 -translate-y-2'
-            }`}
-            style={{
-              transitionDelay: menuItemsVisible ? `${navLinks.length * 75}ms` : '0ms'
-            }}
-            onClick={() => {
-              setMenuItemsVisible(false);
-              setTimeout(() => setIsOpen(false), 300);
-            }}
-          >
-            Download
-          </Link>
+          </div>
         </div>
       </div>
     </div>
