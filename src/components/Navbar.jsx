@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 
 const Navbar = () => {
@@ -6,38 +6,66 @@ const Navbar = () => {
   const [lastScrollY, setLastScrollY] = useState(0);
   const [visible, setVisible] = useState(true);
   const [menuItemsVisible, setMenuItemsVisible] = useState(false);
+  const [windowHeight, setWindowHeight] = useState(window.innerHeight);
   const navbarRef = useRef(null);
 
   // Handle menu open/close with animation timing
   const toggleMenu = () => {
     if (!isOpen) {
+      // Update window height when opening menu
+      updateWindowHeight();
       setIsOpen(true);
-      // Small delay to allow the menu container to render before animating items
       setTimeout(() => setMenuItemsVisible(true), 50);
+      // Prevent body scrolling when menu is open
+      document.body.style.overflow = 'hidden';
     } else {
       setMenuItemsVisible(false);
-      // Wait for item animations to complete before closing menu
-      setTimeout(() => setIsOpen(false), 300);
+      setTimeout(() => {
+        setIsOpen(false);
+        // Re-enable body scrolling when menu is closed
+        document.body.style.overflow = '';
+      }, 300);
     }
+  };
+
+  // Function to update window height
+  const updateWindowHeight = () => {
+    // Get the actual viewport height
+    const vh = window.innerHeight;
+    setWindowHeight(vh);
+    // Set CSS variable for viewport height
+    document.documentElement.style.setProperty('--vh', `${vh}px`);
   };
 
   useEffect(() => {
     const controlNavbar = () => {
-      if (window.scrollY > 100) { // Only start hiding after scrolling down a bit
+      if (window.scrollY > 100) {
         if (window.scrollY > lastScrollY && visible) {
-          // Scrolling down
           setVisible(false);
         } else if (window.scrollY < lastScrollY && !visible) {
-          // Scrolling up
           setVisible(true);
         }
       }
       setLastScrollY(window.scrollY);
     };
 
+    // Handle window resize and orientation change
+    const handleResize = () => {
+      updateWindowHeight();
+    };
+
     window.addEventListener('scroll', controlNavbar);
+    window.addEventListener('resize', handleResize);
+    window.addEventListener('orientationchange', handleResize);
+
+    // Initial setup
+    updateWindowHeight();
+
     return () => {
       window.removeEventListener('scroll', controlNavbar);
+      window.removeEventListener('resize', handleResize);
+      window.removeEventListener('orientationchange', handleResize);
+      document.body.style.overflow = '';
     };
   }, [lastScrollY, visible]);
 
@@ -130,12 +158,13 @@ const Navbar = () => {
 
       {/* Mobile Menu - Full Screen with Slide Animation from Right */}
       <div 
-        className={`fixed top-0 left-0 w-screen h-screen z-[9999] md:hidden transition-transform duration-500 ease-in-out ${
+        className={`fixed top-0 left-0 w-screen z-[9999] md:hidden transition-transform duration-500 ease-in-out ${
           isOpen ? 'translate-x-0' : 'translate-x-full'
         }`}
         style={{
           backgroundColor: '#FFFAF5',
           backgroundImage: 'linear-gradient(to right, #FFFAF5 60%, #FFE4D6 100%)',
+          height: `${windowHeight}px`, // Use dynamic height
           overflow: 'hidden',
           display: 'flex',
           flexDirection: 'column'
@@ -186,7 +215,7 @@ const Navbar = () => {
           </div>
 
           {/* Download button - positioned at bottom with full width */}
-          <div className="mt-auto">
+          <div className="mt-auto mb-8">
             <Link
               to="/download"
               className={`w-full text-center bg-black text-white py-4 rounded-full text-xl font-medium transition-all duration-300 ${
@@ -199,7 +228,8 @@ const Navbar = () => {
                 fontFamily: "'Work Sans', sans-serif",
                 display: 'block',
                 paddingLeft: '1rem',
-                paddingRight: '1rem'
+                paddingRight: '1rem',
+                marginBottom: 'env(safe-area-inset-bottom, 20px)'
               }}
               onClick={() => {
                 setMenuItemsVisible(false);
