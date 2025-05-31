@@ -167,7 +167,7 @@ const Navbar = () => {
           isOpen ? 'translate-x-0' : 'translate-x-full'
         }`}
         style={{
-          backgroundColor: '#F5EFFF',
+          backgroundColor: '#FFFFFF',
           backgroundImage: 'linear-gradient(to left, rgba(235, 149, 81, 0.9) 0%, rgba(235, 149, 81, 0.9) 1%, rgba(125, 143, 247, 0.7) 6%, rgba(157, 92, 212, 0.6) 15%, rgba(248, 242, 255, 0.2) 35%)',
           height: `${windowHeight}px`, // Use dynamic height
           overflow: 'hidden',
