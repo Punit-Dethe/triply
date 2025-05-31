@@ -5,16 +5,17 @@ const Home = () => {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <div className="relative text-white pt-40 pb-24 -mt-24 md:pt-48 overflow-hidden bg-cover bg-center" style={{
+      <div className="relative text-white pt-32 pb-16 -mt-24 md:pt-48 overflow-hidden bg-cover bg-center" style={{
         backgroundImage: 'linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(https://images.pexels.com/photos/315938/pexels-photo-315938.jpeg?cs=srgb&dl=pexels-pixabay-315938.jpg&fm=jpg)',
-        backgroundPosition: 'center 30%'
+        backgroundPosition: 'center 30%',
+        minHeight: 'calc(100vh - 6rem)'
       }}>
         {/* Spacer to account for fixed navbar */}
         <div className="h-24"></div>
         
         {/* Content */}
         <div className="container mx-auto px-4 text-center">
-          <h1 className="text-5xl font-bold mb-8">Smarter Commutes, Happier Offices</h1>
+          <h1 className="text-4xl md:text-5xl font-bold mb-6 md:mb-8 px-4">Smarter Commutes, Happier Offices</h1>
           <p className="text-xl mb-10 max-w-3xl mx-auto leading-relaxed">
             Triply transforms your daily commute with affordable, eco-friendly cab sharing for office-goers.
             Save up to 60% on your daily travel costs while reducing your carbon footprint.
@@ -22,13 +23,13 @@ const Home = () => {
           <div className="space-x-4">
             <Link 
               to="/signup" 
-              className="bg-[#6c2bc7] hover:bg-[#5a22a8] text-white px-8 py-3 rounded-lg font-medium text-lg inline-block transition-all shadow-md hover:shadow-lg transform hover:-translate-y-0.5 hover:shadow-purple-200"
+              className="bg-[#6c2bc7] hover:bg-[#5a22a8] text-white px-6 py-2 md:px-8 md:py-3 rounded-lg font-medium text-base md:text-lg inline-block transition-all shadow-md hover:shadow-lg transform hover:-translate-y-0.5 hover:shadow-purple-200"
             >
               Start Saving Now
             </Link>
             <Link 
               to="/how-it-works" 
-              className="bg-white text-[#6c2bc7] hover:bg-gray-100 px-8 py-3 rounded-lg font-medium text-lg inline-block transition-all shadow-md hover:shadow-lg transform hover:-translate-y-0.5 hover:shadow-purple-100"
+              className="bg-white text-[#6c2bc7] hover:bg-gray-100 px-6 py-2 md:px-8 md:py-3 rounded-lg font-medium text-base md:text-lg inline-block transition-all shadow-md hover:shadow-lg transform hover:-translate-y-0.5 hover:shadow-purple-100"
             >
               How It Works
             </Link>
