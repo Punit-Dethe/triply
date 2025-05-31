@@ -200,8 +200,9 @@ const Navbar = () => {
               // For exit: top to bottom (same as enter)
               const appear = menuItemsVisible && !isExiting;
               const disappear = isExiting && !menuItemsVisible;
+              // Slightly slower enter animation (75ms delay between items)
               const delay = appear
-                ? `${index * 60}ms`
+                ? `${index * 75}ms`
                 : disappear
                   ? `${index * 60}ms`
                   : '0ms';
@@ -209,7 +210,7 @@ const Navbar = () => {
                 <Link
                   key={link.name}
                   to={link.path}
-                  className={`block text-5xl font-normal text-gray-800 hover:text-[#6c2bc7] transition-all duration-150 ${
+                  className={`block text-5xl font-normal text-gray-800 hover:text-[#6c2bc7] transition-all duration-250 ${
                     menuItemsVisible && !isExiting
                       ? 'opacity-100 translate-x-0'
                       : (!menuItemsVisible && isExiting)
@@ -221,8 +222,10 @@ const Navbar = () => {
                   fontFamily: "'Work Sans', sans-serif"
                 }}
                 onClick={() => {
+                  // Close menu immediately without waiting for exit animation
+                  setIsOpen(false);
                   setMenuItemsVisible(false);
-                  setTimeout(() => setIsOpen(false), 300);
+                  setIsExiting(false);
                 }}
               >
                 {link.name}
@@ -246,7 +249,7 @@ const Navbar = () => {
               }`}
               style={{
                 transitionDelay: menuItemsVisible && !isExiting
-                  ? `${navLinks.length * 60}ms`
+                  ? `${navLinks.length * 75}ms`
                   : (!menuItemsVisible && isExiting)
                     ? `${(navLinks.length) * 60}ms`
                     : '0ms',
