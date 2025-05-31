@@ -218,7 +218,7 @@ const Navbar = () => {
               href="https://play.google.com/store/apps/details?id=com.triply.app&pcampaignid=web_share"
               target="_blank"
               rel="noopener noreferrer"
-              className={`w-full text-center bg-[#6c2bc7] text-white py-4 rounded-full text-xl font-medium transition-all duration-300 ${
+              className={`w-full text-center bg-black text-white py-4 rounded-full text-xl font-medium transition-all duration-300 ${
                 menuItemsVisible 
                   ? 'opacity-100 translate-y-0' 
                   : 'opacity-0 -translate-y-4'
