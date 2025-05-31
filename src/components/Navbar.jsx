@@ -9,34 +9,26 @@ const Navbar = () => {
   const [windowHeight, setWindowHeight] = useState(window.innerHeight);
   const navbarRef = useRef(null);
 
+  // Function to update window height for mobile menu
+  const updateWindowHeight = () => {
+    const vh = window.innerHeight;
+    setWindowHeight(vh);
+  };
+
   // Handle menu open/close with animation timing
   const toggleMenu = () => {
     if (!isOpen) {
-      // Update window height when opening menu
+      // Update height and open menu
       updateWindowHeight();
       setIsOpen(true);
       setTimeout(() => setMenuItemsVisible(true), 50);
-      // Prevent body scrolling when menu is open
-      document.body.style.overflow = 'hidden';
     } else {
+      // Close menu
       setMenuItemsVisible(false);
-      setTimeout(() => {
-        setIsOpen(false);
-        // Re-enable body scrolling when menu is closed
-        document.body.style.overflow = '';
-      }, 300);
+      setTimeout(() => setIsOpen(false), 300);
     }
   };
-
-  // Function to update window height
-  const updateWindowHeight = () => {
-    // Get the actual viewport height
-    const vh = window.innerHeight;
-    setWindowHeight(vh);
-    // Set CSS variable for viewport height
-    document.documentElement.style.setProperty('--vh', `${vh}px`);
-  };
-
+  
   useEffect(() => {
     const controlNavbar = () => {
       if (window.scrollY > 100) {
@@ -57,15 +49,14 @@ const Navbar = () => {
     window.addEventListener('scroll', controlNavbar);
     window.addEventListener('resize', handleResize);
     window.addEventListener('orientationchange', handleResize);
-
+    
     // Initial setup
     updateWindowHeight();
-
+    
     return () => {
       window.removeEventListener('scroll', controlNavbar);
       window.removeEventListener('resize', handleResize);
       window.removeEventListener('orientationchange', handleResize);
-      document.body.style.overflow = '';
     };
   }, [lastScrollY, visible]);
 
