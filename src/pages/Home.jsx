@@ -5,8 +5,9 @@ const Home = () => {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <div className="relative text-[#F5EFFF] pt-40 pb-24 -mt-24 md:pt-48 overflow-hidden bg-cover bg-center" style={{
-        backgroundImage: 'url(/src/assets/hero.png)'
+      <div className="relative text-white pt-40 pb-24 -mt-24 md:pt-48 overflow-hidden bg-cover bg-center" style={{
+        backgroundImage: 'linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(https://images.pexels.com/photos/315938/pexels-photo-315938.jpeg?cs=srgb&dl=pexels-pixabay-315938.jpg&fm=jpg)',
+        backgroundPosition: 'center 30%'
       }}>
         {/* Spacer to account for fixed navbar */}
         <div className="h-24"></div>
