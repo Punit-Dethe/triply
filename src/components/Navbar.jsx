@@ -51,9 +51,9 @@ const Navbar = () => {
   return (
     <div 
       ref={navbarRef}
-      className={`fixed top-0 left-0 right-0 z-50 bg-transparent transition-transform duration-300 ${
+      className={`fixed top-0 left-0 w-full z-40 transition-all duration-300 ${
         visible ? 'translate-y-0' : '-translate-y-full'
-      }`}
+      } bg-transparent`}
     >
       {/* Mobile Header - Only shows on mobile */}
       <div className="md:hidden bg-white shadow-sm py-3 px-4 border-b-2 border-black font-['Work_Sans']">
@@ -130,15 +130,12 @@ const Navbar = () => {
 
       {/* Mobile Menu - Full Screen with Slide Animation from Right */}
       <div 
-        className={`fixed inset-0 z-[100] md:hidden transition-transform duration-500 ease-in-out ${
+        className={`fixed top-0 left-0 w-screen h-screen z-[9999] md:hidden transition-transform duration-500 ease-in-out ${
           isOpen ? 'translate-x-0' : 'translate-x-full'
         }`}
         style={{
           backgroundColor: '#FFFAF5',
           backgroundImage: 'linear-gradient(to right, #FFFAF5 60%, #FFE4D6 100%)',
-          width: '100%',
-          height: '100%',
-          minHeight: '-webkit-fill-available',
           overflow: 'hidden',
           display: 'flex',
           flexDirection: 'column'
@@ -147,7 +144,7 @@ const Navbar = () => {
         {/* Close button */}
         <button
           onClick={toggleMenu}
-          className="absolute top-4 right-4 p-2 focus:outline-none"
+          className="absolute top-4 right-4 p-2 focus:outline-none z-10"
           aria-label="Close menu"
         >
           <svg className="w-8 h-8 text-gray-800" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -157,13 +154,10 @@ const Navbar = () => {
 
         {/* Menu content */}
         <div 
-          className="flex flex-col pl-6 pr-6 pt-24 pb-6"
+          className="flex-1 flex flex-col pl-6 pr-6 pt-24 pb-6 overflow-y-auto"
           style={{
-            height: '100%',
-            maxHeight: '100dvh',
-            overflowY: 'auto',
-            paddingBottom: 'env(safe-area-inset-bottom, 20px)',
-            WebkitOverflowScrolling: 'touch'
+            WebkitOverflowScrolling: 'touch',
+            paddingBottom: 'calc(env(safe-area-inset-bottom) + 1.5rem)'
           }}
         >
           {/* Main navigation links - moved higher */}
