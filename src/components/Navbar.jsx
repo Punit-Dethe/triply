@@ -137,12 +137,14 @@ const Navbar = () => {
 
           {/* Right Side - CTA Button */}
           <div>
-            <Link
-              to="/download"
-              className="bg-[#FA812F] hover:bg-[#e67329] text-white px-5 py-2 rounded-full text-sm font-medium transition-all shadow-md hover:shadow-lg transform hover:-translate-y-0.5 hover:shadow-orange-200 border border-black"
+            <a
+              href="https://play.google.com/store/apps/details?id=com.triply.app&pcampaignid=web_share"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-[#FA812F] hover:bg-[#e67329] text-white px-5 py-2 rounded-full text-sm font-medium transition-all shadow-md hover:shadow-lg transform hover:-translate-y-0.5 hover:shadow-orange-200 border border-black inline-block"
             >
               Download
-            </Link>
+            </a>
           </div>
         </nav>
       </div>
@@ -207,8 +209,10 @@ const Navbar = () => {
 
           {/* Download button - positioned at bottom with full width */}
           <div className="mt-auto mb-8">
-            <Link
-              to="/download"
+            <a
+              href="https://play.google.com/store/apps/details?id=com.triply.app&pcampaignid=web_share"
+              target="_blank"
+              rel="noopener noreferrer"
               className={`w-full text-center bg-black text-white py-4 rounded-full text-xl font-medium transition-all duration-300 ${
                 menuItemsVisible 
                   ? 'opacity-100 translate-y-0' 
@@ -228,7 +232,7 @@ const Navbar = () => {
               }}
             >
               Download
-            </Link>
+            </a>
           </div>
         </div>
       </div>
