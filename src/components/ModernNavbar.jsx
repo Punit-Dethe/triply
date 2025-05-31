@@ -65,7 +65,7 @@ const ModernNavbar = () => {
               <Link 
                 key={link.path} 
                 to={link.path} 
-                className="text-gray-700 hover:text-[#FA812F] font-medium text-sm transition-colors duration-200"
+                className="text-gray-700 hover:text-[#6c2bc7] font-medium text-sm transition-colors duration-200"
               >
                 {link.name}
               </Link>
@@ -74,15 +74,15 @@ const ModernNavbar = () => {
 
           {/* Center logo */}
           <div className="absolute left-1/2 transform -translate-x-1/2">
-            <Link to="/" className="text-3xl font-bold text-[#FA812F] hover:opacity-90 transition-opacity">Triply</Link>
+            <Link to="/" className="text-3xl font-bold text-[#6c2bc7] hover:opacity-90 transition-opacity">Triply</Link>
           </div>
 
           {/* Right side links and button */}
           <div className="flex items-center space-x-8">
-            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="text-gray-700 hover:text-[#FA812F] font-medium text-sm transition-colors duration-200">Social</a>
+            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="text-gray-700 hover:text-[#6c2bc7] font-medium text-sm transition-colors duration-200">Social</a>
             <Link 
               to="/download" 
-              className="bg-[#FA812F] hover:bg-[#e67329] text-white px-5 py-2.5 rounded-full text-sm font-medium transition-all duration-200 transform hover:scale-105 shadow-md hover:shadow-orange-200"
+              className="bg-[#6c2bc7] hover:bg-[#5a22a8] text-white px-5 py-2.5 rounded-full text-sm font-medium transition-all duration-200 transform hover:scale-105 shadow-md hover:shadow-purple-200"
             >
               Download
             </Link>
@@ -95,7 +95,7 @@ const ModernNavbar = () => {
         <div className="flex items-center justify-between">
           {/* Logo */}
           <Link to="/" className="flex-shrink-0">
-            <span className="text-2xl font-bold text-[#FA812F]">Triply</span>
+            <span className="text-2xl font-bold text-[#6c2bc7]">Triply</span>
           </Link>
           
           {/* Menu button */}
@@ -105,14 +105,14 @@ const ModernNavbar = () => {
             aria-label="Toggle menu"
           >
             <span className={`
-              block w-6 h-0.5 bg-[#FA812F] rounded-full transform transition-all duration-300 ease-in-out
+              block w-6 h-0.5 bg-[#6c2bc7] rounded-full transform transition-all duration-300 ease-in-out
               ${isOpen ? 'rotate-45 translate-y-0.5' : 'mb-2'}
-              group-hover:bg-[#e67329] origin-center
+              group-hover:bg-[#5a22a8] origin-center
             `}></span>
             <span className={`
-              block w-6 h-0.5 bg-[#FA812F] rounded-full transform transition-all duration-300 ease-in-out
+              block w-6 h-0.5 bg-[#6c2bc7] rounded-full transform transition-all duration-300 ease-in-out
               ${isOpen ? '-rotate-45 -translate-y-0.5' : ''}
-              group-hover:bg-[#e67329] origin-center
+              group-hover:bg-[#5a22a8] origin-center
             `}></span>
           </button>
         </div>
@@ -186,7 +186,7 @@ const ModernNavbar = () => {
           ))}
           <Link
             to="/download"
-            className={`block w-full text-center bg-[#FA812F] hover:bg-[#e67329] text-white px-4 py-3 text-base font-medium rounded-lg mx-2 my-2 transform transition-all duration-300 ${
+            className={`block w-full text-center bg-[#6c2bc7] hover:bg-[#5a22a8] text-white px-4 py-3 text-base font-medium rounded-lg mx-2 my-2 transform transition-all duration-300 ${
               menuItemsVisible 
                 ? 'opacity-100 translate-y-0' 
                 : 'opacity-0 -translate-y-4'

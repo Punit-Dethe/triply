@@ -7,6 +7,7 @@ const Navbar = () => {
   const [lastScrollY, setLastScrollY] = useState(0);
   const [visible, setVisible] = useState(true);
   const [menuItemsVisible, setMenuItemsVisible] = useState(false);
+  const [isExiting, setIsExiting] = useState(false);
   const [windowHeight, setWindowHeight] = useState(window.innerHeight);
   const navbarRef = useRef(null);
 
@@ -23,10 +24,16 @@ const Navbar = () => {
       updateWindowHeight();
       setIsOpen(true);
       setTimeout(() => setMenuItemsVisible(true), 50);
+      setIsExiting(false);
     } else {
-      // Close menu
+      // Start exit animation
+      setIsExiting(true);
       setMenuItemsVisible(false);
-      setTimeout(() => setIsOpen(false), 300);
+      // Wait for reverse staggered exit (navLinks.length * 100ms for the last item)
+      setTimeout(() => {
+        setIsOpen(false);
+        setIsExiting(false);
+      }, navLinks.length * 100);
     }
   };
   
@@ -133,7 +140,7 @@ const Navbar = () => {
               <Link
                 key={link.name}
                 to={link.path}
-                className="px-4 py-2 text-base font-semibold text-black hover:text-[#FA812F] rounded-full transition-all duration-200 hover:bg-orange-50/70"
+                className="px-4 py-2 text-base font-semibold text-black hover:text-[#6c2bc7] rounded-full transition-all duration-200 hover:bg-purple-50/70"
               >
                 {link.name}
               </Link>
@@ -189,17 +196,28 @@ const Navbar = () => {
         >
           {/* Main navigation links - moved higher */}
           <div className="space-y-8 flex-1">
-            {navLinks.map((link, index) => (
-              <Link
-                key={link.name}
-                to={link.path}
-                className={`block text-5xl font-normal text-gray-800 hover:text-[#FA812F] transition-all duration-300 ${
-                  menuItemsVisible 
-                    ? 'opacity-100 translate-x-0' 
-                    : 'opacity-0 translate-x-8'
-                }`}
+            {navLinks.map((link, index) => {
+              // For exit: reverse the delay order
+              const appear = menuItemsVisible && !isExiting;
+              const disappear = isExiting && !menuItemsVisible;
+              const delay = appear
+                ? `${index * 100}ms`
+                : disappear
+                  ? `${(navLinks.length - 1 - index) * 100}ms`
+                  : '0ms';
+              return (
+                <Link
+                  key={link.name}
+                  to={link.path}
+                  className={`block text-5xl font-normal text-gray-800 hover:text-[#6c2bc7] transition-all duration-300 ${
+                    menuItemsVisible && !isExiting
+                      ? 'opacity-100 translate-x-0'
+                      : (!menuItemsVisible && isExiting)
+                        ? 'opacity-0 translate-x-8'
+                        : (!menuItemsVisible ? 'opacity-0 translate-x-8' : '')
+                  }`}
                 style={{
-                  transitionDelay: menuItemsVisible ? `${index * 100}ms` : '0ms',
+                  transitionDelay: delay,
                   fontFamily: "'Work Sans', sans-serif"
                 }}
                 onClick={() => {
@@ -209,7 +227,8 @@ const Navbar = () => {
               >
                 {link.name}
               </Link>
-            ))}
+            );
+          })}
           </div>
 
           {/* Download button - positioned at bottom with full width */}
@@ -219,12 +238,18 @@ const Navbar = () => {
               target="_blank"
               rel="noopener noreferrer"
               className={`w-full text-center bg-black text-white py-4 rounded-full text-xl font-medium transition-all duration-300 ${
-                menuItemsVisible 
-                  ? 'opacity-100 translate-y-0' 
-                  : 'opacity-0 -translate-y-4'
+                menuItemsVisible && !isExiting
+                  ? 'opacity-100 translate-y-0'
+                  : (!menuItemsVisible && isExiting)
+                    ? 'opacity-0 translate-y-4'
+                    : (!menuItemsVisible ? 'opacity-0 translate-y-4' : '')
               }`}
               style={{
-                transitionDelay: menuItemsVisible ? `${(navLinks.length) * 75}ms` : '0ms',
+                transitionDelay: menuItemsVisible && !isExiting
+                  ? `${navLinks.length * 100}ms`
+                  : (!menuItemsVisible && isExiting)
+                    ? `0ms`
+                    : '0ms',
                 fontFamily: "'Work Sans', sans-serif",
                 display: 'block',
                 paddingLeft: '1rem',
