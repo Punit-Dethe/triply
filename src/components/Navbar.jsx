@@ -153,9 +153,9 @@ const Navbar = () => {
         </button>
 
         {/* Menu content */}
-        <div className="h-full flex flex-col justify-center pl-12 pr-6 py-20">
-          {/* Main navigation links */}
-          <div className="space-y-8">
+        <div className="h-full flex flex-col pl-12 pr-12 pt-32 pb-12">
+          {/* Main navigation links - moved higher */}
+          <div className="space-y-8 flex-1">
             {navLinks.map((link, index) => (
               <Link
                 key={link.name}
@@ -179,18 +179,21 @@ const Navbar = () => {
             ))}
           </div>
 
-          {/* Download button */}
-          <div className="mt-16">
+          {/* Download button - positioned at bottom with full width */}
+          <div className="mt-auto">
             <Link
               to="/download"
-              className={`inline-block bg-black text-white px-10 py-4 rounded-full text-xl font-medium transition-all duration-300 ${
+              className={`w-full text-center bg-black text-white py-4 rounded-full text-xl font-medium transition-all duration-300 ${
                 menuItemsVisible 
                   ? 'opacity-100 translate-y-0' 
                   : 'opacity-0 -translate-y-4'
               }`}
               style={{
                 transitionDelay: menuItemsVisible ? `${(navLinks.length) * 75}ms` : '0ms',
-                fontFamily: "'Work Sans', sans-serif"
+                fontFamily: "'Work Sans', sans-serif",
+                display: 'block',
+                paddingLeft: '1rem',
+                paddingRight: '1rem'
               }}
               onClick={() => {
                 setMenuItemsVisible(false);
