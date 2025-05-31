@@ -136,9 +136,12 @@ const Navbar = () => {
         style={{
           backgroundColor: '#FFFAF5',
           backgroundImage: 'linear-gradient(to right, #FFFAF5 60%, #FFE4D6 100%)',
-          width: '100vw',
-          height: '100vh',
-          overflowY: 'auto'
+          width: '100%',
+          height: '100%',
+          minHeight: '-webkit-fill-available',
+          overflow: 'hidden',
+          display: 'flex',
+          flexDirection: 'column'
         }}
       >
         {/* Close button */}
@@ -153,7 +156,16 @@ const Navbar = () => {
         </button>
 
         {/* Menu content */}
-        <div className="h-full flex flex-col pl-12 pr-12 pt-32 pb-12">
+        <div 
+          className="flex flex-col pl-6 pr-6 pt-24 pb-6"
+          style={{
+            height: '100%',
+            maxHeight: '100dvh',
+            overflowY: 'auto',
+            paddingBottom: 'env(safe-area-inset-bottom, 20px)',
+            WebkitOverflowScrolling: 'touch'
+          }}
+        >
           {/* Main navigation links - moved higher */}
           <div className="space-y-8 flex-1">
             {navLinks.map((link, index) => (
