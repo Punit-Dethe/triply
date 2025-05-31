@@ -26,14 +26,10 @@ const Navbar = () => {
       setTimeout(() => setMenuItemsVisible(true), 50);
       setIsExiting(false);
     } else {
-      // Start exit animation
-      setIsExiting(true);
+      // Close menu immediately without exit animation
       setMenuItemsVisible(false);
-      // Wait for staggered exit (navLinks.length * 60ms for menu items + 60ms for download button)
-      setTimeout(() => {
-        setIsOpen(false);
-        setIsExiting(false);
-      }, (navLinks.length + 1) * 60);
+      setIsOpen(false);
+      setIsExiting(false);
     }
   };
   
@@ -202,7 +198,7 @@ const Navbar = () => {
               const disappear = isExiting && !menuItemsVisible;
               // Slightly slower enter animation (75ms delay between items)
               const delay = appear
-                ? `${index * 75}ms`
+                ? `${index * 100}ms`
                 : disappear
                   ? `${index * 60}ms`
                   : '0ms';
@@ -240,16 +236,16 @@ const Navbar = () => {
               href="https://play.google.com/store/apps/details?id=com.triply.app&pcampaignid=web_share"
               target="_blank"
               rel="noopener noreferrer"
-              className={`w-full text-center bg-black text-white py-4 rounded-full text-xl font-medium transition-all duration-200 ${
+              className={`w-full text-center bg-black text-white py-4 rounded-full text-xl font-medium transition-all duration-250 ${
                 menuItemsVisible && !isExiting
-                  ? 'opacity-100 translate-y-0'
+                  ? 'opacity-100 translate-x-0'
                   : (!menuItemsVisible && isExiting)
-                    ? 'opacity-0 translate-y-4'
-                    : (!menuItemsVisible ? 'opacity-0 translate-y-4' : '')
+                    ? 'opacity-0 translate-x-8'
+                    : (!menuItemsVisible ? 'opacity-0 translate-x-8' : '')
               }`}
               style={{
                 transitionDelay: menuItemsVisible && !isExiting
-                  ? `${navLinks.length * 75}ms`
+                  ? `${navLinks.length * 100}ms`
                   : (!menuItemsVisible && isExiting)
                     ? `${(navLinks.length) * 60}ms`
                     : '0ms',
