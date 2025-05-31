@@ -164,7 +164,7 @@ const Navbar = () => {
         }`}
         style={{
           backgroundColor: '#FFFFFF',
-          backgroundImage: 'linear-gradient(to left, rgba(108, 43, 199, 0.5) 0%, rgba(108, 43, 199, 0.45) 20%, rgba(120, 70, 200, 0.35) 40%, rgba(140, 100, 210, 0.25) 60%, rgba(160, 130, 220, 0.15) 80%, rgba(180, 160, 230, 0.05) 95%, rgba(255, 255, 255, 0) 100%)',
+          backgroundImage: 'linear-gradient(to left, rgba(108, 43, 199, 0.35) 0%, rgba(108, 43, 199, 0.32) 20%, rgba(120, 70, 200, 0.28) 40%, rgba(140, 100, 210, 0.22) 60%, rgba(160, 130, 220, 0.15) 80%, rgba(180, 160, 230, 0.05) 95%, rgba(255, 255, 255, 0) 100%)',
           height: `${windowHeight}px`, // Use dynamic height
           overflow: 'hidden',
           display: 'flex',
