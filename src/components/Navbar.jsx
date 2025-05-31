@@ -183,7 +183,7 @@ const Navbar = () => {
 
         {/* Menu content */}
         <div 
-          className="flex-1 flex flex-col pl-6 pr-6 pt-24 pb-6 overflow-y-auto"
+          className="flex-1 flex flex-col pl-6 pr-6 pt-40 pb-6 overflow-y-auto"
           style={{
             WebkitOverflowScrolling: 'touch',
             paddingBottom: 'calc(env(safe-area-inset-bottom) + 1.5rem)'
