@@ -198,7 +198,7 @@ const Navbar = () => {
               const disappear = isExiting && !menuItemsVisible;
               // Slightly slower enter animation (75ms delay between items)
               const delay = appear
-                ? `${index * 100}ms`
+                ? `${index * 75}ms`
                 : disappear
                   ? `${index * 60}ms`
                   : '0ms';
@@ -236,16 +236,16 @@ const Navbar = () => {
               href="https://play.google.com/store/apps/details?id=com.triply.app&pcampaignid=web_share"
               target="_blank"
               rel="noopener noreferrer"
-              className={`w-full text-center bg-black text-white py-4 rounded-full text-xl font-medium transition-all duration-250 ${
+              className={`w-full text-center bg-black text-white py-4 rounded-full text-xl font-medium transition-all duration-200 ${
                 menuItemsVisible && !isExiting
-                  ? 'opacity-100 translate-x-0'
+                  ? 'opacity-100 translate-y-0'
                   : (!menuItemsVisible && isExiting)
-                    ? 'opacity-0 translate-x-8'
-                    : (!menuItemsVisible ? 'opacity-0 translate-x-8' : '')
+                    ? 'opacity-0 translate-y-4'
+                    : (!menuItemsVisible ? 'opacity-0 translate-y-4' : '')
               }`}
               style={{
                 transitionDelay: menuItemsVisible && !isExiting
-                  ? `${navLinks.length * 100}ms`
+                  ? `${navLinks.length * 75}ms`
                   : (!menuItemsVisible && isExiting)
                     ? `${(navLinks.length) * 60}ms`
                     : '0ms',
