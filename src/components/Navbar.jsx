@@ -168,7 +168,7 @@ const Navbar = () => {
         }`}
         style={{
           backgroundColor: '#FFFFFF',
-          backgroundImage: 'linear-gradient(to left, rgba(255, 165, 90, 0.95) 0%, rgba(255, 165, 90, 0.95) 3%, rgba(240, 150, 100, 0.9) 5%, rgba(220, 140, 150, 0.85) 7%, rgba(200, 135, 200, 0.8) 9%, rgba(180, 130, 210, 0.75) 11%, rgba(165, 120, 220, 0.7) 13%, rgba(150, 125, 230, 0.7) 15%, rgba(130, 130, 240, 0.7) 20%, rgba(120, 135, 245, 0.7) 25%, rgba(110, 140, 250, 0.7) 30%, rgba(120, 135, 245, 0.7) 35%, rgba(130, 130, 240, 0.7) 40%, rgba(150, 125, 230, 0.7) 45%, rgba(165, 100, 220, 0.65) 50%, rgba(170, 80, 220, 0.6) 60%, rgba(170, 80, 220, 0.5) 70%, rgba(170, 80, 220, 0) 100%)',
+          backgroundImage: 'linear-gradient(to left, rgba(255, 165, 90, 0.95) 0%, rgba(240, 160, 100, 0.9) 3%, rgba(220, 150, 120, 0.85) 7%, rgba(190, 140, 180, 0.8) 12%, rgba(150, 130, 230, 0.7) 18%, rgba(120, 135, 245, 0.7) 25%, rgba(150, 130, 230, 0.7) 30%, rgba(170, 80, 220, 0.6) 40%, rgba(170, 80, 220, 0.5) 60%, rgba(170, 80, 220, 0) 100%)',
           height: `${windowHeight}px`, // Use dynamic height
           overflow: 'hidden',
           display: 'flex',
