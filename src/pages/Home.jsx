@@ -5,7 +5,7 @@ const Home = () => {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <div className="bg-[#FEF3E2] text-gray-800 pt-40 pb-24 -mt-24 md:pt-48">
+      <div className="bg-[#F5EFFF] text-gray-800 pt-40 pb-24 -mt-24 md:pt-48">
         {/* Spacer to account for fixed navbar */}
         <div className="h-24"></div>
         <div className="container mx-auto px-4 text-center">
@@ -17,13 +17,13 @@ const Home = () => {
           <div className="space-x-4">
             <Link 
               to="/signup" 
-              className="bg-[#FA812F] hover:bg-[#e67329] text-white px-8 py-3 rounded-lg font-medium text-lg inline-block border border-black"
+              className="bg-[#6c2bc7] hover:bg-[#5a22a8] text-white px-8 py-3 rounded-lg font-medium text-lg inline-block transition-all shadow-md hover:shadow-lg transform hover:-translate-y-0.5 hover:shadow-purple-200"
             >
               Start Saving Now
             </Link>
             <Link 
               to="/how-it-works" 
-              className="border-2 border-[#FA812F] text-[#FA812F] hover:bg-[#FA812F] hover:text-white px-8 py-3 rounded-lg font-medium text-lg inline-block transition-colors"
+              className="bg-white text-[#6c2bc7] hover:bg-gray-100 px-8 py-3 rounded-lg font-medium text-lg inline-block transition-all shadow-md hover:shadow-lg transform hover:-translate-y-0.5 hover:shadow-purple-100"
             >
               How It Works
             </Link>

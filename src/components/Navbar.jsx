@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
+import logo from '../assets/logo.png';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -79,9 +80,11 @@ const Navbar = () => {
         <div className="flex items-center justify-between">
           {/* Logo on the left */}
           <Link to="/" className="flex-shrink-0">
-            <span className="bg-[#FA812F] text-white rounded-full w-8 h-8 flex items-center justify-center border border-black">
-              T
-            </span>
+            <img 
+              src={logo}
+              alt="Triply Logo" 
+              className="h-8 w-auto"
+            />
           </Link>
           
           {/* Centered name */}
@@ -96,14 +99,14 @@ const Navbar = () => {
             aria-label="Toggle menu"
           >
             <span className={`
-              block w-6 h-1 bg-[#FA812F] rounded-full transform transition-all duration-300 ease-in-out
+              block w-6 h-1 bg-[#6c2bc7] rounded-full transform transition-all duration-300 ease-in-out
               ${isOpen ? 'rotate-45 translate-y-1' : 'mb-2'}
-              group-hover:bg-[#e67329] origin-center
+              group-hover:bg-[#5a22a8] origin-center
             `}></span>
             <span className={`
-              block w-6 h-1 bg-[#FA812F] rounded-full transform transition-all duration-300 ease-in-out
+              block w-6 h-1 bg-[#6c2bc7] rounded-full transform transition-all duration-300 ease-in-out
               ${isOpen ? '-rotate-45 -translate-y-0.5' : ''}
-              group-hover:bg-[#e67329] origin-center
+              group-hover:bg-[#5a22a8] origin-center
             `}></span>
           </button>
         </div>
@@ -111,13 +114,15 @@ const Navbar = () => {
 
       {/* Desktop Navigation - Shows on md screens and up */}
       <div className="hidden md:block pt-6 px-4 sm:px-6 font-['Work_Sans']">
-        <nav className="max-w-6xl mx-auto bg-purple-50/70 backdrop-blur-md rounded-full border border-black shadow-lg px-6 py-3 flex items-center justify-between" style={{ borderWidth: '2px' }}>
+        <nav className="max-w-6xl mx-auto bg-white/80 backdrop-blur-md rounded-full shadow-lg px-6 py-3 flex items-center justify-between">
           {/* Logo */}
           <div className="flex-shrink-0">
             <Link to="/" className="text-xl font-bold text-gray-800 flex items-center">
-              <span className="bg-[#FA812F] text-white rounded-full w-8 h-8 flex items-center justify-center mr-2 border-2 border-black">
-                T
-              </span>
+              <img 
+                src={logo}
+                alt="Triply Logo" 
+                className="h-8 w-auto mr-2"
+              />
               <span className="text-gray-800">Triply</span>
             </Link>
           </div>
@@ -141,7 +146,7 @@ const Navbar = () => {
               href="https://play.google.com/store/apps/details?id=com.triply.app&pcampaignid=web_share"
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-[#FA812F] hover:bg-[#e67329] text-white px-5 py-2 rounded-full text-sm font-medium transition-all shadow-md hover:shadow-lg transform hover:-translate-y-0.5 hover:shadow-orange-200 border border-black inline-block"
+              className="bg-[#6c2bc7] hover:bg-[#5a22a8] text-white px-5 py-2 rounded-full text-sm font-medium transition-all shadow-md hover:shadow-lg transform hover:-translate-y-0.5 hover:shadow-purple-200 inline-block"
             >
               Download
             </a>
@@ -155,8 +160,8 @@ const Navbar = () => {
           isOpen ? 'translate-x-0' : 'translate-x-full'
         }`}
         style={{
-          backgroundColor: '#FFFAF5',
-          backgroundImage: 'linear-gradient(to right, #FFFAF5 60%, #FFE4D6 100%)',
+          backgroundColor: '#F5EFFF',
+          backgroundImage: 'linear-gradient(to right, #F5EFFF 60%, #E8D6FF 100%)',
           height: `${windowHeight}px`, // Use dynamic height
           overflow: 'hidden',
           display: 'flex',
@@ -213,7 +218,7 @@ const Navbar = () => {
               href="https://play.google.com/store/apps/details?id=com.triply.app&pcampaignid=web_share"
               target="_blank"
               rel="noopener noreferrer"
-              className={`w-full text-center bg-black text-white py-4 rounded-full text-xl font-medium transition-all duration-300 ${
+              className={`w-full text-center bg-[#6c2bc7] text-white py-4 rounded-full text-xl font-medium transition-all duration-300 ${
                 menuItemsVisible 
                   ? 'opacity-100 translate-y-0' 
                   : 'opacity-0 -translate-y-4'
