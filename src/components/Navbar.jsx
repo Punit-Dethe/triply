@@ -3,49 +3,72 @@ import { Link } from 'react-router-dom';
 import logo from '../assets/logo.png';
 
 const Navbar = () => {
-  const [isOpen, setIsOpen] = useState(false);
-  const [lastScrollY, setLastScrollY] = useState(0);
-  const [visible, setVisible] = useState(true);
-  const [menuItemsVisible, setMenuItemsVisible] = useState(false);
-  const [isExiting, setIsExiting] = useState(false);
-  const [windowHeight, setWindowHeight] = useState(window.innerHeight);
+  // ---------------------------------------------------------------------------
+  // State Variables
+  // ---------------------------------------------------------------------------
+  const [isOpen, setIsOpen] = useState(false); // Mobile menu open state
+  const [menuItemsVisible, setMenuItemsVisible] = useState(false); // Visibility of items within mobile menu (for animation)
+  const [isExiting, setIsExiting] = useState(false); // Tracks if mobile menu is in exiting animation phase (currently not used for exit animation in toggle)
+  
+  const [visible, setVisible] = useState(true); // Navbar visibility based on scroll
+  const [lastScrollY, setLastScrollY] = useState(0); // Last scroll position to determine scroll direction
+  
+  const [windowHeight, setWindowHeight] = useState(window.innerHeight); // Window height for full-screen mobile menu
+
   const navbarRef = useRef(null);
 
-  // Function to update window height for mobile menu
+  // ---------------------------------------------------------------------------
+  // Helper Functions
+  // ---------------------------------------------------------------------------
+
+  // Updates window height state, primarily for mobile menu sizing.
   const updateWindowHeight = () => {
     const vh = window.innerHeight;
     setWindowHeight(vh);
   };
 
-  // Handle menu open/close with animation timing
+  // Toggles the mobile menu.
+  // Handles animation timing for menu items appearing.
+  // Note: Closing is immediate and does not use an exit animation via isExiting here.
   const toggleMenu = () => {
     if (!isOpen) {
-      // Update height and open menu
-      updateWindowHeight();
+      // Open menu
+      updateWindowHeight(); // Ensure height is correct before opening
       setIsOpen(true);
-      setTimeout(() => setMenuItemsVisible(true), 50);
-      setIsExiting(false);
+      setIsExiting(false); // Reset exiting state
+      setTimeout(() => setMenuItemsVisible(true), 50); // Show items shortly after menu starts opening
     } else {
-      // Close menu immediately without exit animation
+      // Close menu immediately
       setMenuItemsVisible(false);
       setIsOpen(false);
-      setIsExiting(false);
+      // setIsExiting(false); // isExiting is reset, could be set to true if an exit animation was triggered here
     }
   };
   
+  // ---------------------------------------------------------------------------
+  // Effects
+  // ---------------------------------------------------------------------------
+
+  // Effect to control navbar visibility on scroll and handle window resize/orientation changes.
   useEffect(() => {
+    // Controls navbar visibility based on scroll direction and position.
     const controlNavbar = () => {
-      if (window.scrollY > 100) {
+      if (window.scrollY > 100) { // Only apply effect after scrolling 100px
         if (window.scrollY > lastScrollY && visible) {
+          // Scrolling down and navbar is visible: hide navbar
           setVisible(false);
         } else if (window.scrollY < lastScrollY && !visible) {
+          // Scrolling up and navbar is hidden: show navbar
           setVisible(true);
         }
+      } else {
+        // Near the top of the page, always show navbar
+        setVisible(true);
       }
       setLastScrollY(window.scrollY);
     };
 
-    // Handle window resize and orientation change
+    // Handles window resize and orientation changes by updating window height.
     const handleResize = () => {
       updateWindowHeight();
     };
@@ -54,16 +77,20 @@ const Navbar = () => {
     window.addEventListener('resize', handleResize);
     window.addEventListener('orientationchange', handleResize);
     
-    // Initial setup
+    // Initial setup for window height
     updateWindowHeight();
     
+    // Cleanup listeners on component unmount
     return () => {
       window.removeEventListener('scroll', controlNavbar);
       window.removeEventListener('resize', handleResize);
       window.removeEventListener('orientationchange', handleResize);
     };
-  }, [lastScrollY, visible]);
+  }, [lastScrollY, visible]); // Dependencies for the effect
 
+  // ---------------------------------------------------------------------------
+  // Navigation Links Configuration
+  // ---------------------------------------------------------------------------
   const navLinks = [
     { name: 'Home', path: '/' },
     { name: 'Services', path: '/services' },
@@ -72,16 +99,21 @@ const Navbar = () => {
   ];
 
   return (
+    // -------------------------------------------------------------------------
+    // Main Navbar Container
+    // -------------------------------------------------------------------------
     <div 
       ref={navbarRef}
       className={`fixed top-0 left-0 w-full z-40 transition-all duration-300 ${
         visible ? 'translate-y-0' : '-translate-y-full'
       } bg-transparent`}
     >
-      {/* Mobile Header - Only shows on mobile */}
+      {/* ======================================================================= */}
+      {/* Mobile Header (Visible on small screens)                            */}
+      {/* ======================================================================= */}
       <div className="md:hidden bg-white shadow-sm py-3 px-4 border-b-2 border-black font-['Work_Sans']">
         <div className="flex items-center justify-between">
-          {/* Logo on the left */}
+          {/* Logo (Mobile) */}
           <Link to="/" className="flex-shrink-0">
             <img 
               src={logo}
@@ -90,12 +122,12 @@ const Navbar = () => {
             />
           </Link>
           
-          {/* Centered name */}
+          {/* Centered Name (Mobile) */}
           <div className="absolute left-1/2 transform -translate-x-1/2">
             <span className="text-xl font-bold text-gray-800">Triply</span>
           </div>
           
-          {/* Menu button on the right */}
+          {/* Menu Button (Mobile Hamburger) */}
           <button
             onClick={toggleMenu}
             className="relative w-8 h-8 flex flex-col justify-center items-center group focus:outline-none"
@@ -115,10 +147,12 @@ const Navbar = () => {
         </div>
       </div>
 
-      {/* Desktop Navigation - Shows on md screens and up */}
+      {/* ======================================================================= */}
+      {/* Desktop Navigation (Visible on medium screens and up)                 */}
+      {/* ======================================================================= */}
       <div className="hidden md:block pt-6 px-4 sm:px-6 font-['Work_Sans']">
         <nav className="max-w-6xl mx-auto bg-white/80 backdrop-blur-md rounded-full shadow-lg px-6 py-3 flex items-center justify-between">
-          {/* Logo */}
+          {/* Logo and Name (Desktop) */}
           <div className="flex-shrink-0">
             <Link to="/" className="text-xl font-bold text-gray-800 flex items-center">
               <img 
@@ -130,7 +164,7 @@ const Navbar = () => {
             </Link>
           </div>
           
-          {/* Desktop Navigation - Centered */}
+          {/* Navigation Links (Desktop) */}
           <div className="flex items-center space-x-1">
             {navLinks.map((link) => (
               <Link
@@ -143,13 +177,13 @@ const Navbar = () => {
             ))}
           </div>
 
-          {/* Right Side - CTA Button */}
+          {/* CTA Button (Desktop) */}
           <div>
             <a
               href="https://play.google.com/store/apps/details?id=com.triply.app&pcampaignid=web_share"
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-black text-[#ffff] hover:text-white px-5 py-2 rounded-full text-sm font-medium transition-all shadow-md hover:shadow-lg transform hover:-translate-y-0.5 hover:shadow-purple-200 inline-block"
+              className="bg-[#6c2bc7] text-white hover:bg-[#5a22a8] hover:text-white px-5 py-2 rounded-full text-sm font-medium transition-all shadow-md hover:shadow-lg transform hover:-translate-y-0.5 hover:shadow-purple-200 inline-block"
             >
               Download
             </a>
@@ -157,21 +191,23 @@ const Navbar = () => {
         </nav>
       </div>
 
-      {/* Mobile Menu - Full Screen with Slide Animation from Right */}
+      {/* ======================================================================= */}
+      {/* Mobile Menu (Full Screen Overlay)                                   */}
+      {/* ======================================================================= */}
       <div 
         className={`fixed top-0 left-0 w-screen z-[9999] md:hidden transition-transform duration-500 ease-in-out ${
           isOpen ? 'translate-x-0' : 'translate-x-full'
         }`}
         style={{
           backgroundColor: '#FFFFFF',
-          backgroundImage: 'linear-gradient(to left, rgba(108, 43, 199, 0.35) 0%, rgba(108, 43, 199, 0.32) 20%, rgba(120, 70, 200, 0.28) 40%, rgba(140, 100, 210, 0.22) 60%, rgba(160, 130, 220, 0.15) 80%, rgba(180, 160, 230, 0.05) 95%, rgba(255, 255, 255, 0) 100%)',
+          backgroundImage: 'linear-gradient(to left, rgba(108, 43, 199, 0.5) 0%, rgba(108, 43, 199, 0) 70%)',
           height: `${windowHeight}px`, // Use dynamic height
           overflow: 'hidden',
           display: 'flex',
           flexDirection: 'column'
         }}
       >
-        {/* Close button */}
+        {/* Close Button (Mobile Menu) */}
         <button
           onClick={toggleMenu}
           className="absolute top-4 right-4 p-2 focus:outline-none z-10"
@@ -182,7 +218,7 @@ const Navbar = () => {
           </svg>
         </button>
 
-        {/* Menu content */}
+        {/* Mobile Menu Content */}
         <div 
           className="flex-1 flex flex-col pl-6 pr-6 pt-40 pb-6 overflow-y-auto"
           style={{
@@ -190,17 +226,21 @@ const Navbar = () => {
             paddingBottom: 'calc(env(safe-area-inset-bottom) + 1.5rem)'
           }}
         >
-          {/* Main navigation links - moved higher */}
+          {/* Navigation Links (Mobile Menu) */}
           <div className="space-y-8 flex-1">
             {navLinks.map((link, index) => {
-              // For exit: top to bottom (same as enter)
+              // Animation logic for mobile menu items
+              // Enter: Items slide in from right and fade in, staggered.
+              // Exit: Controlled by onClick on link, items immediately disappear (due to setIsOpen(false) & setMenuItemsVisible(false)).
+              // The 'isExiting' state is set but not currently utilized for a staggered exit animation here.
               const appear = menuItemsVisible && !isExiting;
-              const disappear = isExiting && !menuItemsVisible;
-              // Slightly slower enter animation (75ms delay between items)
+              const disappear = isExiting && !menuItemsVisible; // This 'disappear' logic is not effectively used due to immediate close.
+              
+              // Staggered delay for items appearing
               const delay = appear
-                ? `${index * 75}ms`
+                ? `${index * 75}ms` // Delay for appearing items
                 : disappear
-                  ? `${index * 60}ms`
+                  ? `${index * 60}ms` // Theoretical delay for disappearing (not currently effective)
                   : '0ms';
               return (
                 <Link
@@ -218,10 +258,11 @@ const Navbar = () => {
                   fontFamily: "'Work Sans', sans-serif"
                 }}
                 onClick={() => {
-                  // Close menu immediately without waiting for exit animation
+                  // Close menu immediately when a link is clicked.
+                  // This bypasses any potential exit animation for the menu items.
                   setIsOpen(false);
                   setMenuItemsVisible(false);
-                  setIsExiting(false);
+                  setIsExiting(false); // Reset exiting state
                 }}
               >
                 {link.name}
@@ -230,13 +271,13 @@ const Navbar = () => {
           })}
           </div>
 
-          {/* Download button - positioned at bottom with full width */}
+          {/* Download Button (Mobile Menu) */}
           <div className="mt-auto mb-8">
             <a
               href="https://play.google.com/store/apps/details?id=com.triply.app&pcampaignid=web_share"
               target="_blank"
               rel="noopener noreferrer"
-              className={`w-full text-center bg-black text-white py-4 rounded-full text-xl font-medium transition-all duration-200 ${
+              className={`w-full text-center bg-[#6c2bc7] text-white hover:bg-[#5a22a8] hover:text-white py-4 rounded-full text-xl font-medium transition-all duration-200 ${
                 menuItemsVisible && !isExiting
                   ? 'opacity-100 translate-y-0'
                   : (!menuItemsVisible && isExiting)
@@ -245,9 +286,9 @@ const Navbar = () => {
               }`}
               style={{
                 transitionDelay: menuItemsVisible && !isExiting
-                  ? `${navLinks.length * 75}ms`
+                  ? `${navLinks.length * 75}ms` // Delay for appearing button
                   : (!menuItemsVisible && isExiting)
-                    ? `${(navLinks.length) * 60}ms`
+                    ? `${(navLinks.length) * 60}ms` // Theoretical delay for disappearing button
                     : '0ms',
                 fontFamily: "'Work Sans', sans-serif",
                 display: 'block',
