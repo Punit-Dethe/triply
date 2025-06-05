@@ -13,9 +13,14 @@
     "postinstall": "tailwindcss init -p"
   },
   "dependencies": {
+    "@tabler/icons-react": "^3.34.0",
+    "clsx": "^2.1.1",
+    "framer-motion": "^12.16.0",
+    "motion": "^12.16.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-router-dom": "^6.22.1"
+    "react-router-dom": "^6.22.1",
+    "tailwind-merge": "^3.3.0"
   },
   "devDependencies": {
     "@tailwindcss/aspect-ratio": "^0.4.2",
