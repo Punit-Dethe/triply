@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react';
-import { motion, useScroll, useMotionValueEvent } from 'framer-motion';
+import { motion, AnimatePresence, useScroll, useMotionValueEvent } from 'framer-motion';
 import { IconMenu2, IconX } from '@tabler/icons-react';
 import { Link, useLocation } from 'react-router-dom';
 import logo from '../assets/logo.png';
@@ -21,6 +21,7 @@ const Navbar = ({ className = '' }) => {
   const [menuItemsVisible, setMenuItemsVisible] = useState(false);
   const [windowHeight, setWindowHeight] = useState(window.innerHeight);
   const menuRef = useRef(null);
+  const [isDownloadHovered, setIsDownloadHovered] = useState(false);
 
   const location = useLocation();
   const isHomePage = location.pathname === '/';
@@ -54,11 +55,17 @@ const Navbar = ({ className = '' }) => {
     }
   });
 
+  const downloadAnimationVariants = {
+    initial: { y: 15, opacity: 0 },
+    animate: { y: 0, opacity: 1 },
+    exit: { y: -15, opacity: 0 },
+  };
+
   const navItems = [
-    { name: 'Home', link: '/' },
-    { name: 'Services', link: '/services' },
-    { name: 'About', link: '/about' },
-    { name: 'Contact', link: '/contact' },
+    { name: 'Home', hoverName: 'Main', link: '/' },
+    { name: 'Services', hoverName: 'Offerings', link: '/services' },
+    { name: 'About', hoverName: 'Info', link: '/about' },
+    { name: 'Contact', hoverName: 'Connect', link: '/contact' },
   ];
 
   return (
@@ -107,14 +114,34 @@ const Navbar = ({ className = '' }) => {
 
           {/* Auth Buttons */}
           <div className="flex items-center space-x-4">
-            <Link 
-              to="/download" 
-              className="px-5 py-2 text-sm font-medium text-white bg-[#4f36b6] rounded-full hover:bg-[#3b2a89] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#4f36b6] flex items-center gap-1 shadow-md hover:shadow-lg transition-all duration-200"
+            <Link
+              to="/download"
+              onMouseEnter={() => setIsDownloadHovered(true)}
+              onMouseLeave={() => setIsDownloadHovered(false)}
+              className="relative inline-flex items-center justify-center px-5 py-2 text-sm font-medium text-white bg-[#4f36b6] rounded-full hover:bg-[#3b2a89] hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#4f36b6] gap-1 shadow-md hover:shadow-lg transition-colors duration-200"
             >
               <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
               </svg>
-              Download
+              <div className="relative h-5">
+                {/* Sizer span to maintain width */}
+                <span className="font-medium opacity-0">Download</span>
+                {/* Animated text positioned over the sizer */}
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <AnimatePresence mode="wait">
+                    <motion.span
+                      key={isDownloadHovered ? "Let's Go" : "Download"}
+                      variants={downloadAnimationVariants}
+                      initial="initial"
+                      animate="animate"
+                      exit="exit"
+                      transition={{ duration: 0.2, ease: 'easeInOut' }}
+                    >
+                      {isDownloadHovered ? "Let's Go" : "Download"}
+                    </motion.span>
+                  </AnimatePresence>
+                </div>
+              </div>
             </Link>
           </div>
         </motion.div>
@@ -252,18 +279,46 @@ const Navbar = ({ className = '' }) => {
 };
 
 const NavItems = ({ items, visible, isHomePage }) => {
+  const [hovered, setHovered] = useState(null);
+
+  const animationVariants = {
+    initial: { y: 15, opacity: 0 },
+    animate: { y: 0, opacity: 1 },
+    exit: { y: -15, opacity: 0 },
+  };
+
   return (
     <motion.div
-      onMouseLeave={() => null}
-      className={`absolute inset-0 hidden flex-1 flex-row items-center justify-center space-x-2 text-sm font-medium transition duration-200 lg:flex lg:space-x-2 ${visible || !isHomePage ? 'text-black' : 'text-gray-200'}`}
+      onMouseLeave={() => setHovered(null)}
+      className={`hidden flex-1 flex-row items-center justify-center space-x-2 text-sm font-medium transition duration-200 lg:flex lg:space-x-2 ${visible || !isHomePage ? 'text-black' : 'text-gray-200'}`}
     >
       {items.map((item, idx) => (
         <Link
           key={idx}
           to={item.link}
-          className={`relative px-4 py-2 transition-colors duration-200 hover:text-purple-800 ${visible || !isHomePage ? 'text-black' : 'text-gray-200'} dark:text-gray-200`}
+          onMouseEnter={() => setHovered(idx)}
+          className={`relative inline-flex justify-center px-4 py-2 transition-colors duration-200 hover:text-purple-800 ${visible || !isHomePage ? 'text-black' : 'text-gray-200'} dark:text-gray-200`}
         >
-          <span className="relative z-20">{item.name}</span>
+          {/* Sizer span to maintain width, using the longest of the two words */}
+          <span className="font-medium opacity-0">
+            {item.hoverName.length > item.name.length ? item.hoverName : item.name}
+          </span>
+
+          {/* Animated text positioned over the sizer */}
+          <div className="absolute inset-0 flex items-center justify-center">
+            <AnimatePresence mode="wait">
+              <motion.span
+                key={hovered === idx ? item.hoverName : item.name}
+                variants={animationVariants}
+                initial="initial"
+                animate="animate"
+                exit="exit"
+                transition={{ duration: 0.2, ease: 'easeInOut' }}
+              >
+                {hovered === idx ? item.hoverName : item.name}
+              </motion.span>
+            </AnimatePresence>
+          </div>
         </Link>
       ))}
     </motion.div>
