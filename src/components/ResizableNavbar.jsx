@@ -170,17 +170,18 @@ const Navbar = ({ className = '' }) => {
           }}
         >
           <div className={cn(
-            "flex w-full items-center justify-between px-4 transition-all duration-300 ease-in-out",
-            visible ? 'py-0' : 'py-2'
+            "flex w-full items-center justify-between px-4 transition-all duration-300 ease-in-out relative",
+            visible ? 'py-1' : 'py-3'
           )}>
             <Link to="/" className="flex items-center space-x-2">
               <img src={logo} alt="Triply" className={cn(
                 "w-auto transition-all duration-300 ease-in-out",
                 visible ? "h-7" : "h-8"
               )} />
-              <span className={`text-lg font-medium ${visible || !isHomePage ? 'text-black' : 'text-gray-200'}`}>Triply</span>
             </Link>
-            
+            <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
+              <span className={`text-lg font-medium ${visible || !isHomePage ? 'text-black' : 'text-gray-200'}`}>Triply</span>
+            </div>
             <button 
               onClick={toggleMobileMenu}
               className="p-2 text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white"
