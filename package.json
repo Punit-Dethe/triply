@@ -13,6 +13,7 @@
     "postinstall": "tailwindcss init -p"
   },
   "dependencies": {
+    "@stagewise/toolbar-react": "^0.4.3",
     "@tabler/icons-react": "^3.34.0",
     "clsx": "^2.1.1",
     "framer-motion": "^12.16.0",

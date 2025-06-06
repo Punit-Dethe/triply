@@ -109,7 +109,7 @@ const Navbar = ({ className = '' }) => {
           <div className="flex items-center space-x-4">
             <Link 
               to="/download" 
-              className="px-5 py-2 text-sm font-medium text-white bg-indigo-700 rounded-full hover:bg-indigo-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 flex items-center gap-1 shadow-md hover:shadow-lg transition-all duration-200"
+              className="px-5 py-2 text-sm font-medium text-white bg-[#4f36b6] rounded-full hover:bg-[#3b2a89] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#4f36b6] flex items-center gap-1 shadow-md hover:shadow-lg transition-all duration-200"
             >
               <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
@@ -230,7 +230,7 @@ const Navbar = ({ className = '' }) => {
               href="https://play.google.com/store/apps/details?id=com.triply.app&pcampaignid=web_share"
               target="_blank"
               rel="noopener noreferrer"
-              className={`w-full text-center bg-[#6c2bc7] text-white hover:bg-[#5a22a8] hover:text-white py-4 rounded-full text-xl font-medium transition-all duration-200 ${
+              className={`w-full text-center bg-[#4f36b6] text-white hover:bg-[#3b2a89] hover:text-white py-4 rounded-full text-xl font-medium transition-all duration-200 ${
                 menuItemsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
               }`}
               style={{
@@ -252,31 +252,17 @@ const Navbar = ({ className = '' }) => {
 };
 
 const NavItems = ({ items, visible, isHomePage }) => {
-  const [hovered, setHovered] = useState(null);
-
   return (
     <motion.div
-      onMouseLeave={() => setHovered(null)}
+      onMouseLeave={() => null}
       className={`absolute inset-0 hidden flex-1 flex-row items-center justify-center space-x-2 text-sm font-medium transition duration-200 lg:flex lg:space-x-2 ${visible || !isHomePage ? 'text-black' : 'text-gray-200'}`}
     >
       {items.map((item, idx) => (
         <Link
           key={idx}
           to={item.link}
-          onMouseEnter={() => setHovered(idx)}
-          className={`relative px-4 py-2 ${visible || !isHomePage ? 'text-black' : 'text-gray-200'} dark:text-gray-200`}
+          className={`relative px-4 py-2 transition-colors duration-200 hover:text-purple-800 ${visible || !isHomePage ? 'text-black' : 'text-gray-200'} dark:text-gray-200`}
         >
-          {hovered === idx && (
-            <motion.div
-              layoutId="hovered"
-              className="absolute inset-0 h-full w-full rounded-full bg-indigo-100 dark:bg-indigo-950"
-              transition={{
-                type: "spring",
-                stiffness: 500,
-                damping: 30,
-              }}
-            />
-          )}
           <span className="relative z-20">{item.name}</span>
         </Link>
       ))}
