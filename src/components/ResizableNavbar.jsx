@@ -289,14 +289,18 @@ const NavItems = ({ items, visible, isHomePage }) => {
   return (
     <motion.div
       onMouseLeave={() => setHovered(null)}
-      className={`hidden flex-1 flex-row items-center justify-center space-x-2 text-sm font-medium transition duration-200 lg:flex lg:space-x-2 ${visible || !isHomePage ? 'text-black' : 'text-gray-200'}`}
+      className="hidden flex-1 flex-row items-center justify-center space-x-2 text-sm font-medium transition duration-200 lg:flex lg:space-x-2"
     >
       {items.map((item, idx) => (
         <Link
           key={idx}
           to={item.link}
           onMouseEnter={() => setHovered(idx)}
-          className={`relative inline-flex justify-center px-4 py-2 transition-colors duration-200 hover:text-purple-800 ${visible || !isHomePage ? 'text-black' : 'text-gray-200'} dark:text-gray-200`}
+          className={`relative inline-flex justify-center px-4 py-2 transition-colors duration-200 dark:text-gray-200 ${
+            isHomePage && !visible
+              ? 'text-gray-200 hover:text-purple-200'
+              : 'text-black hover:text-purple-800'
+          }`}
         >
           {/* Sizer span to maintain width, using the longest of the two words */}
           <span className="font-medium opacity-0">
