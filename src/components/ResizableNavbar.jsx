@@ -241,7 +241,7 @@ const Navbar = ({ className = '' }) => {
                 <Link
                   key={item.name}
                   to={item.link}
-                  className={`block text-4xl font-normal text-gray-800 hover:text-[#6c2bc7] transition-all duration-250 ${
+                  className={`block text-5xl font-normal text-gray-800 hover:text-[#6c2bc7] transition-all duration-250 ${
                     menuItemsVisible
                       ? 'opacity-100 translate-x-0'
                       : 'opacity-0 translate-x-8'
