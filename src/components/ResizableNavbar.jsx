@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { motion, AnimatePresence, useScroll, useMotionValueEvent } from 'framer-motion';
+import React, { useState, useRef } from 'react';
+import { motion, useScroll, useMotionValueEvent } from 'framer-motion';
 import { IconMenu2, IconX } from '@tabler/icons-react';
 import { Link, useLocation } from 'react-router-dom';
 import logo from '../assets/logo.png';
@@ -9,7 +9,7 @@ function cn(...classes) {
   return classes.filter(Boolean).join(' ');
 }
 
-const Navbar = ({ children, className = '' }) => {
+const Navbar = ({ className = '' }) => {
   const ref = useRef(null);
   const { scrollY } = useScroll({
     target: ref,
@@ -251,7 +251,7 @@ const Navbar = ({ children, className = '' }) => {
   );
 };
 
-const NavItems = ({ items, onItemClick, visible, isHomePage }) => {
+const NavItems = ({ items, visible, isHomePage }) => {
   const [hovered, setHovered] = useState(null);
 
   return (
@@ -264,7 +264,6 @@ const NavItems = ({ items, onItemClick, visible, isHomePage }) => {
           key={idx}
           to={item.link}
           onMouseEnter={() => setHovered(idx)}
-          onClick={onItemClick}
           className={`relative px-4 py-2 ${visible || !isHomePage ? 'text-black' : 'text-gray-200'} dark:text-gray-200`}
         >
           {hovered === idx && (
