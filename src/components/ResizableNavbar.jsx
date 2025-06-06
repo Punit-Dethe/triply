@@ -33,7 +33,7 @@ const Navbar = ({ className = '' }) => {
       setTimeout(() => setMenuItemsVisible(true), 50);
     } else {
       setMenuItemsVisible(false);
-      setTimeout(() => setIsMobileMenuOpen(false), 300);
+      setIsMobileMenuOpen(false);
     }
   };
 
