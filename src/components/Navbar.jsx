@@ -102,95 +102,93 @@ const Navbar = () => {
     // -------------------------------------------------------------------------
     // Main Navbar Container
     // -------------------------------------------------------------------------
-    <>
-      <div 
-        ref={navbarRef}
-        className={`fixed top-0 left-0 w-full z-40 transition-all duration-300 ${
-          visible ? 'translate-y-0' : '-translate-y-full'
-        } bg-transparent`}
-      >
-        {/* ======================================================================= */}
-        {/* Mobile Header (Visible on small screens)                            */}
-        {/* ======================================================================= */}
-        <div className="md:hidden bg-white shadow-sm py-3 px-4 border-b-2 border-black font-['Work_Sans']">
-          <div className="flex items-center justify-between">
-            {/* Logo (Mobile) */}
-            <Link to="/" className="flex-shrink-0">
+    <div 
+      ref={navbarRef}
+      className={`fixed top-0 left-0 w-full z-40 transition-all duration-300 ${
+        visible ? 'translate-y-0' : '-translate-y-full'
+      } bg-transparent`}
+    >
+      {/* ======================================================================= */}
+      {/* Mobile Header (Visible on small screens)                            */}
+      {/* ======================================================================= */}
+      <div className="md:hidden bg-white shadow-sm py-3 px-4 border-b-2 border-black font-['Work_Sans']">
+        <div className="flex items-center justify-between">
+          {/* Logo (Mobile) */}
+          <Link to="/" className="flex-shrink-0">
+            <img 
+              src={logo}
+              alt="Triply Logo" 
+              className="h-8 w-auto"
+            />
+          </Link>
+          
+          {/* Centered Name (Mobile) */}
+          <div className="absolute left-1/2 transform -translate-x-1/2">
+            <span className="text-xl font-bold text-gray-800">Triply</span>
+          </div>
+          
+          {/* Menu Button (Mobile Hamburger) */}
+          <button
+            onClick={toggleMenu}
+            className="relative w-8 h-8 flex flex-col justify-center items-center group focus:outline-none"
+            aria-label="Toggle menu"
+          >
+            <span className={`
+              block w-6 h-1 bg-[#6c2bc7] rounded-full transform transition-all duration-300 ease-in-out
+              ${isOpen ? 'rotate-45 translate-y-1' : 'mb-2'}
+              group-hover:bg-[#5a22a8] origin-center
+            `}></span>
+            <span className={`
+              block w-6 h-1 bg-[#6c2bc7] rounded-full transform transition-all duration-300 ease-in-out
+              ${isOpen ? '-rotate-45 -translate-y-0.5' : ''}
+              group-hover:bg-[#5a22a8] origin-center
+            `}></span>
+          </button>
+        </div>
+      </div>
+
+      {/* ======================================================================= */}
+      {/* Desktop Navigation (Visible on medium screens and up)                 */}
+      {/* ======================================================================= */}
+      <div className="hidden md:block pt-6 px-4 sm:px-6 font-['Work_Sans']">
+        <nav className="max-w-6xl mx-auto bg-white/80 backdrop-blur-md rounded-full shadow-lg px-6 py-3 flex items-center justify-between">
+          {/* Logo and Name (Desktop) */}
+          <div className="flex-shrink-0">
+            <Link to="/" className="text-xl font-bold text-gray-800 flex items-center">
               <img 
                 src={logo}
                 alt="Triply Logo" 
-                className="h-8 w-auto"
+                className="h-8 w-auto mr-2"
               />
+              <span className="text-gray-800">Triply</span>
             </Link>
-            
-            {/* Centered Name (Mobile) */}
-            <div className="absolute left-1/2 transform -translate-x-1/2">
-              <span className="text-xl font-bold text-gray-800">Triply</span>
-            </div>
-            
-            {/* Menu Button (Mobile Hamburger) */}
-            <button
-              onClick={toggleMenu}
-              className="relative w-8 h-8 flex flex-col justify-center items-center group focus:outline-none"
-              aria-label="Toggle menu"
-            >
-              <span className={`
-                block w-6 h-1 bg-[#6c2bc7] rounded-full transform transition-all duration-300 ease-in-out
-                ${isOpen ? 'rotate-45 translate-y-1' : 'mb-2'}
-                group-hover:bg-[#5a22a8] origin-center
-              `}></span>
-              <span className={`
-                block w-6 h-1 bg-[#6c2bc7] rounded-full transform transition-all duration-300 ease-in-out
-                ${isOpen ? '-rotate-45 -translate-y-0.5' : ''}
-                group-hover:bg-[#5a22a8] origin-center
-              `}></span>
-            </button>
           </div>
-        </div>
-
-        {/* ======================================================================= */}
-        {/* Desktop Navigation (Visible on medium screens and up)                 */}
-        {/* ======================================================================= */}
-        <div className="hidden md:block pt-6 px-4 sm:px-6 font-['Work_Sans']">
-          <nav className="max-w-6xl mx-auto bg-white/80 backdrop-blur-md rounded-full shadow-lg px-6 py-3 flex items-center justify-between">
-            {/* Logo and Name (Desktop) */}
-            <div className="flex-shrink-0">
-              <Link to="/" className="text-xl font-bold text-gray-800 flex items-center">
-                <img 
-                  src={logo}
-                  alt="Triply Logo" 
-                  className="h-8 w-auto mr-2"
-                />
-                <span className="text-gray-800">Triply</span>
-              </Link>
-            </div>
-            
-            {/* Navigation Links (Desktop) */}
-            <div className="flex items-center space-x-1">
-              {navLinks.map((link) => (
-                <Link
-                  key={link.name}
-                  to={link.path}
-                  className="px-4 py-2 text-base font-semibold text-black hover:text-[#6c2bc7] rounded-full transition-all duration-200 hover:bg-purple-50/70"
-                >
-                  {link.name}
-                </Link>
-              ))}
-            </div>
-
-            {/* CTA Button (Desktop) */}
-            <div>
-              <a
-                href="https://play.google.com/store/apps/details?id=com.triply.app&pcampaignid=web_share"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="bg-[#6c2bc7] text-white hover:bg-[#5a22a8] hover:text-white px-5 py-2 rounded-full text-sm font-medium transition-all shadow-md hover:shadow-lg transform hover:-translate-y-0.5 hover:shadow-purple-200 inline-block"
+          
+          {/* Navigation Links (Desktop) */}
+          <div className="flex items-center space-x-1">
+            {navLinks.map((link) => (
+              <Link
+                key={link.name}
+                to={link.path}
+                className="px-4 py-2 text-base font-semibold text-black hover:text-[#6c2bc7] rounded-full transition-all duration-200 hover:bg-purple-50/70"
               >
-                Download
-              </a>
-            </div>
-          </nav>
-        </div>
+                {link.name}
+              </Link>
+            ))}
+          </div>
+
+          {/* CTA Button (Desktop) */}
+          <div>
+            <a
+              href="https://play.google.com/store/apps/details?id=com.triply.app&pcampaignid=web_share"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-[#6c2bc7] text-white hover:bg-[#5a22a8] hover:text-white px-5 py-2 rounded-full text-sm font-medium transition-all shadow-md hover:shadow-lg transform hover:-translate-y-0.5 hover:shadow-purple-200 inline-block"
+            >
+              Download
+            </a>
+          </div>
+        </nav>
       </div>
 
       {/* ======================================================================= */}
@@ -308,7 +306,7 @@ const Navbar = () => {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 
