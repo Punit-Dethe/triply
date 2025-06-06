@@ -70,50 +70,50 @@ const Navbar = ({ className = '' }) => {
 
   return (
     <>
-      <motion.div
-        ref={ref}
-        className={cn("sticky inset-x-0 top-0 z-40 w-full", className)}
+    <motion.div
+      ref={ref}
+      className={cn("sticky inset-x-0 top-0 z-40 w-full", className)}
         variants={{
           visible: { y: 0 },
           hidden: { y: "-135%" },
         }}
         animate={hidden ? "hidden" : "visible"}
         transition={{ duration: 0.35, ease: "easeInOut" }}
-      >
-        {/* Desktop Navbar */}
-        <motion.div
-          animate={{
-            backdropFilter: visible ? "blur(10px)" : "none",
-            boxShadow: visible
-              ? "0 0 24px rgba(34, 42, 53, 0.06), 0 1px 1px rgba(0, 0, 0, 0.05), 0 0 0 1px rgba(34, 42, 53, 0.04), 0 0 4px rgba(34, 42, 53, 0.08), 0 16px 68px rgba(47, 48, 55, 0.05), 0 1px 0 rgba(255, 255, 255, 0.1) inset"
-              : "none",
-            width: visible ? "40%" : "100%",
-            y: visible ? 20 : 0,
+    >
+      {/* Desktop Navbar */}
+      <motion.div
+        animate={{
+          backdropFilter: visible ? "blur(10px)" : "none",
+          boxShadow: visible
+            ? "0 0 24px rgba(34, 42, 53, 0.06), 0 1px 1px rgba(0, 0, 0, 0.05), 0 0 0 1px rgba(34, 42, 53, 0.04), 0 0 4px rgba(34, 42, 53, 0.08), 0 16px 68px rgba(47, 48, 55, 0.05), 0 1px 0 rgba(255, 255, 255, 0.1) inset"
+            : "none",
+          width: visible ? "40%" : "100%",
+          y: visible ? 20 : 0,
             backgroundColor: visible ? "rgba(255, 255, 255, 0.8)" : "rgba(255, 255, 255, 0)",
-          }}
-          transition={{
+        }}
+        transition={{
             type: "tween",
             duration: 0.6,
             ease: "easeInOut",
-          }}
-          style={{
-            minWidth: "800px",
-          }}
-          className={cn(
+        }}
+        style={{
+          minWidth: "800px",
+        }}
+        className={cn(
             "relative z-[60] mx-auto hidden w-full max-w-7xl flex-row items-center justify-between self-start rounded-full bg-transparent px-4 py-2 lg:flex dark:bg-transparent"
-          )}
-        >
-          {/* Logo */}
-          <Link to="/" className="relative z-20 mr-4 flex items-center space-x-2 px-2 py-1 text-sm font-normal">
-            <img src={logo} alt="Triply" className="h-8 w-auto" />
+        )}
+      >
+        {/* Logo */}
+        <Link to="/" className="relative z-20 mr-4 flex items-center space-x-2 px-2 py-1 text-sm font-normal">
+          <img src={logo} alt="Triply" className="h-8 w-auto" />
             <span className={`font-medium ${visible || !isHomePage ? 'text-black' : 'text-gray-200'}`}>Triply</span>
-          </Link>
+        </Link>
 
-          {/* Navigation Items */}
+        {/* Navigation Items */}
           <NavItems items={navItems} visible={visible} isHomePage={isHomePage} />
 
-          {/* Auth Buttons */}
-          <div className="flex items-center space-x-4">
+        {/* Auth Buttons */}
+        <div className="flex items-center space-x-4">
             <a
               href="https://play.google.com/store/apps/details?id=com.triply.app&pcampaignid=web_share"
               target="_blank"
@@ -121,10 +121,10 @@ const Navbar = ({ className = '' }) => {
               onMouseEnter={() => setIsDownloadHovered(true)}
               onMouseLeave={() => setIsDownloadHovered(false)}
               className="relative inline-flex items-center justify-center px-5 py-2 text-sm font-medium text-white bg-[#4f36b6] rounded-full hover:bg-[#3b2a89] hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#4f36b6] gap-1 shadow-md hover:shadow-lg transition-colors duration-200"
-            >
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
-              </svg>
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+            </svg>
               <div className="relative h-5">
                 {/* Sizer span to maintain width */}
                 <span className="font-medium opacity-0">Download</span>
@@ -145,136 +145,141 @@ const Navbar = ({ className = '' }) => {
                 </div>
               </div>
             </a>
-          </div>
-        </motion.div>
+        </div>
+      </motion.div>
 
-        {/* Mobile Navbar */}
-        <motion.div
-          className={cn(
+      {/* Mobile Navbar */}
+      <motion.div
+        className={cn(
             "relative z-50 mx-auto flex w-full max-w-[calc(100vw-2rem)] flex-col items-center justify-between bg-transparent px-0 py-2 lg:hidden"
-          )}
-          animate={{
-            backdropFilter: visible ? "blur(10px)" : "none",
-            boxShadow: visible
-              ? "0 0 24px rgba(34, 42, 53, 0.06), 0 1px 1px rgba(0, 0, 0, 0.05), 0 0 0 1px rgba(34, 42, 53, 0.04), 0 0 4px rgba(34, 42, 53, 0.08), 0 16px 68px rgba(47, 48, 55, 0.05), 0 1px 0 rgba(255, 255, 255, 0.1) inset"
-              : "none",
-            width: visible ? "90%" : "100%",
-            paddingRight: visible ? "16px" : "0px",
-            paddingLeft: visible ? "16px" : "0px",
-            borderRadius: visible ? "23px" : "2rem",
-            y: visible ? 20 : 0,
+        )}
+        animate={{
+          backdropFilter: visible ? "blur(10px)" : "none",
+          boxShadow: visible
+            ? "0 0 24px rgba(34, 42, 53, 0.06), 0 1px 1px rgba(0, 0, 0, 0.05), 0 0 0 1px rgba(34, 42, 53, 0.04), 0 0 4px rgba(34, 42, 53, 0.08), 0 16px 68px rgba(47, 48, 55, 0.05), 0 1px 0 rgba(255, 255, 255, 0.1) inset"
+            : "none",
+          width: visible ? "90%" : "100%",
+          paddingRight: visible ? "16px" : "0px",
+          paddingLeft: visible ? "16px" : "0px",
+          borderRadius: visible ? "23px" : "2rem",
+          y: visible ? 20 : 0,
             backgroundColor: visible ? "rgba(255, 255, 255, 0.8)" : "rgba(255, 255, 255, 0)",
-          }}
-          transition={{
-            type: "spring",
-            stiffness: 200,
-            damping: 50,
-          }}
-        >
+        }}
+        transition={{
+          type: "spring",
+          stiffness: 200,
+          damping: 50,
+        }}
+      >
           <div className={cn(
             "flex w-full items-center justify-between px-4 transition-all duration-300 ease-in-out",
             visible ? 'py-1' : 'py-3'
           )}>
-            <Link to="/" className="flex items-center space-x-2">
+          <Link to="/" className="flex items-center space-x-2">
               <img src={logo} alt="Triply" className={cn(
                 "w-auto transition-all duration-300 ease-in-out",
                 visible ? "h-7" : "h-8"
               )} />
               <span className={`text-lg font-medium ${visible || !isHomePage ? 'text-black' : 'text-gray-200'}`}>Triply</span>
-            </Link>
-            <button 
-              onClick={toggleMobileMenu}
-              className="p-2 text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white"
-            >
-              {isMobileMenuOpen ? (
-                <IconX className="h-6 w-6" />
-              ) : (
-                <IconMenu2 className="h-6 w-6" />
-              )}
-            </button>
-          </div>
+          </Link>
+          <button
+            onClick={toggleMobileMenu}
+            className={cn(
+              "p-2 dark:text-gray-300 dark:hover:text-white",
+              isHomePage && !visible
+                ? 'text-white hover:text-purple-200'
+                : 'text-gray-700 hover:text-gray-900'
+            )}
+          >
+            {isMobileMenuOpen ? (
+              <IconX className="h-6 w-6" />
+            ) : (
+              <IconMenu2 className="h-6 w-6" />
+            )}
+          </button>
+        </div>
         </motion.div>
       </motion.div>
 
-      {/* Mobile Menu (Full Screen Overlay) */}
-      <div 
-        ref={menuRef}
-        className={`fixed top-0 left-0 w-screen z-[9999] lg:hidden transition-transform duration-500 ease-in-out ${
-          isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'
-        }`}
-        style={{
-          backgroundColor: '#FFFFFF',
-          backgroundImage: 'linear-gradient(to left, rgba(108, 43, 199, 0.5) 0%, rgba(108, 43, 199, 0) 70%)',
-          height: `${windowHeight}px`,
-          overflow: 'hidden',
-          display: 'flex',
-          flexDirection: 'column'
-        }}
-      >
-        {/* Close Button (Mobile Menu) */}
-        <button
-          onClick={toggleMobileMenu}
-          className="absolute top-4 right-4 p-2 focus:outline-none z-10"
-          aria-label="Close menu"
-        >
-          <svg className="w-8 h-8 text-gray-800" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-          </svg>
-        </button>
-
-        {/* Mobile Menu Content */}
+        {/* Mobile Menu (Full Screen Overlay) */}
         <div 
-          className="flex-1 flex flex-col pl-6 pr-6 pt-40 pb-6 overflow-y-auto"
+          ref={menuRef}
+          className={`fixed top-0 left-0 w-screen z-[9999] lg:hidden transition-transform duration-500 ease-in-out ${
+            isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'
+          }`}
           style={{
-            WebkitOverflowScrolling: 'touch',
-            paddingBottom: 'calc(env(safe-area-inset-bottom) + 1.5rem)'
+            backgroundColor: '#FFFFFF',
+            backgroundImage: 'linear-gradient(to left, rgba(108, 43, 199, 0.5) 0%, rgba(108, 43, 199, 0) 70%)',
+            height: `${windowHeight}px`,
+            overflow: 'hidden',
+            display: 'flex',
+            flexDirection: 'column'
           }}
         >
-          {/* Navigation Links (Mobile Menu) */}
-          <div className="space-y-8 flex-1">
-            {navItems.map((item, index) => (
-              <Link
-                key={item.name}
-                to={item.link}
-                className={`block text-5xl font-normal text-gray-800 hover:text-[#6c2bc7] transition-all duration-250 ${
-                  menuItemsVisible
-                    ? 'opacity-100 translate-x-0'
-                    : 'opacity-0 translate-x-8'
+          {/* Close Button (Mobile Menu) */}
+          <button
+            onClick={toggleMobileMenu}
+            className="absolute top-4 right-4 p-2 focus:outline-none z-10"
+            aria-label="Close menu"
+          >
+            <svg className="w-8 h-8 text-gray-800" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+
+          {/* Mobile Menu Content */}
+          <div 
+            className="flex-1 flex flex-col pl-6 pr-6 pt-40 pb-6 overflow-y-auto"
+            style={{
+              WebkitOverflowScrolling: 'touch',
+              paddingBottom: 'calc(env(safe-area-inset-bottom) + 1.5rem)'
+            }}
+          >
+            {/* Navigation Links (Mobile Menu) */}
+            <div className="space-y-8 flex-1">
+              {navItems.map((item, index) => (
+                <Link
+                  key={item.name}
+                  to={item.link}
+                  className={`block text-4xl font-normal text-gray-800 hover:text-[#6c2bc7] transition-all duration-250 ${
+                    menuItemsVisible
+                      ? 'opacity-100 translate-x-0'
+                      : 'opacity-0 translate-x-8'
+                  }`}
+                  style={{
+                    transitionDelay: menuItemsVisible ? `${index * 75}ms` : '0ms',
+                    fontFamily: "'Work Sans', sans-serif"
+                  }}
+                  onClick={toggleMobileMenu}
+                >
+                  {item.name}
+                </Link>
+              ))}
+            </div>
+
+            {/* Download Button (Mobile Menu) */}
+            <div className="mt-auto mb-8">
+              <a
+                href="https://play.google.com/store/apps/details?id=com.triply.app&pcampaignid=web_share"
+                target="_blank"
+                rel="noopener noreferrer"
+              className={`w-full text-center bg-[#4f36b6] text-white hover:bg-[#3b2a89] hover:text-white py-4 rounded-full text-xl font-medium transition-all duration-200 ${
+                  menuItemsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
                 }`}
                 style={{
-                  transitionDelay: menuItemsVisible ? `${index * 75}ms` : '0ms',
-                  fontFamily: "'Work Sans', sans-serif"
+                  transitionDelay: menuItemsVisible ? `${navItems.length * 75}ms` : '0ms',
+                  fontFamily: "'Work Sans', sans-serif",
+                  display: 'block',
+                  paddingLeft: '1rem',
+                  paddingRight: '1rem',
+                  marginBottom: 'env(safe-area-inset-bottom, 20px)'
                 }}
-                onClick={toggleMobileMenu}
               >
-                {item.name}
-              </Link>
-            ))}
-          </div>
-
-          {/* Download Button (Mobile Menu) */}
-          <div className="mt-auto mb-8">
-            <a
-              href="https://play.google.com/store/apps/details?id=com.triply.app&pcampaignid=web_share"
-              target="_blank"
-              rel="noopener noreferrer"
-              className={`w-full text-center bg-[#4f36b6] text-white hover:bg-[#3b2a89] hover:text-white py-4 rounded-full text-xl font-medium transition-all duration-200 ${
-                menuItemsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
-              }`}
-              style={{
-                transitionDelay: menuItemsVisible ? `${navItems.length * 75}ms` : '0ms',
-                fontFamily: "'Work Sans', sans-serif",
-                display: 'block',
-                paddingLeft: '1rem',
-                paddingRight: '1rem',
-                marginBottom: 'env(safe-area-inset-bottom, 20px)'
-              }}
-            >
-              Download
-            </a>
+                Download
+              </a>
+            </div>
           </div>
         </div>
-      </div>
     </>
   );
 };
