@@ -102,7 +102,7 @@ const Navbar = () => {
     // -------------------------------------------------------------------------
     // Main Navbar Container
     // -------------------------------------------------------------------------
-    <div 
+      <div 
       ref={navbarRef}
       className={`fixed top-0 left-0 w-full z-40 transition-all duration-300 ${
         visible ? 'translate-y-0' : '-translate-y-full'
@@ -115,7 +115,7 @@ const Navbar = () => {
         <div className="flex items-center justify-between">
           {/* Logo (Mobile) */}
           <Link to="/" className="flex-shrink-0">
-            <img 
+            <img  
               src={logo}
               alt="Triply Logo" 
               className="h-8 w-auto"
