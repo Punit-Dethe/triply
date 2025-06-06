@@ -217,7 +217,8 @@ const Navbar = ({ className = '' }) => {
             height: `${windowHeight}px`,
             overflow: 'hidden',
             display: 'flex',
-            flexDirection: 'column'
+            flexDirection: 'column',
+            willChange: 'transform',
           }}
         >
           {/* Close Button (Mobile Menu) */}
