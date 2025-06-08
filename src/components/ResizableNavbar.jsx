@@ -314,12 +314,12 @@ const NavItems = ({ items, visible, isHomePage }) => {
               : 'text-black hover:text-purple-800'
           }`}
         >
-          {/* Sizer span to maintain width, using the longest of the two words */}
+          {/* longest of the two words */}
           <span className="font-medium opacity-0">
             {item.hoverName.length > item.name.length ? item.hoverName : item.name}
           </span>
 
-          {/* Animated text positioned over the sizer */}
+          {/* Animated text position */}
           <div className="absolute inset-0 flex items-center justify-center">
             <AnimatePresence mode="wait">
               <motion.span
