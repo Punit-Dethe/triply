@@ -3,6 +3,7 @@ import { motion, AnimatePresence, useScroll, useMotionValueEvent } from 'framer-
 import { IconMenu2, IconX } from '@tabler/icons-react';
 import { Link, useLocation } from 'react-router-dom';
 import logo from '../assets/logo.png';
+import logo2 from '../assets/logo2.ico';
 
 // Utility function for class names
 function cn(...classes) {
@@ -106,7 +107,7 @@ const Navbar = ({ className = '' }) => {
       >
         {/* Logo */}
         <Link to="/" className="relative z-20 mr-4 flex items-center space-x-2 px-2 py-1 text-sm font-normal">
-          <img src={logo} alt="Triply" className="h-8 w-auto" />
+          <img src={visible ? logo2 : logo} alt="Triply" className="h-8 w-auto" />
             <span className={`font-medium ${visible || !isHomePage ? 'text-black' : 'text-gray-200'}`}>Triply</span>
         </Link>
 
@@ -121,11 +122,16 @@ const Navbar = ({ className = '' }) => {
               rel="noopener noreferrer"
               onMouseEnter={() => setIsDownloadHovered(true)}
               onMouseLeave={() => setIsDownloadHovered(false)}
-              className="relative inline-flex items-center justify-center px-5 py-2 text-sm font-medium text-white bg-[#4f36b6] rounded-full hover:bg-[#3b2a89] hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#4f36b6] gap-1 shadow-md hover:shadow-lg transition-colors duration-200"
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
-            </svg>
+              className={cn(
+                "relative inline-flex items-center justify-center px-5 py-2 text-sm font-medium text-white rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 gap-1 shadow-md hover:shadow-lg transition-colors duration-200",
+                visible
+                  ? "bg-black hover:bg-gray-800 focus:ring-black"
+                  : "bg-[#4f36b6] hover:bg-[#3b2a89] focus:ring-[#4f36b6]"
+              )}
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+              </svg>
               <div className="relative h-5">
                 {/* Sizer span to maintain width */}
                 <span className="font-medium opacity-0">Download</span>
@@ -180,7 +186,7 @@ const Navbar = ({ className = '' }) => {
             visible ? 'py-1' : 'py-3'
           )}>
           <Link to="/" className="flex items-center space-x-2">
-              <img src={logo} alt="Triply" className={cn(
+              <img src={visible ? logo2 : logo} alt="Triply" className={cn(
                 "w-auto transition-all duration-300 ease-in-out",
                 visible ? "h-7" : "h-8"
               )} />
