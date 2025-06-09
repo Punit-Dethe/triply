@@ -157,7 +157,7 @@ export const HowItWorks = () => {
   };
 
   return (
-    <div className="mx-4 sm:mx-8 my-8">
+    <div className="my-8 sm:mx-8">
       <motion.section
         ref={sectionRef}
         initial="hidden"
@@ -173,12 +173,29 @@ export const HowItWorks = () => {
           className="absolute inset-0 z-0 bg-white/80 backdrop-blur-sm"
         />
         
-        {/* Mobile-only top-left orange glow */}
+        {/* Mobile-only Top Gradient */}
+        <div
+          aria-hidden="true"
+          className="md:hidden absolute top-0 left-0 right-0 h-1/4 z-10"
+          style={{
+            background: 'linear-gradient(to bottom, rgba(249, 115, 22, 0.1) 0%, transparent 100%)'
+          }}
+        />
+        {/* Mobile-only Bottom Gradient */}
+        <div
+          aria-hidden="true"
+          className="md:hidden absolute bottom-0 left-0 right-0 h-1/4 z-10"
+          style={{
+            background: 'linear-gradient(to top, rgba(249, 115, 22, 0.1) 0%, transparent 100%)'
+          }}
+        />
+
+        {/* Mobile-only LEFT side continuous orange glow */}
         <div 
           aria-hidden="true"
-          className="md:hidden absolute top-0 left-0 w-2/3 h-1/2 z-10"
+          className="md:hidden absolute top-0 left-0 bottom-0 w-1/3 z-10"
           style={{
-            background: 'linear-gradient(to bottom right, rgba(249, 115, 22, 0.1) 0%, transparent 80%)'
+            background: 'linear-gradient(to right, rgba(249, 115, 22, 0.15) 0%, transparent 100%)'
           }}
         />
 
