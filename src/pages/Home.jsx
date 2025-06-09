@@ -76,7 +76,7 @@ const Home = () => {
       </div>
 
       <div className="relative" style={{
-        background: 'radial-gradient(circle at center, rgba(138, 92, 246, 0.08) 0%, rgba(249, 116, 22, 0.05) 40%, transparent 70%)',
+        background: 'radial-gradient(circle at center, rgba(138, 92, 246, 0.16) 0%, rgba(249, 116, 22, 0.11) 40%, transparent 100%)',
       }}>
         <HowItWorks />
         <Testimonials />

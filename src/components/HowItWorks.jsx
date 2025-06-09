@@ -209,7 +209,7 @@ export const HowItWorks = () => {
           <div 
             className="w-full h-full"
             style={{
-              background: 'linear-gradient(to left, rgba(249, 115, 22, 0.08) 0%, transparent 100%)'
+              background: 'linear-gradient(to left, rgba(249, 116, 22, 0.16) 0%, transparent 100%)'
             }}
           />
         </motion.div>
