@@ -215,17 +215,17 @@ export const Testimonials = () => {
                       <AnimatePresence>
                         {hoveredIndex === index && hasHistory && (
                           <motion.div 
-                            className="absolute bottom-4 right-4 flex gap-1"
+                            className="absolute bottom-4 right-4 flex gap-2"
                             initial={{ opacity: 0, y: 5 }}
                             animate={{ opacity: 1, y: 0 }}
                             exit={{ opacity: 0, y: 5 }}
                             transition={{ duration: 0.2 }}
                           >
-                            <button onClick={() => handleToggle(index)} className="w-8 h-8 bg-black/70 text-white rounded-full flex items-center justify-center hover:bg-black transition-colors">
-                              <ChevronLeft className="w-5 h-5" />
+                            <button onClick={() => handleToggle(index)} className="p-1 transition-opacity hover:opacity-70">
+                              <ChevronLeft className="w-6 h-6 text-black" />
                             </button>
-                            <button onClick={() => handleToggle(index)} className="w-8 h-8 bg-black/70 text-white rounded-full flex items-center justify-center hover:bg-black transition-colors">
-                              <ChevronRight className="w-5 h-5" />
+                            <button onClick={() => handleToggle(index)} className="p-1 transition-opacity hover:opacity-70">
+                              <ChevronRight className="w-6 h-6 text-black" />
                             </button>
                           </motion.div>
                         )}
