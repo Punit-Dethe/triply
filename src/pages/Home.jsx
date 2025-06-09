@@ -5,7 +5,7 @@ import Testimonials from '../components/Testimonials';
 
 const Home = () => {
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-white">
       {/* Hero Section */}
       <div className="relative text-white pt-32 pb-16 -mt-24 md:pt-48 overflow-hidden bg-cover bg-center" style={{
         backgroundImage: 'linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(https://images.pexels.com/photos/315938/pexels-photo-315938.jpeg?cs=srgb&dl=pexels-pixabay-315938.jpg&fm=jpg)',
@@ -75,9 +75,12 @@ const Home = () => {
         </div>
       </div>
 
-      <HowItWorks />
-
-      <Testimonials />
+      <div className="relative" style={{
+        background: 'radial-gradient(ellipse at center, rgba(138, 92, 246, 0.19) 0%, rgba(249, 116, 22, 0.05) 50%, transparent 100%)',
+      }}>
+        <HowItWorks />
+        <Testimonials />
+      </div>
 
       {/* CTA Section */}
       <div className="bg-blue-600 text-white py-16">

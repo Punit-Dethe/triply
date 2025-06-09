@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { motion, AnimatePresence, useInView, useMotionValue, useTransform } from 'framer-motion';
+import { motion, AnimatePresence, useInView, useMotionValue, useTransform, useSpring } from 'framer-motion';
 import { Route, CreditCard, Ticket, Repeat } from 'lucide-react';
 import { BackgroundGradient } from './ui/BackgroundGradient';
 
@@ -42,12 +42,18 @@ export const HowItWorks = () => {
   const videoContainerRef = useRef(null);
   
   const motionProgress = useMotionValue(0);
+  const smoothProgress = useSpring(motionProgress, {
+    stiffness: 100,
+    damping: 30,
+    restDelta: 0.001
+  });
+
   const backgroundColor = useTransform(
-    motionProgress,
+    smoothProgress,
     [0, 100],
     ['#8b5cf6', '#8b5cf6']
   );
-  const width = useTransform(motionProgress, (v) => `${v}%`);
+  const width = useTransform(smoothProgress, (v) => `${v}%`);
   
   const sectionRef = useRef(null);
   const isInView = useInView(sectionRef, { once: true, amount: 0.2 });
@@ -157,28 +163,19 @@ export const HowItWorks = () => {
         initial="hidden"
         animate={isInView ? "visible" : "hidden"}
         variants={containerVariants}
-        className="relative py-20 sm:py-32 bg-[#f8f9fa] overflow-hidden rounded-3xl border-[3px] border-[#481878]"
+        className="relative py-20 sm:py-32 bg-transparent overflow-hidden rounded-3xl border-[3px] border-[#481878]"
         style={{ 
           boxShadow: '0 0 25px 5px rgba(0, 0, 0, 0.2)' 
         }}
       >
-        {/* Left side continuous purple glow */}
-        <motion.div
-          className="absolute top-0 left-0 bottom-0 w-1/3"
-          initial={{ opacity: 0 }}
-          animate={isInView ? { opacity: 1 } : { opacity: 0 }}
-          transition={{ duration: 1.5, ease: "easeIn" }}
-        >
-          <div 
-            className="w-full h-full"
-            style={{
-              background: 'linear-gradient(to right, rgba(138, 92, 246, 0) 0%, rgba(138, 92, 246, 0) 100%)'
-            }}
-          />
-        </motion.div>
+        <div 
+          aria-hidden="true"
+          className="absolute inset-0 z-0 bg-white/80 backdrop-blur-sm"
+        />
+        
         {/* Right side continuous orange glow */}
         <motion.div
-          className="absolute top-0 right-0 bottom-0 w-1/3"
+          className="absolute top-0 right-0 bottom-0 w-1/3 z-10"
           initial={{ opacity: 0 }}
           animate={isInView ? { opacity: 1 } : { opacity: 0 }}
           transition={{ duration: 1.5, ease: "easeIn" }}
@@ -186,10 +183,11 @@ export const HowItWorks = () => {
           <div 
             className="w-full h-full"
             style={{
-              background: 'linear-gradient(to left, rgba(249, 115, 22, 0.15) 0%, rgba(249, 115, 22, 0) 100%)'
+              background: 'linear-gradient(to left, rgba(249, 116, 22, 0.08) 0%, transparent 100%)'
             }}
           />
         </motion.div>
+        
         <div className="container mx-auto px-4 relative z-10">
           <motion.div variants={itemVariants} className="text-center md:text-left mb-16">
             <h2 className="text-4xl md:text-5xl font-bold text-gray-800 tracking-tight">How it works</h2>
@@ -252,7 +250,7 @@ export const HowItWorks = () => {
             <motion.div variants={itemVariants} className="lg:w-6/12 flex justify-center items-start">
               <BackgroundGradient containerClassName="rounded-[3.2rem]">
                 <div 
-                  className="relative w-[300px] h-[610px] bg-white rounded-[3rem] border-8 border-gray-900 overflow-hidden shadow-2xl"
+                  className="relative w-[300px] h-[610px] bg-white rounded-[3rem] border-[6px] border-gray-900 overflow-hidden shadow-2xl"
                   ref={videoContainerRef}
                 >
                   {features.map((feature, index) => (
