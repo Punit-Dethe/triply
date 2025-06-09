@@ -4,46 +4,50 @@ import { Route, CreditCard, Ticket, Repeat } from 'lucide-react';
 import { BackgroundGradient } from './ui/BackgroundGradient';
 
 // Videos
-import placeholderVideo from '../assets/videos/Video.mp4';
+import video1 from '../assets/videos/Video.mp4';
+import video2 from '../assets/videos/Video2.mp4';
+import video3 from '../assets/videos/Video3.mp4';
+import video4 from '../assets/videos/Video4.mp4';
 
 const features = [
   {
     title: 'Select your route',
     description: 'select your route and book your ride',
     icon: Route,
-    video: placeholderVideo,
+    video: video1,
   },
   {
     title: 'select your pricing plan',
     description: 'select your pricing plan and book your ride',
     icon: CreditCard,
-    video: placeholderVideo,
+    video: video2,
   },
   {
     title: 'access your ride',
     description: 'access your ride and enjoy your journey on time',
     icon: Ticket,
-    video: placeholderVideo,
+    video: video3,
   },
   {
     title: 'renew after selected time',
     description: 'renew your ride after selected time',
     icon: Repeat,
-    video: placeholderVideo,
+    video: video4,
   },
 ];
 
 export const HowItWorks = () => {
   const [activeIndex, setActiveIndex] = useState(0);
-  const [progress, setProgress] = useState(0);
-  const videoRefs = useRef([]);
-
+  const videoRefs = useRef(Array(features.length).fill(null));
+  const videoContainerRef = useRef(null);
+  
   const motionProgress = useMotionValue(0);
   const backgroundColor = useTransform(
     motionProgress,
     [0, 100],
-    ['#c4b5fd', '#9974f8']
+    ['#8b5cf6', '#8b5cf6']
   );
+  const width = useTransform(motionProgress, (v) => `${v}%`);
   
   const sectionRef = useRef(null);
   const isInView = useInView(sectionRef, { once: true, amount: 0.2 });
@@ -70,39 +74,80 @@ export const HowItWorks = () => {
     },
   };
 
+  // Handle video timeupdate events for the active video
   useEffect(() => {
-    const interval = setInterval(() => {
-      setProgress(prev => {
-        if (prev >= 100) {
-          setActiveIndex(i => (i + 1) % features.length);
-          return 0;
+    const currentVideo = videoRefs.current[activeIndex];
+    if (!currentVideo) return;
+    
+    const updateProgress = () => {
+      if (currentVideo.duration) {
+        const percent = (currentVideo.currentTime / currentVideo.duration) * 100;
+        motionProgress.set(percent);
+      }
+    };
+    
+    currentVideo.addEventListener('timeupdate', updateProgress);
+    
+    return () => {
+      currentVideo.removeEventListener('timeupdate', updateProgress);
+    };
+  }, [activeIndex]);
+  
+  // Handle video ended events for auto-advancing
+  useEffect(() => {
+    const currentVideo = videoRefs.current[activeIndex];
+    if (!currentVideo) return;
+    
+    const handleVideoEnd = () => {
+      motionProgress.set(0);
+      setActiveIndex(prev => (prev + 1) % features.length);
+    };
+    
+    currentVideo.addEventListener('ended', handleVideoEnd);
+    
+    return () => {
+      currentVideo.removeEventListener('ended', handleVideoEnd);
+    };
+  }, [activeIndex]);
+  
+  // Control video playback when active index changes
+  useEffect(() => {
+    // Stop all videos first
+    videoRefs.current.forEach((video, i) => {
+      if (video && i !== activeIndex) {
+        video.pause();
+        video.currentTime = 0;
+      }
+    });
+    
+    // Play the active video
+    const currentVideo = videoRefs.current[activeIndex];
+    if (currentVideo) {
+      // Reset progress
+      motionProgress.set(0);
+      currentVideo.currentTime = 0;
+      
+      // Try to play with a slight delay to allow for UI updates
+      setTimeout(() => {
+        const playPromise = currentVideo.play();
+        
+        if (playPromise !== undefined) {
+          playPromise.catch(error => {
+            console.error('Video play failed:', error);
+            // Add more aggressive retry logic
+            setTimeout(() => {
+              currentVideo.play().catch(e => console.error('Retry failed:', e));
+            }, 500);
+          });
         }
-        return prev + 1;
-      });
-    }, 50); // This duration should ideally match video length / 100
-
-    return () => clearInterval(interval);
+      }, 100);
+    }
   }, [activeIndex]);
 
-  useEffect(() => {
-    if (videoRefs.current[activeIndex]) {
-      const videoElement = videoRefs.current[activeIndex];
-      const updateProgress = () => {
-        const percent = (videoElement.currentTime / videoElement.duration) * 100;
-        setProgress(percent);
-        motionProgress.set(percent);
-      };
-      videoElement.addEventListener('timeupdate', updateProgress);
-      return () => {
-        videoElement.removeEventListener('timeupdate', updateProgress);
-      };
-    }
-  }, [activeIndex, motionProgress]);
-
   const handleFeatureClick = (index) => {
-    setActiveIndex(index);
-    setProgress(0);
-    motionProgress.set(0);
+    if (activeIndex !== index) {
+      setActiveIndex(index);
+    }
   };
 
   return (
@@ -113,8 +158,9 @@ export const HowItWorks = () => {
       variants={containerVariants}
       className="relative py-20 sm:py-32 bg-[#f8f9fa] overflow-hidden"
     >
+      {/* Left side continuous purple glow */}
       <motion.div
-        className="absolute top-0 left-0 w-full h-1/2"
+        className="absolute top-0 left-0 bottom-0 w-1/3"
         initial={{ opacity: 0 }}
         animate={isInView ? { opacity: 1 } : { opacity: 0 }}
         transition={{ duration: 1.5, ease: "easeIn" }}
@@ -122,33 +168,21 @@ export const HowItWorks = () => {
         <div 
           className="w-full h-full"
           style={{
-            background: 'linear-gradient(to bottom, rgba(167, 139, 250, 0.1) 0%, rgba(167, 139, 250, 0) 70%)'
+            background: 'linear-gradient(to right, rgba(138, 92, 246, 0) 0%, rgba(138, 92, 246, 0) 100%)'
           }}
         />
       </motion.div>
+      {/* Right side continuous orange glow */}
       <motion.div
-        className="absolute bottom-0 left-0 -translate-x-1/2 translate-y-1/2"
+        className="absolute top-0 right-0 bottom-0 w-1/3"
         initial={{ opacity: 0 }}
         animate={isInView ? { opacity: 1 } : { opacity: 0 }}
         transition={{ duration: 1.5, ease: "easeIn" }}
       >
         <div 
-          className="h-[50rem] w-[50rem] rounded-full"
+          className="w-full h-full"
           style={{
-            background: 'radial-gradient(circle, rgba(167, 139, 250, 0.05) 0%, rgba(167, 139, 250, 0) 60%)'
-          }}
-        />
-      </motion.div>
-      <motion.div
-        className="absolute bottom-0 right-0 translate-x-1/4 translate-y-1/4"
-        initial={{ opacity: 0 }}
-        animate={isInView ? { opacity: 1 } : { opacity: 0 }}
-        transition={{ duration: 1.5, ease: "easeIn" }}
-      >
-        <div 
-          className="h-[50rem] w-[50rem] rounded-full"
-          style={{
-            background: 'radial-gradient(circle, rgba(167, 139, 250, 0.1) 0%, rgba(167, 139, 250, 0) 60%)'
+            background: 'linear-gradient(to left, rgba(249, 115, 22, 0.15) 0%, rgba(249, 115, 22, 0) 100%)'
           }}
         />
       </motion.div>
@@ -199,13 +233,10 @@ export const HowItWorks = () => {
                   </div>
                   
                   {isActive && (
-                    <div className="w-full h-2 bg-transparent rounded-full">
+                    <div className="w-full h-2 bg-transparent rounded-full overflow-hidden">
                       <motion.div
                         className="h-full rounded-full"
-                        style={{ backgroundColor }}
-                        initial={{ width: 0 }}
-                        animate={{ width: `${progress}%` }}
-                        transition={{ duration: 0 }}
+                        style={{ backgroundColor, width }}
                       />
                     </div>
                   )}
@@ -216,23 +247,30 @@ export const HowItWorks = () => {
 
           <motion.div variants={itemVariants} className="lg:w-6/12 flex justify-center items-start">
             <BackgroundGradient containerClassName="rounded-[3.2rem]">
-              <div className="relative w-[300px] h-[610px] bg-white rounded-[3rem] border-8 border-gray-900 overflow-hidden shadow-2xl">
-                <AnimatePresence mode="wait">
-                  <motion.video
-                    key={activeIndex}
-                    src={features[activeIndex].video}
-                    autoPlay
-                    muted
-                    loop
-                    playsInline
-                    initial={{ opacity: 0, scale: 1.05 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    exit={{ opacity: 0, scale: 1.05 }}
-                    transition={{ duration: 0.5, ease: 'easeInOut' }}
-                    className="w-full h-full object-cover"
-                    ref={(el) => (videoRefs.current[activeIndex] = el)}
-                  />
-                </AnimatePresence>
+              <div 
+                className="relative w-[300px] h-[610px] bg-white rounded-[3rem] border-8 border-gray-900 overflow-hidden shadow-2xl"
+                ref={videoContainerRef}
+              >
+                {features.map((feature, index) => (
+                  <div 
+                    key={index}
+                    className="absolute inset-0"
+                    style={{ 
+                      opacity: activeIndex === index ? 1 : 0,
+                      zIndex: activeIndex === index ? 10 : 0,
+                      transition: 'opacity 0.5s ease-in-out'
+                    }}
+                  >
+                    <video
+                      ref={el => videoRefs.current[index] = el}
+                      src={feature.video}
+                      muted
+                      playsInline
+                      preload="auto"
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                ))}
               </div>
             </BackgroundGradient>
           </motion.div>
