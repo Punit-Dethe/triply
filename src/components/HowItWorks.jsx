@@ -42,7 +42,7 @@ export const HowItWorks = () => {
   const backgroundColor = useTransform(
     motionProgress,
     [0, 100],
-    ['#ddd6fe', '#a78bfa']
+    ['#c4b5fd', '#9974f8']
   );
   
   const sectionRef = useRef(null);
@@ -111,9 +111,48 @@ export const HowItWorks = () => {
       initial="hidden"
       animate={isInView ? "visible" : "hidden"}
       variants={containerVariants}
-      className="py-20 sm:py-32 bg-[#f8f9fa]"
+      className="relative py-20 sm:py-32 bg-[#f8f9fa] overflow-hidden"
     >
-      <div className="container mx-auto px-4">
+      <motion.div
+        className="absolute top-0 left-0 w-full h-1/2"
+        initial={{ opacity: 0 }}
+        animate={isInView ? { opacity: 1 } : { opacity: 0 }}
+        transition={{ duration: 1.5, ease: "easeIn" }}
+      >
+        <div 
+          className="w-full h-full"
+          style={{
+            background: 'linear-gradient(to bottom, rgba(167, 139, 250, 0.1) 0%, rgba(167, 139, 250, 0) 70%)'
+          }}
+        />
+      </motion.div>
+      <motion.div
+        className="absolute bottom-0 left-0 -translate-x-1/2 translate-y-1/2"
+        initial={{ opacity: 0 }}
+        animate={isInView ? { opacity: 1 } : { opacity: 0 }}
+        transition={{ duration: 1.5, ease: "easeIn" }}
+      >
+        <div 
+          className="h-[50rem] w-[50rem] rounded-full"
+          style={{
+            background: 'radial-gradient(circle, rgba(167, 139, 250, 0.05) 0%, rgba(167, 139, 250, 0) 60%)'
+          }}
+        />
+      </motion.div>
+      <motion.div
+        className="absolute bottom-0 right-0 translate-x-1/4 translate-y-1/4"
+        initial={{ opacity: 0 }}
+        animate={isInView ? { opacity: 1 } : { opacity: 0 }}
+        transition={{ duration: 1.5, ease: "easeIn" }}
+      >
+        <div 
+          className="h-[50rem] w-[50rem] rounded-full"
+          style={{
+            background: 'radial-gradient(circle, rgba(167, 139, 250, 0.1) 0%, rgba(167, 139, 250, 0) 60%)'
+          }}
+        />
+      </motion.div>
+      <div className="container mx-auto px-4 relative z-10">
         <motion.div variants={itemVariants} className="text-center md:text-left mb-16">
           <h2 className="text-4xl md:text-5xl font-bold text-gray-800 tracking-tight">How it works</h2>
           <p className="mt-4 text-lg text-[#481878]">
