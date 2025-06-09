@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import HowItWorks from '../components/HowItWorks';
+import Testimonials from '../components/Testimonials';
 
 const Home = () => {
   return (
@@ -75,6 +76,8 @@ const Home = () => {
       </div>
 
       <HowItWorks />
+
+      <Testimonials />
 
       {/* CTA Section */}
       <div className="bg-blue-600 text-white py-16">
