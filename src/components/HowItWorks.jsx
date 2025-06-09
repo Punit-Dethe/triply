@@ -178,7 +178,7 @@ export const HowItWorks = () => {
           aria-hidden="true"
           className="md:hidden absolute top-0 left-0 right-0 h-1/4 z-10"
           style={{
-            background: 'linear-gradient(to bottom, rgba(249, 115, 22, 0.1) 0%, transparent 100%)'
+            background: 'linear-gradient(to bottom, rgba(249, 115, 22, 0.05) 0%, transparent 100%)'
           }}
         />
         {/* Mobile-only Bottom Gradient */}
@@ -186,7 +186,7 @@ export const HowItWorks = () => {
           aria-hidden="true"
           className="md:hidden absolute bottom-0 left-0 right-0 h-1/4 z-10"
           style={{
-            background: 'linear-gradient(to top, rgba(249, 115, 22, 0.1) 0%, transparent 100%)'
+            background: 'linear-gradient(to top, rgba(249, 115, 22, 0.05) 0%, transparent 100%)'
           }}
         />
 
@@ -195,7 +195,7 @@ export const HowItWorks = () => {
           aria-hidden="true"
           className="md:hidden absolute top-0 left-0 bottom-0 w-1/3 z-10"
           style={{
-            background: 'linear-gradient(to right, rgba(249, 115, 22, 0.15) 0%, transparent 100%)'
+            background: 'linear-gradient(to right, rgba(249, 115, 22, 0.08) 0%, transparent 100%)'
           }}
         />
 
@@ -209,7 +209,7 @@ export const HowItWorks = () => {
           <div 
             className="w-full h-full"
             style={{
-              background: 'linear-gradient(to left, rgba(249, 116, 22, 0.08) 0%, transparent 100%)'
+              background: 'linear-gradient(to left, rgba(249, 115, 22, 0.08) 0%, transparent 100%)'
             }}
           />
         </motion.div>
