@@ -173,6 +173,15 @@ export const HowItWorks = () => {
           className="absolute inset-0 z-0 bg-white/80 backdrop-blur-sm"
         />
         
+        {/* Mobile-only top-left orange glow */}
+        <div 
+          aria-hidden="true"
+          className="md:hidden absolute top-0 left-0 w-2/3 h-1/2 z-10"
+          style={{
+            background: 'linear-gradient(to bottom right, rgba(249, 115, 22, 0.1) 0%, transparent 80%)'
+          }}
+        />
+
         {/* Right side continuous orange glow */}
         <motion.div
           className="absolute top-0 right-0 bottom-0 w-1/3 z-10"
