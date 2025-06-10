@@ -218,8 +218,8 @@ const Navbar = ({ className = '' }) => {
             isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'
           }`}
           style={{
-            backgroundColor: '#FFFFFF',
-            backgroundImage: 'linear-gradient(to left, rgba(108, 43, 199, 0.5) 0%, rgba(108, 43, 199, 0) 70%)',
+            backgroundColor: '#fff6f0',
+            backgroundImage: 'linear-gradient(to left, rgba(108, 43, 199, 0.3) 0%, rgba(108, 43, 199, 0) 60%)',
             height: `${windowHeight}px`,
             overflow: 'hidden',
             display: 'flex',

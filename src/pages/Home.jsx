@@ -1,7 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
+import { ArrowDown } from 'lucide-react';
 import HowItWorks from '../components/HowItWorks';
 import Testimonials from '../components/Testimonials';
+import Impact from '../components/Impact';
+import FAQ from '../components/FAQ';
+import AboutUs from '../components/AboutUs';
+import WhyChooseUs from '../components/WhyChooseUs';
 
 const Home = () => {
   return (
@@ -13,7 +19,7 @@ const Home = () => {
         minHeight: 'calc(100vh - 6rem)'
       }}>
         {/* Spacer to account for fixed navbar */}
-        <div className="h-24"></div>
+        <div className="h-16"></div>
         
         {/* Content */}
         <div className="container mx-auto px-4 text-center">
@@ -39,64 +45,37 @@ const Home = () => {
         </div>
       </div>
 
-      {/* Features Section */}
-      <div className="py-16 bg-gray-50">
-        <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12">Why Choose Triply?</h2>
+      <AboutUs />
+      <WhyChooseUs />
           
-          <div className="grid md:grid-cols-3 gap-8">
-            {/* Feature 1 */}
-            <div className="bg-white p-6 rounded-lg shadow-md">
-              <div className="text-blue-600 text-4xl mb-4">🚗</div>
-              <h3 className="text-xl font-semibold mb-3">Premium Comfort</h3>
-              <p className="text-gray-600">
-                Enjoy amenities like tissue boxes, water bottles, and newspapers in our well-maintained, climate-controlled vehicles.
-              </p>
-            </div>
-
-            {/* Feature 2 */}
-            <div className="bg-white p-6 rounded-lg shadow-md">
-              <div className="text-green-600 text-4xl mb-4">🌱</div>
-              <h3 className="text-xl font-semibold mb-3">Eco-Friendly</h3>
-              <p className="text-gray-600">
-                Our growing fleet of electric vehicles and carbon offset programs help you reduce your environmental impact.
-              </p>
-            </div>
-
-            {/* Feature 3 */}
-            <div className="bg-white p-6 rounded-lg shadow-md">
-              <div className="text-yellow-500 text-4xl mb-4">💼</div>
-              <h3 className="text-xl font-semibold mb-3">Corporate Solutions</h3>
-              <p className="text-gray-600">
-                Customized travel plans for businesses of all sizes, with VIP options and dedicated account management.
-              </p>
-            </div>
+      <div className="relative" style={{
+        background: 'radial-gradient(circle at center, rgba(138, 92, 246, 0.16) 0%, rgba(249, 116, 22, 0.07) 40%, transparent 100%)',
+      }}>
+        <div className="relative pb-12">
+          <HowItWorks />
+          <div className="absolute -bottom-8 inset-x-0 flex justify-center z-10">
+            <motion.div
+              animate={{
+                y: [0, 8, 0],
+              }}
+              transition={{
+                duration: 1.5,
+                repeat: Infinity,
+                repeatType: "loop",
+                ease: "easeInOut",
+              }}
+            >
+              <ArrowDown className="h-14 w-14" style={{ color: '#fef5ee' }} />
+            </motion.div>
           </div>
         </div>
-      </div>
 
-      <div className="relative" style={{
-        background: 'radial-gradient(circle at center, rgba(138, 92, 246, 0.16) 0%, rgba(249, 116, 22, 0.11) 40%, transparent 100%)',
-      }}>
-        <HowItWorks />
         <Testimonials />
       </div>
 
-      {/* CTA Section */}
-      <div className="bg-blue-600 text-white py-16">
-        <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl font-bold mb-6">Ready to Transform Your Commute?</h2>
-          <p className="text-xl mb-8 max-w-2xl mx-auto">
-            Join thousands of professionals who save time, money, and the planet with Triply.
-          </p>
-          <Link 
-            to="/signup" 
-            className="bg-white hover:bg-gray-100 text-blue-600 px-8 py-3 rounded-lg font-medium text-lg inline-block"
-          >
-            Get Started for Free
-          </Link>
-        </div>
-      </div>
+      <Impact />
+      <FAQ />
+
     </div>
   );
 };

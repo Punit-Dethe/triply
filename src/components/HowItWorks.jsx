@@ -40,7 +40,7 @@ export const HowItWorks = () => {
   const [activeIndex, setActiveIndex] = useState(0);
   const videoRefs = useRef(Array(features.length).fill(null));
   const videoContainerRef = useRef(null);
-  
+
   const motionProgress = useMotionValue(0);
   const smoothProgress = useSpring(motionProgress, {
     stiffness: 100,
@@ -98,7 +98,7 @@ export const HowItWorks = () => {
       currentVideo.removeEventListener('timeupdate', updateProgress);
     };
   }, [activeIndex]);
-  
+
   // Handle video ended events for auto-advancing
   useEffect(() => {
     const currentVideo = videoRefs.current[activeIndex];
@@ -107,11 +107,11 @@ export const HowItWorks = () => {
     const handleVideoEnd = () => {
       motionProgress.set(0);
       setActiveIndex(prev => (prev + 1) % features.length);
-    };
+      };
     
     currentVideo.addEventListener('ended', handleVideoEnd);
     
-    return () => {
+      return () => {
       currentVideo.removeEventListener('ended', handleVideoEnd);
     };
   }, [activeIndex]);
@@ -123,7 +123,7 @@ export const HowItWorks = () => {
       if (video && i !== activeIndex) {
         video.pause();
         video.currentTime = 0;
-      }
+    }
     });
     
     // Play the active video
@@ -152,20 +152,20 @@ export const HowItWorks = () => {
 
   const handleFeatureClick = (index) => {
     if (activeIndex !== index) {
-      setActiveIndex(index);
+    setActiveIndex(index);
     }
   };
 
   return (
     <div className="my-8 sm:mx-8">
-      <motion.section
-        ref={sectionRef}
-        initial="hidden"
-        animate={isInView ? "visible" : "hidden"}
-        variants={containerVariants}
+    <motion.section
+      ref={sectionRef}
+      initial="hidden"
+      animate={isInView ? "visible" : "hidden"}
+      variants={containerVariants}
         className="relative py-20 sm:py-32 bg-transparent overflow-hidden rounded-3xl border-[3px] border-[#481878]"
         style={{ 
-          boxShadow: '0 0 25px 5px rgba(0, 0, 0, 0.2)' 
+          boxShadow: '0 35px 60px -15px rgba(0, 0, 0, 0.3)' 
         }}
       >
         <div 
@@ -209,72 +209,78 @@ export const HowItWorks = () => {
           <div 
             className="w-full h-full"
             style={{
-              background: 'linear-gradient(to left, rgba(249, 116, 22, 0.16) 0%, transparent 100%)'
+              background: 'linear-gradient(to left, rgba(249, 116, 22, 0.1) 0%, transparent 100%)'
             }}
           />
         </motion.div>
         
         <div className="container mx-auto px-4 relative z-10">
-          <motion.div variants={itemVariants} className="text-center md:text-left mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-800 tracking-tight">How it works</h2>
-            <p className="mt-4 text-lg text-[#481878]">
-              It's simple to take a ride. Just search, select and it's done!
-            </p>
-          </motion.div>
+          <div className="grid lg:grid-cols-2 gap-16 items-start">
+            
+            {/* Left Column: Text Content */}
+            <div className="flex flex-col">
+              <motion.div variants={itemVariants} className="text-center md:text-left mb-12">
+          <h2 className="text-4xl md:text-5xl font-bold text-gray-800 tracking-tight">How it works</h2>
+          <p className="mt-4 text-lg text-[#481878]">
+            It's simple to take a ride. Just search, select and it's done!
+          </p>
+        </motion.div>
 
-          <div className="mt-20 flex flex-col-reverse lg:flex-row lg:justify-between lg:items-start">
-            <motion.div variants={itemVariants} className="lg:w-5/12 flex flex-col gap-4 mt-12 lg:mt-0">
-              {features.map((feature, index) => {
-                const isActive = activeIndex === index;
-                
-                return (
-                  <motion.button
-                    key={feature.title}
-                    onClick={() => handleFeatureClick(index)}
-                    className="text-left rounded-2xl w-full overflow-hidden"
-                    animate={{
-                      backgroundColor: isActive ? 'rgba(255, 255, 255, 1)' : 'rgba(255, 255, 255, 0)',
-                      boxShadow: isActive
-                        ? `0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1), 0px 0px 30px 12px rgba(139, 92, 246, 0.3)`
-                        : 'none',
-                    }}
-                    transition={{ duration: 0.3, ease: 'easeInOut' }}
-                  >
-                    <div className="p-6">
-                      <div className="flex items-center gap-4">
-                        <feature.icon className="w-8 h-8 text-purple-600" />
-                        <h3 className="text-xl font-semibold text-gray-900">{feature.title}</h3>
-                      </div>
-                      <AnimatePresence>
-                        {isActive && (
-                          <motion.p
-                            className="text-gray-600"
-                            initial={{ opacity: 0, height: 0, marginTop: 0 }}
-                            animate={{ opacity: 1, height: 'auto', marginTop: '0.5rem' }}
-                            exit={{ opacity: 0, height: 0, marginTop: 0 }}
-                            transition={{ duration: 0.3, ease: 'easeInOut' }}
-                          >
-                            {feature.description}
-                          </motion.p>
-                        )}
-                      </AnimatePresence>
+              <motion.div variants={itemVariants} className="flex flex-col gap-4">
+            {features.map((feature, index) => {
+              const isActive = activeIndex === index;
+              
+              return (
+                <motion.button
+                  key={feature.title}
+                  onClick={() => handleFeatureClick(index)}
+                  className="text-left rounded-2xl w-full overflow-hidden"
+                  animate={{
+                    backgroundColor: isActive ? 'rgba(255, 255, 255, 1)' : 'rgba(255, 255, 255, 0)',
+                    boxShadow: isActive
+                      ? `0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1), 0px 0px 30px 12px rgba(139, 92, 246, 0.3)`
+                      : 'none',
+                  }}
+                  transition={{ duration: 0.3, ease: 'easeInOut' }}
+                >
+                  <div className="p-6">
+                    <div className="flex items-center gap-4">
+                      <feature.icon className="w-8 h-8 text-purple-600" />
+                      <h3 className="text-xl font-semibold text-gray-900">{feature.title}</h3>
                     </div>
-                    
-                    {isActive && (
-                      <div className="w-full h-2 bg-transparent rounded-full overflow-hidden">
-                        <motion.div
-                          className="h-full rounded-full"
-                          style={{ backgroundColor, width }}
-                        />
-                      </div>
-                    )}
-                  </motion.button>
-                );
-              })}
-            </motion.div>
+                    <AnimatePresence>
+                      {isActive && (
+                        <motion.p
+                          initial={{ opacity: 0, height: 0, marginTop: 0 }}
+                              animate={{ opacity: 1, height: 'auto', marginTop: '1rem' }}
+                          exit={{ opacity: 0, height: 0, marginTop: 0 }}
+                              className="text-gray-600"
+                        >
+                          {feature.description}
+                        </motion.p>
+                      )}
+                    </AnimatePresence>
+                  </div>
+                  {isActive && (
+                        <div className="w-full h-1 bg-gray-200/50 rounded-full overflow-hidden">
+                      <motion.div
+                            className="h-full rounded-full bg-purple-500"
+                            style={{ width }}
+                      />
+                    </div>
+                  )}
+                </motion.button>
+              );
+            })}
+          </motion.div>
+            </div>
 
-            <motion.div variants={itemVariants} className="lg:w-6/12 flex justify-center items-start">
-              <BackgroundGradient containerClassName="rounded-[3.2rem]">
+            {/* Right Column: Phone/Video */}
+            <motion.div variants={itemVariants} className="lg:sticky lg:top-24 mt-12 lg:mt-0 flex justify-center">
+              <BackgroundGradient
+                className="rounded-[3.2rem]"
+                containerClassName="max-w-sm"
+              >
                 <div 
                   className="relative w-[300px] h-[610px] bg-white rounded-[3rem] border-[6px] border-gray-900 overflow-hidden shadow-2xl"
                   ref={videoContainerRef}
@@ -292,19 +298,19 @@ export const HowItWorks = () => {
                       <video
                         ref={el => videoRefs.current[index] = el}
                         src={feature.video}
-                        muted
-                        playsInline
+                    muted
+                    playsInline
                         preload="auto"
-                        className="w-full h-full object-cover"
-                      />
+                    className="w-full h-full object-cover"
+                  />
                     </div>
                   ))}
-                </div>
-              </BackgroundGradient>
-            </motion.div>
-          </div>
+              </div>
+            </BackgroundGradient>
+          </motion.div>
         </div>
-      </motion.section>
+      </div>
+    </motion.section>
     </div>
   );
 };
