@@ -6,45 +6,33 @@ import cityScape from '../assets/city.png';
 
 const allTestimonials = [
   {
-    quote: '"This magical product actually works! The audiences we built using P.ai increased new customer sales by 6X in our most mature market."',
-    company: 'treatwell',
+    quote: '"FlixLogix has redefined the benchmarks in Employee Transportation. They offer clear reporting, significant cost reductions, and an enhanced experience for employees."',
+    company: 'Meddo',
+    author: 'Swati Sinha',
+    position: 'HR'
   },
   {
-    quote: '"We generate prospecting audiences using P.ai to drive incremental growth. Our ROI has been fantastic!"',
-    company: 'REVOLUTION',
+    quote: '"Their customer service is truly unparalleled. Their team is always ready to go the extra mile, ensuring every interaction is seamless and every concern addressed promptly."',
+    company: 'COHO',
+    author: 'Uday Lakkar',
+    position: 'Founder and CEO'
   },
   {
-    quote: '"P.ai\'s product does its thing in the background: dynamically refreshing all of our audiences so that we convert new customers everyday, profitably."',
-    company: 'DEREK ROSE',
-  },
-  {
-    quote: '"A fantastic and intuitive product. We saw immediate results and a significant improvement in our key metrics."',
-    company: 'InnovateCorp',
-  },
-  {
-    quote: '"The best decision we made this year. The ROI is off the charts and the support is second to none."',
-    company: 'DataDriven',
-  },
-  {
-    quote: '"This transformed our workflow. I can\'t imagine going back to the old way of doing things."',
-    company: 'Upstart',
+    quote: '"The commitment to customer satisfaction and safety is commendable. Their proactive approach to addressing inquiries makes every ride a worry-free experience."',
+    company: 'Ak Tours',
+    author: 'Amit Kumar',
+    position: 'Founder and CEO'
   }
 ];
 
-const treatwellLogo = ( <div className="font-bold text-2xl tracking-wider text-black">treatwell</div> );
-const revolutionLogo = ( <div> <div className="font-extrabold text-xl tracking-tighter text-black">REVOLUTION</div> <div className="font-medium text-xs tracking-[0.2em] text-gray-500">BEAUTY LONDON</div> </div> );
-const derekRoseLogo = ( <div className="font-serif text-xl tracking-widest text-black"> DEREK ROSE </div> );
-const innovateCorpLogo = ( <div className="font-sans font-bold text-xl text-black">InnovateCorp</div> );
-const dataDrivenLogo = ( <div className="font-mono text-xl font-semibold text-black">DataDriven</div> );
-const upstartLogo = ( <div className="font-serif text-2xl font-light text-black">Upstart</div> );
+const meddoLogo = ( <div className="font-bold text-xl tracking-wider text-black">Meddo</div> );
+const cohoLogo = ( <div className="font-extrabold text-xl tracking-tighter text-black">COHO</div> );
+const akToursLogo = ( <div className="font-serif text-xl tracking-widest text-black">AK TOURS</div> );
 
 const logos = {
-  treatwell: treatwellLogo,
-  REVOLUTION: revolutionLogo,
-  'DEREK ROSE': derekRoseLogo,
-  InnovateCorp: innovateCorpLogo,
-  DataDriven: dataDrivenLogo,
-  Upstart: upstartLogo
+  Meddo: meddoLogo,
+  COHO: cohoLogo,
+  'Ak Tours': akToursLogo
 };
 
 export const Testimonials = () => {
@@ -53,7 +41,7 @@ export const Testimonials = () => {
   const [hoveredIndex, setHoveredIndex] = useState(null);
   
   const cardIndexToUpdate = useRef(0);
-  const nextTestimonialIndex = useRef(3);
+  const nextTestimonialIndex = useRef(0);
   const isFirstRun = useRef(true);
   const timeoutRef = useRef(null);
 
@@ -159,13 +147,13 @@ export const Testimonials = () => {
             className="lg:w-5/12 text-left"
           >
             <h2 className="text-5xl md:text-6xl font-bold text-black tracking-tighter leading-tight">
-              Unlimited audiences. Unlimited success.
+              Testimonials
             </h2>
             <p className="mt-6 text-lg text-gray-800 max-w-md">
-              Generating, prioritising & experimenting with audiences is the only way to find winners. If your audiences have saturated, you're stuck for new audience ideas, or performance has flatlined. You need a slice of P.ai.
+              Hear what our clients have to say about our corporate transportation services. We pride ourselves on delivering exceptional experiences that exceed expectations.
             </p>
             <button className="mt-8 flex items-center gap-2 text-black font-semibold">
-              <span>Book a demo</span>
+              <span>Contact Us</span>
               <div className="w-6 h-6 bg-black rounded-full flex items-center justify-center">
                 <ArrowRight className="w-4 h-4 text-white" />
               </div>
@@ -177,7 +165,7 @@ export const Testimonials = () => {
             className="lg:w-6/12 flex justify-center"
             variants={itemVariants}
           >
-            <div className="space-y-8 w-full max-w-lg">
+            <div className="space-y-6 w-full max-w-lg">
               {testimonials.map((testimonial, index) => {
                 let alignmentClass = '';
                 if (index === 0) alignmentClass = 'lg:ml-auto';
@@ -194,7 +182,7 @@ export const Testimonials = () => {
                     onMouseLeave={() => setHoveredIndex(null)}
                   >
                     <div className="absolute top-0 left-0 w-full h-full bg-[#7C3AED] rounded-lg transform translate-x-3 translate-y-3 border-2 border-black"></div>
-                    <div className="relative bg-white p-8 border-2 border-black rounded-lg">
+                    <div className="relative bg-white p-6 border-2 border-black rounded-lg">
                       <AnimatePresence mode="wait">
                         <motion.div
                           key={testimonial.quote}
@@ -202,30 +190,35 @@ export const Testimonials = () => {
                           animate={{ opacity: 1 }}
                           exit={{ opacity: 0 }}
                           transition={{ duration: 0.3 }}
-                          className="min-h-[160px]"
+                          className="min-h-[140px]"
                         >
-                          <TextAnimate as="p" by="word" className="text-base text-black mb-8">
+                          <TextAnimate as="p" by="word" className="text-sm text-black mb-4 leading-snug">
                             {testimonial.quote}
                           </TextAnimate>
-                          <TextAnimate by="word">
-                            {logos[testimonial.company]}
-                          </TextAnimate>
+                          <div className="flex flex-col">
+                            <TextAnimate by="word">
+                              {logos[testimonial.company]}
+                            </TextAnimate>
+                            <p className="text-xs text-gray-600 mt-1">
+                              {testimonial.author}, {testimonial.position}
+                            </p>
+                          </div>
                         </motion.div>
                       </AnimatePresence>
                       <AnimatePresence>
                         {hoveredIndex === index && hasHistory && (
                           <motion.div 
-                            className="absolute bottom-4 right-4 flex gap-2"
+                            className="absolute bottom-2 right-2 flex gap-1"
                             initial={{ opacity: 0, y: 5 }}
                             animate={{ opacity: 1, y: 0 }}
                             exit={{ opacity: 0, y: 5 }}
                             transition={{ duration: 0.2 }}
                           >
                             <button onClick={() => handleToggle(index)} className="p-1 transition-opacity hover:opacity-70">
-                              <ChevronLeft className="w-6 h-6 text-black" />
+                              <ChevronLeft className="w-4 h-4 text-black" />
                             </button>
                             <button onClick={() => handleToggle(index)} className="p-1 transition-opacity hover:opacity-70">
-                              <ChevronRight className="w-6 h-6 text-black" />
+                              <ChevronRight className="w-4 h-4 text-black" />
                             </button>
                           </motion.div>
                         )}

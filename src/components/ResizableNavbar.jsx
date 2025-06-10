@@ -129,7 +129,7 @@ const Navbar = ({ className = '' }) => {
                   : "bg-[#4f36b6] hover:bg-[#3b2a89] focus:ring-[#4f36b6]"
               )}
             >
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
               </svg>
               <div className="relative h-5">
@@ -145,6 +145,7 @@ const Navbar = ({ className = '' }) => {
                       animate="animate"
                       exit="exit"
                       transition={{ duration: 0.2, ease: 'easeInOut' }}
+                      className="text-white"
                     >
                       {isDownloadHovered ? "Let's Go" : "Download"}
                     </motion.span>
