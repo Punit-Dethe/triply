@@ -4,35 +4,35 @@ import { ShieldCheck, Zap, BarChart2, CircleDollarSign } from 'lucide-react';
 const features = [
   {
     Icon: ShieldCheck,
-    iconBgColor: 'bg-orange-500/20',
+    iconBgColor: 'bg-orange-400/50',
     iconColor: 'text-orange-400',
     title: 'Quality Services',
     description: 'Our vision is to provide employees with a safe, reliable, comfortable, and affordable commuting experience to the office through rigorous safety measures.',
-    textColor: 'text-orange-200',
+    textColor: 'text-orange-400',
   },
   {
     Icon: CircleDollarSign,
-    iconBgColor: 'bg-purple-500/20',
+    iconBgColor: 'bg-purple-400/50',
     iconColor: 'text-purple-400',
     title: 'Cost Efficient Solutions',
     description: 'We strategize rides to minimize company expenses, employing a point-to-point billing system that optimizes transportation costs for your business.',
-    textColor: 'text-purple-200',
+    textColor: 'text-purple-400',
   },
   {
     Icon: BarChart2,
-    iconBgColor: 'bg-orange-500/20',
+    iconBgColor: 'bg-orange-400/50',
     iconColor: 'text-orange-400',
     title: 'Free Consultation',
     description: 'Contact us to discuss your employee transportation needs, including the number of cabs needed, optimal route planning, and scheduling, all at no cost.',
-    textColor: 'text-orange-200',
+    textColor: 'text-orange-400',
   },
   {
     Icon: Zap,
-    iconBgColor: 'bg-purple-500/20',
+    iconBgColor: 'bg-purple-400/50',
     iconColor: 'text-purple-400',
     title: 'Customer Support',
     description: 'We provide exceptional customer support through responsive inquiries, attentive in-ride experiences, and immediate assistance whenever needed.',
-    textColor: 'text-purple-200',
+    textColor: 'text-purple-400',
   },
 ];
 
@@ -42,7 +42,7 @@ const WhyChooseUs = () => {
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="mx-auto max-w-2xl lg:max-w-none lg:text-left">
           <div className="inline-block mb-4">
-            <span className="bg-gradient-to-r from-orange-500 to-purple-600 bg-clip-text text-transparent">FlixLogix</span>
+            <span className="text-white">FlixLogix</span>
           </div>
           <h2 className="text-4xl font-bold tracking-tight sm:text-5xl">
             Why Choose Us

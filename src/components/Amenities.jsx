@@ -135,15 +135,15 @@ const Amenities = () => {
             
             <div className="flex flex-col h-full">
               <div>
-                <h2 className="text-3xl font-bold mb-4 leading-tight">Driver assistance Umbrellas</h2>
+                <h2 className="text-3xl font-bold mb-4 leading-tight">Eco-Friendly Transportation</h2>
                 <p className="text-neutral-700 mb-6 text-sm md:text-base">
-                  Drivers equipped with umbrellas for employee convenience during rainy conditions, ensuring you stay dry from door to door.
+                  Introducing eco-friendly transportation options such as electric vehicles or carbon offset programs to reduce environmental impact.
                 </p>
               </div>
               
               <div className="flex items-center mt-auto">
                 <a href="#" className="flex items-center text-neutral-800 font-medium hover:text-neutral-600 transition-colors">
-                  More about custom amenities
+                  More about sustainability
                   <svg className="ml-2 w-4 h-4" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                   </svg>
@@ -160,19 +160,19 @@ const Amenities = () => {
               <div className="absolute -right-20 top-0 bottom-0 w-80 h-full bg-purple-600 rounded-full opacity-20 blur-3xl"></div>
               
               <div className="mb-2">
-                <h3 className="text-sm font-medium text-neutral-600">Sustainability</h3>
+                <h3 className="text-sm font-medium text-neutral-600">Premium Service</h3>
               </div>
               
               <div className="flex flex-col md:flex-row md:items-center h-full">
                 <div className="md:w-1/2">
-                  <h2 className="text-3xl md:text-4xl font-bold mb-4 leading-tight">Sustainability Initiatives</h2>
+                  <h2 className="text-3xl md:text-4xl font-bold mb-4 leading-tight">Professional Chauffeurs</h2>
                   <p className="text-neutral-700 mb-6 text-sm md:text-base">
-                    Introducing eco-friendly transportation options such as electric vehicles or carbon offset programs to reduce environmental impact.
+                    Our highly trained professional drivers provide exceptional service, including umbrella assistance during rainy conditions, ensuring you stay dry from door to door.
                   </p>
                   
                   <div className="flex items-center">
                     <a href="#" className="flex items-center text-neutral-800 font-medium hover:text-neutral-600 transition-colors">
-                      About sustainability
+                      About our chauffeurs
                       <svg className="ml-2 w-4 h-4" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                       </svg>
@@ -183,7 +183,7 @@ const Amenities = () => {
                 <div className="md:w-1/2 flex justify-end items-center mt-8 md:mt-0">
                   <div className="relative">
                     <div className="text-6xl md:text-7xl font-bold text-purple-500" style={{ fontFamily: 'Impact, sans-serif', letterSpacing: '-2px', lineHeight: '0.9' }}>
-                      ECO<br />FRIENDLY
+                      VIP<br />SERVICE
                     </div>
                     
                     {/* Black curve illustration */}
@@ -200,9 +200,9 @@ const Amenities = () => {
 
             {/* VIP Services Section */}
             <div className="bg-neutral-100 rounded-xl p-8 flex flex-col md:flex-row justify-between items-center">
-              <h2 className="text-3xl md:text-4xl font-bold mb-6 md:mb-0">VIP Services Available</h2>
+              <h2 className="text-3xl md:text-4xl font-bold mb-6 md:mb-0">Check us out on Play Store</h2>
               <button className="bg-black text-white px-8 py-3 rounded-full font-medium hover:bg-neutral-800 transition-colors border border-yellow-400">
-                Learn More
+                Download
               </button>
             </div>
           </div>
