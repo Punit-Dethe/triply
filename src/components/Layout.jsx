@@ -2,6 +2,7 @@ import React from 'react';
 import { Outlet } from 'react-router-dom';
 import ResizableNavbar from './ResizableNavbar';
 import Footer from './Footer';
+import DevToolbar from './DevToolbar';
 
 const Layout = () => {
   return (
@@ -11,6 +12,7 @@ const Layout = () => {
         <Outlet />
       </main>
       <Footer />
+      <DevToolbar />
     </div>
   );
 };

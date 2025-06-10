@@ -8,8 +8,11 @@ import Impact from '../components/Impact';
 import FAQ from '../components/FAQ';
 import AboutUs from '../components/AboutUs';
 import WhyChooseUs from '../components/WhyChooseUs';
+<<<<<<< HEAD
 import Features from '../components/Features';
 import Amenities from '../components/Amenities';
+=======
+>>>>>>> fd991b9c5d326dacebaef5a64934b13ddbf2bde2
 
 const Home = () => {
   return (
@@ -21,7 +24,7 @@ const Home = () => {
         minHeight: 'calc(100vh - 6rem)'
       }}>
         {/* Spacer to account for fixed navbar */}
-        <div className="h-24"></div>
+        <div className="h-16"></div>
         
         {/* Content */}
         <div className="container mx-auto px-4 text-center">
@@ -48,14 +51,21 @@ const Home = () => {
       </div>
 
       <AboutUs />
+<<<<<<< HEAD
       <Features />
       <Amenities />
+=======
+>>>>>>> fd991b9c5d326dacebaef5a64934b13ddbf2bde2
       <WhyChooseUs />
           
       <div className="relative" style={{
         background: 'radial-gradient(circle at center, rgba(138, 92, 246, 0.16) 0%, rgba(249, 116, 22, 0.07) 40%, transparent 100%)',
       }}>
+<<<<<<< HEAD
         <div className="relative pb-20">
+=======
+        <div className="relative pb-12">
+>>>>>>> fd991b9c5d326dacebaef5a64934b13ddbf2bde2
           <HowItWorks />
           <div className="absolute -bottom-8 inset-x-0 flex justify-center z-10">
             <motion.div
@@ -69,7 +79,11 @@ const Home = () => {
                 ease: "easeInOut",
               }}
             >
+<<<<<<< HEAD
               <ArrowDown className="h-14 w-14 text-gray-400" />
+=======
+              <ArrowDown className="h-14 w-14" style={{ color: '#fef5ee' }} />
+>>>>>>> fd991b9c5d326dacebaef5a64934b13ddbf2bde2
             </motion.div>
           </div>
         </div>

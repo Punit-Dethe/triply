@@ -121,7 +121,7 @@ export const Testimonials = () => {
   };
 
   return (
-    <section className="py-20 sm:py-32 bg-transparent relative overflow-hidden">
+    <section className="pt-20 sm:pt-32 pb-10 sm:pb-16 bg-transparent relative overflow-hidden">
       <div
         aria-hidden="true"
         className="absolute bottom-0 left-0 w-full h-[400px] z-0"

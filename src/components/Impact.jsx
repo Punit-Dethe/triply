@@ -46,6 +46,7 @@ const Impact = () => {
           y: y,
         }}
       />
+<<<<<<< HEAD
       <div className="absolute top-0 left-0 w-1/2 h-1/2 bg-orange-400/10 rounded-full blur-3xl filter z-1" />
 
       <div className="absolute top-0 left-0 right-0 h-32 z-5" 
@@ -58,6 +59,14 @@ const Impact = () => {
           background: 'linear-gradient(to top, white 0%, transparent 100%)' 
         }} 
       />
+=======
+      {/* New gradient overlay above the image */}
+      <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-white/70 to-transparent z-10 pointer-events-none" />
+      <div className="absolute top-0 left-0 w-1/2 h-1/2 bg-orange-400/10 rounded-full blur-3xl filter z-1" />
+
+      <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-white/70 to-transparent z-20" />
+      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-white/70 to-transparent z-20" />
+>>>>>>> fd991b9c5d326dacebaef5a64934b13ddbf2bde2
 
       <div className="relative z-10 max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8 items-center h-full">
         {/* Left side: Content */}
