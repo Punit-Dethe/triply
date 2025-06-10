@@ -13,11 +13,7 @@ const Footer = () => {
           <div className="col-span-1 md:col-span-1">
             <Link to="/" className="flex items-center space-x-2">
               <img src={logo} alt="Triply Logo" className="h-8" />
-<<<<<<< HEAD
               <span className="text-xl font-bold text-purple-400">Triply</span>
-=======
-              <span className="text-xl font-bold">Triply</span>
->>>>>>> fd991b9c5d326dacebaef5a64934b13ddbf2bde2
             </Link>
             <p className="mt-4 text-gray-400">
               Smarter Commutes, Happier Offices.
