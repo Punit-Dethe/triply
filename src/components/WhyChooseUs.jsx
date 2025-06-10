@@ -55,7 +55,7 @@ const WhyChooseUs = () => {
           <div className="grid grid-cols-1 gap-x-8 gap-y-16 lg:grid-cols-2">
             {features.map((feature, index) => (
               <div key={feature.title} className="relative pl-16">
-                <div className="absolute left-0 top-1 h-full w-0.5 bg-gradient-to-b from-orange-500 to-purple-600" />
+                <div className="absolute left-0 top-0 h-full w-1 bg-white rounded-full" />
                 <div className="inline-block p-5 rounded-2xl bg-gray-900">
                     <div className={`p-4 rounded-xl ${feature.iconBgColor}`}>
                         <feature.Icon className={`h-10 w-10 ${feature.iconColor}`} aria-hidden="true" />
