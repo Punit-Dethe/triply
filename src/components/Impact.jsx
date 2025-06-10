@@ -37,7 +37,7 @@ const Impact = () => {
   return (
     <div
       ref={targetRef}
-      className="relative w-full text-white px-4 sm:px-6 lg:px-8 h-[100vh] min-h-[800px] overflow-hidden"
+      className="relative w-full text-black px-4 sm:px-6 lg:px-8 h-[100vh] min-h-[800px] overflow-hidden"
     >
       <motion.div
         className="absolute inset-0 z-0 bg-cover bg-center"
@@ -68,19 +68,30 @@ const Impact = () => {
           
           <div className="space-y-6">
             {stats.map((stat, index) => (
-              <div key={index} className="flex items-center space-x-6 p-4 rounded-full bg-black/20 backdrop-blur-md border border-white/10 shadow-lg" style={{ minWidth: '450px' }}>
+              <motion.div 
+                key={index} 
+                className="flex items-center space-x-6 p-4 rounded-xl bg-white/85 backdrop-blur-md shadow-xl border border-white/50" 
+                style={{ 
+                  minWidth: '450px',
+                  backdropFilter: 'blur(8px)',
+                  WebkitBackdropFilter: 'blur(8px)'
+                }}
+                initial={{ y: 20, opacity: 0 }}
+                whileInView={{ y: 0, opacity: 1 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+              >
                 <div className="w-1/3">
-                  <p className="text-sm font-semibold tracking-wider text-gray-300">{stat.label}</p>
+                  <p className="text-sm font-semibold tracking-wider text-black">{stat.label}</p>
                 </div>
                 <div className="flex-1">
-                  <p className="text-3xl font-bold">{stat.value}</p>
-                  <p className="text-sm text-gray-400">{stat.description}</p>
+                  <p className="text-3xl font-bold text-gray-800">{stat.value}</p>
+                  <p className="text-sm text-gray-600">{stat.description}</p>
                 </div>
-              </div>
+              </motion.div>
             ))}
           </div>
 
-          <p className="text-xs text-gray-400 pt-8">
+          <p className="text-xs text-white pt-8" style={{ textShadow: '1px 1px 3px rgba(0,0,0,0.5)' }}>
             *all figures are for the year 2023
           </p>
         </div>

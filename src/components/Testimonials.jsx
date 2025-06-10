@@ -196,9 +196,9 @@ export const Testimonials = () => {
                             {testimonial.quote}
                           </TextAnimate>
                           <div className="flex flex-col">
-                            <TextAnimate by="word">
-                              {logos[testimonial.company]}
-                            </TextAnimate>
+                          <TextAnimate by="word">
+                            {logos[testimonial.company]}
+                          </TextAnimate>
                             <p className="text-xs text-gray-600 mt-1">
                               {testimonial.author}, {testimonial.position}
                             </p>
