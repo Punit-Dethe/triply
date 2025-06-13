@@ -71,12 +71,15 @@ const Features = () => {
 
   return (
     <section ref={targetRef} className="relative h-[300vh] bg-black text-white">
-      <div className="sticky top-0 h-screen overflow-hidden flex flex-col sm:justify-center">
+      <div className="sticky top-0 h-screen overflow-hidden flex flex-col">
         {/* Added extra space at top - only visible on mobile */}
         <div className="h-[12vh] sm:h-0"></div>
         
+        {/* Desktop-only top spacing - REDUCED */}
+        <div className="hidden sm:block sm:h-[7vh] md:h-[9vh] lg:h-[12vh]"></div>
+        
         {/* Text Content */}
-        <div ref={textContainerRef} className="w-full max-w-6xl mx-auto px-8 md:px-12 z-10 mb-1 sm:mb-6 md:mb-8">
+        <div ref={textContainerRef} className="w-full max-w-6xl mx-auto px-8 md:px-12 z-10 mb-1 sm:mb-4 md:mb-6">
             <div className="flex flex-col md:flex-row justify-between items-start">
                 <h2 className="text-4xl md:text-5xl lg:text-7xl font-bold tracking-tighter leading-tight max-w-lg">
                     Your corporate ride partner.
@@ -92,12 +95,12 @@ const Features = () => {
           <motion.div 
             ref={motionDivRef}
             style={{ x, paddingLeft: dynamicPaddingLeft, paddingRight: dynamicPaddingLeft }} 
-            className="flex gap-4 sm:gap-8 py-2 sm:py-12 md:py-16 w-max h-full"
+            className="flex gap-4 sm:gap-8 py-2 sm:py-10 md:py-14 w-max h-full"
           >
               {features.map((feature, index) => (
                 <div key={index} className="relative shrink-0 h-full flex items-center">
                   <div 
-                    className="relative w-[90vw] md:w-[60vw] lg:w-[45vw] max-w-[800px] h-[75%] sm:h-auto sm:aspect-[4/3] rounded-2xl flex flex-col justify-end p-5 md:p-8 bg-white border-8 border-neutral-800 shadow-xl overflow-hidden"
+                    className="relative w-[90vw] md:w-[60vw] lg:w-[45vw] max-w-[800px] h-[75%] sm:h-auto sm:aspect-[4/2.7] rounded-2xl flex flex-col justify-end p-5 md:p-8 bg-white border-8 border-neutral-800 shadow-xl overflow-hidden"
                     style={{
                       boxShadow: '0 0 15px rgba(146, 51, 234, 0.31), 0 0 30px rgba(0, 0, 0, 0.1)'
                     }}
