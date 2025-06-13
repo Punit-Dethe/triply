@@ -72,29 +72,29 @@ const Features = () => {
   return (
     <section ref={targetRef} className="relative h-[300vh] bg-black text-white">
       <div className="sticky top-0 h-screen overflow-hidden flex flex-col justify-center">
-        {/* Text Content */}
-        <div ref={textContainerRef} className="w-full max-w-6xl mx-auto px-12 z-10">
+        {/* Text Content - Added more top padding */}
+        <div ref={textContainerRef} className="w-full max-w-6xl mx-auto px-8 md:px-12 z-10 pt-8 md:pt-10 mb-6 md:mb-8">
             <div className="flex flex-col md:flex-row justify-between items-start">
-                <h2 className="text-5xl md:text-7xl font-bold tracking-tighter leading-tight max-w-lg">
+                <h2 className="text-4xl md:text-5xl lg:text-7xl font-bold tracking-tighter leading-tight max-w-lg">
                     Your corporate ride partner.
                 </h2>
-                <p className="text-gray-400 mt-4 md:mt-2 max-w-xs text-lg">
+                <p className="text-gray-400 mt-2 md:mt-2 max-w-xs text-base md:text-lg">
                     Empowering productivity & elevating commutes for workplace. Our vision is to provide employees with a safe, reliable, comfortable, and affordable commuting experience.
                 </p>
             </div>
         </div>
         
         {/* Horizontal Scroll Section Wrapper */}
-        <div ref={viewportRef} className="w-full overflow-x-hidden">
+        <div ref={viewportRef} className="w-full overflow-x-hidden flex-grow">
           <motion.div 
             ref={motionDivRef}
             style={{ x, paddingLeft: dynamicPaddingLeft, paddingRight: dynamicPaddingLeft }} 
-            className="flex gap-8 py-12 md:py-16 w-max"
+            className="flex gap-4 md:gap-8 py-6 md:py-12 w-max h-full"
           >
               {features.map((feature, index) => (
-                <div key={index} className="relative shrink-0">
+                <div key={index} className="relative shrink-0 h-full flex items-center">
                   <div 
-                    className="relative w-[80vw] md:w-[60vw] lg:w-[45vw] max-w-[800px] h-auto aspect-[4/3] rounded-2xl flex flex-col justify-end p-6 md:p-8 bg-white border-8 border-neutral-800 shadow-xl overflow-hidden"
+                    className="relative w-[90vw] md:w-[60vw] lg:w-[45vw] max-w-[800px] h-[70%] rounded-2xl flex flex-col justify-end p-5 md:p-8 bg-white border-8 border-neutral-800 shadow-xl overflow-hidden"
                     style={{
                       boxShadow: '0 0 15px rgba(146, 51, 234, 0.31), 0 0 30px rgba(0, 0, 0, 0.1)'
                     }}
@@ -106,13 +106,13 @@ const Features = () => {
                     }}></div>
                     
                     {/* Number indicator in top right */}
-                    <div className="absolute top-4 right-4 md:top-8 md:right-8 w-16 h-16 md:w-20 md:h-20 flex items-center justify-center">
-                      <span className="text-4xl md:text-5xl font-bold text-neutral-800 opacity-40">0{index + 1}</span>
+                    <div className="absolute top-2 right-2 md:top-8 md:right-8 w-12 h-12 md:w-20 md:h-20 flex items-center justify-center">
+                      <span className="text-3xl md:text-5xl font-bold text-neutral-800 opacity-40">0{index + 1}</span>
                     </div>
                     
                     {/* Content aligned to bottom left */}
-                    <div className="relative z-10 max-w-md text-left mb-4">
-                      <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold text-black tracking-tight mb-2 md:mb-4">{feature.title}</h3>
+                    <div className="relative z-10 max-w-md text-left mb-2 md:mb-4">
+                      <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold text-black tracking-tight mb-1 md:mb-4">{feature.title}</h3>
                       <p className="text-sm sm:text-base md:text-lg text-neutral-700">{feature.description}</p>
                     </div>
                   </div>
