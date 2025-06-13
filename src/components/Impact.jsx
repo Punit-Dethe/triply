@@ -61,18 +61,17 @@ const Impact = () => {
 
       <div className="relative z-10 max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8 items-center h-full">
         {/* Left side: Content */}
-        <div className="space-y-12">
-          <h1 className="text-5xl font-bold tracking-tight text-white sm:text-6xl" style={{ textShadow: '2px 2px 8px rgba(0,0,0,0.6)' }}>
+        <div className="space-y-12 w-full max-w-full overflow-hidden">
+          <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-white sm:text-6xl" style={{ textShadow: '2px 2px 8px rgba(0,0,0,0.6)' }}>
             Better Cities. Better Living.
           </h1>
           
-          <div className="space-y-6">
+          <div className="space-y-6 w-full">
             {stats.map((stat, index) => (
               <motion.div 
                 key={index} 
-                className="flex items-center space-x-6 p-4 rounded-xl bg-white/85 backdrop-blur-md shadow-xl border border-white/50" 
+                className="flex flex-col sm:flex-row items-start sm:items-center space-y-2 sm:space-y-0 sm:space-x-6 p-4 rounded-xl bg-white/85 backdrop-blur-md shadow-xl border border-white/50 w-full max-w-full" 
                 style={{ 
-                  minWidth: '450px',
                   backdropFilter: 'blur(8px)',
                   WebkitBackdropFilter: 'blur(8px)'
                 }}
@@ -80,12 +79,12 @@ const Impact = () => {
                 whileInView={{ y: 0, opacity: 1 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
               >
-                <div className="w-1/3">
+                <div className="w-full sm:w-1/3">
                   <p className="text-sm font-semibold tracking-wider text-black">{stat.label}</p>
                 </div>
                 <div className="flex-1">
-                  <p className="text-3xl font-bold text-gray-800">{stat.value}</p>
-                  <p className="text-sm text-gray-600">{stat.description}</p>
+                  <p className="text-2xl sm:text-3xl font-bold text-gray-800">{stat.value}</p>
+                  <p className="text-xs sm:text-sm text-gray-600">{stat.description}</p>
                 </div>
               </motion.div>
             ))}
