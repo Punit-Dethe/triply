@@ -51,7 +51,8 @@ const Features = () => {
         // Calculate the width needed to show all cards
         const scrollWidth = motionDiv.scrollWidth;
         const clientWidth = viewport.clientWidth;
-        const finalOffset = scrollWidth - clientWidth;
+        const extraGap = 20; // px, adjust as needed
+        const finalOffset = scrollWidth - clientWidth + extraGap;
         setScrollEndOffset(finalOffset);
       }
 
