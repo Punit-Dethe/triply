@@ -76,7 +76,7 @@ const Features = () => {
         <div className="h-[12vh] md:h-[15vh]"></div>
         
         {/* Text Content */}
-        <div ref={textContainerRef} className="w-full max-w-6xl mx-auto px-8 md:px-12 z-10 mb-3 md:mb-4">
+        <div ref={textContainerRef} className="w-full max-w-6xl mx-auto px-8 md:px-12 z-10 mb-1 md:mb-2">
             <div className="flex flex-col md:flex-row justify-between items-start">
                 <h2 className="text-4xl md:text-5xl lg:text-7xl font-bold tracking-tighter leading-tight max-w-lg">
                     Your corporate ride partner.
@@ -92,12 +92,12 @@ const Features = () => {
           <motion.div 
             ref={motionDivRef}
             style={{ x, paddingLeft: dynamicPaddingLeft, paddingRight: dynamicPaddingLeft }} 
-            className="flex gap-4 md:gap-8 py-4 md:py-8 w-max h-full"
+            className="flex gap-4 md:gap-8 py-2 md:py-4 w-max h-full"
           >
               {features.map((feature, index) => (
                 <div key={index} className="relative shrink-0 h-full flex items-center">
                   <div 
-                    className="relative w-[90vw] md:w-[60vw] lg:w-[45vw] max-w-[800px] h-[70%] rounded-2xl flex flex-col justify-end p-5 md:p-8 bg-white border-8 border-neutral-800 shadow-xl overflow-hidden"
+                    className="relative w-[90vw] md:w-[60vw] lg:w-[45vw] max-w-[800px] h-[75%] rounded-2xl flex flex-col justify-end p-5 md:p-8 bg-white border-8 border-neutral-800 shadow-xl overflow-hidden"
                     style={{
                       boxShadow: '0 0 15px rgba(146, 51, 234, 0.31), 0 0 30px rgba(0, 0, 0, 0.1)'
                     }}
