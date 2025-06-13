@@ -71,9 +71,12 @@ const Features = () => {
 
   return (
     <section ref={targetRef} className="relative h-[300vh] bg-black text-white">
-      <div className="sticky top-0 h-screen overflow-hidden flex flex-col justify-center">
-        {/* Text Content - Added more top padding */}
-        <div ref={textContainerRef} className="w-full max-w-6xl mx-auto px-8 md:px-12 z-10 pt-8 md:pt-10 mb-6 md:mb-8">
+      <div className="sticky top-0 h-screen overflow-hidden flex flex-col">
+        {/* Added extra space at top */}
+        <div className="h-[12vh] md:h-[15vh]"></div>
+        
+        {/* Text Content */}
+        <div ref={textContainerRef} className="w-full max-w-6xl mx-auto px-8 md:px-12 z-10 mb-3 md:mb-4">
             <div className="flex flex-col md:flex-row justify-between items-start">
                 <h2 className="text-4xl md:text-5xl lg:text-7xl font-bold tracking-tighter leading-tight max-w-lg">
                     Your corporate ride partner.
@@ -85,11 +88,11 @@ const Features = () => {
         </div>
         
         {/* Horizontal Scroll Section Wrapper */}
-        <div ref={viewportRef} className="w-full overflow-x-hidden flex-grow">
+        <div ref={viewportRef} className="w-full overflow-x-hidden flex-1">
           <motion.div 
             ref={motionDivRef}
             style={{ x, paddingLeft: dynamicPaddingLeft, paddingRight: dynamicPaddingLeft }} 
-            className="flex gap-4 md:gap-8 py-6 md:py-12 w-max h-full"
+            className="flex gap-4 md:gap-8 py-4 md:py-8 w-max h-full"
           >
               {features.map((feature, index) => (
                 <div key={index} className="relative shrink-0 h-full flex items-center">
@@ -120,6 +123,9 @@ const Features = () => {
               ))}
           </motion.div>
         </div>
+        
+        {/* Added space at bottom */}
+        <div className="h-[8vh]"></div>
       </div>
     </section>
   );
