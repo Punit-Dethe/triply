@@ -158,7 +158,7 @@ const Amenities = () => {
 
             {/* VIP Services Section */}
             <div className="bg-neutral-100 rounded-xl p-8 flex flex-col md:flex-row justify-between items-center border border-gray-200">
-              <h2 className="text-3xl md:text-4xl font-bold mb-6 md:mb-0">Check us out on Play Store</h2>
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-6 md:mb-0 whitespace-nowrap">Check us out on Play Store</h2>
               <button className="bg-black text-white px-8 py-3 rounded-full font-medium hover:bg-neutral-800 transition-colors border border-yellow-400">
                 Download
               </button>
