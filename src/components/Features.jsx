@@ -71,12 +71,12 @@ const Features = () => {
 
   return (
     <section ref={targetRef} className="relative h-[300vh] bg-black text-white">
-      <div className="sticky top-0 h-screen overflow-hidden flex flex-col">
-        {/* Added extra space at top */}
-        <div className="h-[12vh] md:h-[15vh]"></div>
+      <div className="sticky top-0 h-screen overflow-hidden flex flex-col sm:justify-center">
+        {/* Added extra space at top - only visible on mobile */}
+        <div className="h-[12vh] sm:h-0"></div>
         
         {/* Text Content */}
-        <div ref={textContainerRef} className="w-full max-w-6xl mx-auto px-8 md:px-12 z-10 mb-1 md:mb-2">
+        <div ref={textContainerRef} className="w-full max-w-6xl mx-auto px-8 md:px-12 z-10 mb-1 sm:mb-6 md:mb-8">
             <div className="flex flex-col md:flex-row justify-between items-start">
                 <h2 className="text-4xl md:text-5xl lg:text-7xl font-bold tracking-tighter leading-tight max-w-lg">
                     Your corporate ride partner.
@@ -92,12 +92,12 @@ const Features = () => {
           <motion.div 
             ref={motionDivRef}
             style={{ x, paddingLeft: dynamicPaddingLeft, paddingRight: dynamicPaddingLeft }} 
-            className="flex gap-4 md:gap-8 py-2 md:py-4 w-max h-full"
+            className="flex gap-4 sm:gap-8 py-2 sm:py-12 md:py-16 w-max h-full"
           >
               {features.map((feature, index) => (
                 <div key={index} className="relative shrink-0 h-full flex items-center">
                   <div 
-                    className="relative w-[90vw] md:w-[60vw] lg:w-[45vw] max-w-[800px] h-[75%] rounded-2xl flex flex-col justify-end p-5 md:p-8 bg-white border-8 border-neutral-800 shadow-xl overflow-hidden"
+                    className="relative w-[90vw] md:w-[60vw] lg:w-[45vw] max-w-[800px] h-[75%] sm:h-auto sm:aspect-[4/3] rounded-2xl flex flex-col justify-end p-5 md:p-8 bg-white border-8 border-neutral-800 shadow-xl overflow-hidden"
                     style={{
                       boxShadow: '0 0 15px rgba(146, 51, 234, 0.31), 0 0 30px rgba(0, 0, 0, 0.1)'
                     }}
@@ -109,13 +109,13 @@ const Features = () => {
                     }}></div>
                     
                     {/* Number indicator in top right */}
-                    <div className="absolute top-2 right-2 md:top-8 md:right-8 w-12 h-12 md:w-20 md:h-20 flex items-center justify-center">
-                      <span className="text-3xl md:text-5xl font-bold text-neutral-800 opacity-40">0{index + 1}</span>
+                    <div className="absolute top-2 right-2 sm:top-4 md:top-8 sm:right-4 md:right-8 w-12 h-12 sm:w-16 md:w-20 sm:h-16 md:h-20 flex items-center justify-center">
+                      <span className="text-3xl sm:text-4xl md:text-5xl font-bold text-neutral-800 opacity-40">0{index + 1}</span>
                     </div>
                     
                     {/* Content aligned to bottom left */}
-                    <div className="relative z-10 max-w-md text-left mb-2 md:mb-4">
-                      <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold text-black tracking-tight mb-1 md:mb-4">{feature.title}</h3>
+                    <div className="relative z-10 max-w-md text-left mb-2 sm:mb-4">
+                      <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold text-black tracking-tight mb-1 sm:mb-2 md:mb-4">{feature.title}</h3>
                       <p className="text-sm sm:text-base md:text-lg text-neutral-700">{feature.description}</p>
                     </div>
                   </div>
@@ -124,8 +124,8 @@ const Features = () => {
           </motion.div>
         </div>
         
-        {/* Added space at bottom */}
-        <div className="h-[8vh]"></div>
+        {/* Added space at bottom - only visible on mobile */}
+        <div className="h-[8vh] sm:h-0"></div>
       </div>
     </section>
   );
