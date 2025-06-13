@@ -17,27 +17,20 @@ const Home = () => {
     <div className="min-h-screen bg-white">
       {/* Hero Section */}
       <div className="relative -mt-24 w-full h-screen overflow-hidden">
-        {/* Video Background */}
+        {/* Image Background (replaces video) */}
         <div className="absolute inset-0 w-full h-full">
-          <video 
-            autoPlay 
-            loop 
-            muted 
-            playsInline
+          <img 
+            src="https://images.unsplash.com/photo-1503736334956-4c8f8e92946d?auto=format&fit=crop&w=1500&q=80" 
+            alt="Corporate car on the road" 
             className="absolute top-0 left-0 w-full h-full object-cover"
             style={{ minWidth: '100%', minHeight: '100%' }}
-          >
-            <source src={heroVideo} type="video/mp4" />
-            Your browser does not support the video tag.
-          </video>
-          
+          />
           {/* More prominent black gradient at the top (215px) */}
           <div className="absolute top-0 left-0 right-0 h-[215px]" 
                style={{ 
                  background: 'linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,0.85) 30%, rgba(0,0,0,0.6) 60%, rgba(0,0,0,0) 100%)'
                }}>
           </div>
-          
           {/* White gradient at the bottom - 100% to 0% opacity */}
           <div className="absolute bottom-0 left-0 right-0 h-[70px]" 
                style={{ 
@@ -45,7 +38,6 @@ const Home = () => {
                }}>
           </div>
         </div>
-        
         {/* Spacer to account for fixed navbar */}
         <div className="h-24 relative z-10"></div>
       </div>
