@@ -64,7 +64,25 @@ const Features = () => {
 
     updateLayout();
     window.addEventListener('resize', updateLayout);
-    return () => window.removeEventListener('resize', updateLayout);
+
+    // --- Fix: Trigger updateLayout after a short delay (for late layout changes) ---
+    const timeoutId = setTimeout(updateLayout, 200);
+
+    // --- Fix: Listen for image load events inside the scroll area ---
+    const motionDiv = motionDivRef.current;
+    let images = [];
+    if (motionDiv) {
+      images = Array.from(motionDiv.querySelectorAll('img'));
+      images.forEach(img => img.addEventListener('load', updateLayout));
+    }
+
+    return () => {
+      window.removeEventListener('resize', updateLayout);
+      clearTimeout(timeoutId);
+      if (images.length > 0) {
+        images.forEach(img => img.removeEventListener('load', updateLayout));
+      }
+    };
   }, []);
 
   // Start horizontal scrolling very early, but make it last longer
