@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { IconChevronDown, IconMessageCircle } from '@tabler/icons-react';
-import faqImage from '../assets/taxi.png';
 
 const faqData = [
     {
@@ -76,27 +75,21 @@ const FAQ = () => {
         <div className="bg-white py-24 sm:py-32 overflow-hidden">
             <div className="mx-auto max-w-7xl px-6 lg:px-8 grid lg:grid-cols-2 lg:gap-16 items-start">
                 {/* Left Column */}
-                <div className="relative">
-                    <div className="relative z-10">
-                        <h2 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl mb-6">
-                            What would you like to know about Triply?
-                        </h2>
-                        <button className="flex items-center space-x-2 px-6 py-3 border border-gray-300 rounded-full text-gray-700 font-medium hover:bg-gray-50 transition-colors">
-                            <IconMessageCircle size={20} />
-                            <span>Talk to us</span>
-                        </button>
-                    </div>
-                    {/* Decorative graphic */}
-                    <div className="absolute top-1/2 left-0 -translate-y-1/3 mt-40">
-                        <div className="relative">
-                            <img src={faqImage} alt="Decorative graphic" className="relative z-10 w-[450px] h-auto" />
-                            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 w-[150%] h-3/4 bg-orange-400/25 rounded-full blur-[150px] z-0"></div>
-                        </div>
-                    </div>
+                <div className="lg:pr-4">
+                    <h2 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl mb-6">
+                        What would you like to know about Triply?
+                    </h2>
+                    <p className="text-lg text-gray-600 mb-8 max-w-md">
+                        Frequently asked questions about our service. If you can't find the answer you're looking for, feel free to reach out to us.
+                    </p>
+                    <button className="flex items-center space-x-2 px-6 py-3 border border-gray-300 rounded-full text-gray-700 font-medium hover:bg-gray-50 transition-colors">
+                        <IconMessageCircle size={20} />
+                        <span>Talk to us</span>
+                    </button>
                 </div>
 
                 {/* Right Column (Accordion) */}
-                <div className="mt-12 lg:mt-0 relative z-10">
+                <div className="mt-12 lg:mt-0">
                     <div className="space-y-2">
                         {faqData.map((faq, index) => (
                              <div key={index} className="bg-purple-200/50 rounded-2xl px-6">

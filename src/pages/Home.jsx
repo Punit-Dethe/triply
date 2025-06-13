@@ -10,41 +10,44 @@ import AboutUs from '../components/AboutUs';
 import WhyChooseUs from '../components/WhyChooseUs';
 import Features from '../components/Features';
 import Amenities from '../components/Amenities';
+import heroVideo from '../assets/Untitled 1.mp4';
 
 const Home = () => {
   return (
     <div className="min-h-screen bg-white">
       {/* Hero Section */}
-      <div className="relative text-white pt-32 pb-16 -mt-24 md:pt-48 overflow-hidden bg-cover bg-center" style={{
-        backgroundImage: 'linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(https://images.pexels.com/photos/315938/pexels-photo-315938.jpeg?cs=srgb&dl=pexels-pixabay-315938.jpg&fm=jpg)',
-        backgroundPosition: 'center 30%',
-        minHeight: 'calc(100vh - 6rem)'
-      }}>
-        {/* Spacer to account for fixed navbar */}
-        <div className="h-24"></div>
-        
-        {/* Content */}
-        <div className="container mx-auto px-4 text-center">
-          <h1 className="text-4xl md:text-5xl font-bold mb-6 md:mb-8 px-4">Smarter Commutes, Happier Offices</h1>
-          <p className="text-xl mb-10 max-w-3xl mx-auto leading-relaxed">
-            Triply transforms your daily commute with affordable, eco-friendly cab sharing for office-goers.
-            Save up to 60% on your daily travel costs while reducing your carbon footprint.
-          </p>
-          <div className="space-x-4">
-            <Link 
-              to="/signup" 
-              className="bg-[#6c2bc7] hover:bg-[#5a22a8] text-white px-6 py-2 md:px-8 md:py-3 rounded-lg font-medium text-base md:text-lg inline-block transition-all shadow-md hover:shadow-lg transform hover:-translate-y-0.5 hover:shadow-purple-200"
-            >
-              Start Saving Now
-            </Link>
-            <Link 
-              to="/how-it-works" 
-              className="bg-white text-[#6c2bc7] hover:bg-gray-100 px-6 py-2 md:px-8 md:py-3 rounded-lg font-medium text-base md:text-lg inline-block transition-all shadow-md hover:shadow-lg transform hover:-translate-y-0.5 hover:shadow-purple-100"
-            >
-              How It Works
-            </Link>
+      <div className="relative -mt-24 w-full h-screen overflow-hidden">
+        {/* Video Background */}
+        <div className="absolute inset-0 w-full h-full">
+          <video 
+            autoPlay 
+            loop 
+            muted 
+            playsInline
+            className="absolute top-0 left-0 w-full h-full object-cover"
+            style={{ minWidth: '100%', minHeight: '100%' }}
+          >
+            <source src={heroVideo} type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+          
+          {/* More prominent black gradient at the top (215px) */}
+          <div className="absolute top-0 left-0 right-0 h-[215px]" 
+               style={{ 
+                 background: 'linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,0.85) 30%, rgba(0,0,0,0.6) 60%, rgba(0,0,0,0) 100%)'
+               }}>
+          </div>
+          
+          {/* White gradient at the bottom - 100% to 0% opacity */}
+          <div className="absolute bottom-0 left-0 right-0 h-[70px]" 
+               style={{ 
+                 background: 'linear-gradient(to top, rgba(255,255,255,1) 0%, rgba(255,255,255,0.6) 50%, rgba(255,255,255,0) 100%)'
+               }}>
           </div>
         </div>
+        
+        {/* Spacer to account for fixed navbar */}
+        <div className="h-24 relative z-10"></div>
       </div>
 
       <AboutUs />
