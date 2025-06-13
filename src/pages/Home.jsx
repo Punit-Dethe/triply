@@ -10,7 +10,7 @@ import AboutUs from '../components/AboutUs';
 import WhyChooseUs from '../components/WhyChooseUs';
 import Features from '../components/Features';
 import Amenities from '../components/Amenities';
-import heroVideo from '../assets/Untitled 1.mp4';
+import heroImage from '../assets/istockphoto-924908526-2048x2048-Photoroom (1).png';
 
 const Home = () => {
   return (
@@ -20,7 +20,7 @@ const Home = () => {
         {/* Image Background (replaces video) */}
         <div className="absolute inset-0 w-full h-full">
           <img 
-            src="https://images.unsplash.com/photo-1503736334956-4c8f8e92946d?auto=format&fit=crop&w=1500&q=80" 
+            src={heroImage}
             alt="Corporate car on the road" 
             className="absolute top-0 left-0 w-full h-full object-cover"
             style={{ minWidth: '100%', minHeight: '100%' }}
