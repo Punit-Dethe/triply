@@ -214,11 +214,11 @@ const Navbar = ({ className = '' }) => {
         {/* Mobile Menu (Full Screen Overlay) */}
         <div 
           ref={menuRef}
-          className={`fixed top-0 left-0 w-screen z-[9999] lg:hidden transition-transform duration-500 ease-in-out ${
+          className={`fixed top-0 left-0 w-screen z-[9999] lg:hidden transition-all duration-500 ease-in-out ${
             isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'
           }`}
           style={{
-            backgroundColor: '#FFFFFF',
+            backgroundColor: '#FFF7ED',
             backgroundImage: 'linear-gradient(to left, rgba(108, 43, 199, 0.5) 0%, rgba(108, 43, 199, 0) 70%)',
             height: `${windowHeight}px`,
             overflow: 'hidden',
