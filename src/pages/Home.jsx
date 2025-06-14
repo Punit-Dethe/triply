@@ -38,6 +38,17 @@ const Home = () => {
                }}>
           </div>
         </div>
+        {/* Bottom-left overlay content */}
+        <div className="absolute bottom-0 left-0 z-20 w-full sm:w-auto p-6 sm:p-12 flex flex-col items-start">
+          <h1 className="text-3xl sm:text-5xl font-bold mb-2 text-white">
+            <span className="text-[#A855F7]">Reclaim</span> your commute time
+          </h1>
+          <p className="text-base sm:text-lg text-gray-200 mb-6">Comfortable Home to Office cab rides</p>
+          <div className="flex gap-4 flex-wrap">
+            <button className="bg-white text-black font-semibold px-8 py-3 rounded-full shadow hover:bg-gray-100 transition">Find my bus</button>
+            <button className="bg-black text-[#A855F7] border-2 border-[#A855F7] font-semibold px-8 py-3 rounded-full hover:bg-[#A855F7] hover:text-black transition">Download the app</button>
+          </div>
+        </div>
         {/* Spacer to account for fixed navbar */}
         <div className="h-24 relative z-10"></div>
       </div>
