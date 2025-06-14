@@ -170,7 +170,7 @@ export const HowItWorks = () => {
       >
         <div 
           aria-hidden="true"
-          className="absolute inset-0 z-0 bg-white/80 backdrop-blur-sm"
+          className="absolute inset-0 z-0 bg-white backdrop-blur-sm"
         />
         
         {/* Mobile-only Top Gradient */}
