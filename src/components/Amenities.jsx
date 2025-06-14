@@ -1,7 +1,7 @@
 import React from 'react';
-import ecoFriendlyImage from '../assets/amenities/eco.png';
+import ecoFriendlyImage from '../assets/amenities/Gemini_Generated_Image_8mirk48mirk48mir(1).png';
 import ntbImage from '../assets/amenities/ntb.png';
-import shieldImage from '../assets/amenities/shield.png';
+import shieldImage from '../assets/amenities/shield2.png';
 import carImage from '../assets/amenities/car.png';
 
 const Amenities = () => {
