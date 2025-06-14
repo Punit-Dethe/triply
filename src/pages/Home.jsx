@@ -113,10 +113,10 @@ const Home = () => {
       <Amenities />
       <WhyChooseUs />
           
-      <div className="relative" style={{
+      <div className="relative sm:mt-12" style={{
         background: 'radial-gradient(circle at center, rgba(138, 92, 246, 0.16) 0%, rgba(249, 116, 22, 0.07) 40%, transparent 100%)',
       }}>
-        <div id="how-it-works" className="relative pb-20 pt-4 -mt-20">
+        <div id="how-it-works" className="relative pb-20 pt-4 sm:-mt-10 -mt-20">
           <HowItWorks />
           <div className="absolute -bottom-8 inset-x-0 flex justify-center z-10">
             <motion.div
