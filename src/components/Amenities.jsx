@@ -27,11 +27,7 @@ const Amenities = () => {
         <div className="grid grid-cols-12 gap-4">
           {/* Top Row */}
           {/* First Card - Left card on top row */}
-          <div className="col-span-12 md:col-span-6 bg-neutral-100 rounded-xl p-4 flex flex-col h-full relative overflow-hidden border border-gray-200">
-            {/* Orange glow on card background */}
-            <div className="absolute inset-0 z-0 rounded-xl pointer-events-none" style={{
-              background: 'linear-gradient(135deg, rgba(255, 168, 38, 0.4) 0%, rgba(255,167,38,0.0) 60%)',
-            }}></div>
+          <div className="col-span-12 md:col-span-6 bg-white/50 backdrop-blur rounded-xl p-4 flex flex-col h-full relative overflow-hidden border border-gray-200">
             <div className="flex flex-col h-full relative z-10">
               <div className="flex-1 flex items-center justify-center mb-4 relative">
                 <img 
@@ -50,11 +46,7 @@ const Amenities = () => {
           </div>
 
           {/* Second Card - Right card on top row */}
-          <div className="col-span-12 md:col-span-6 bg-neutral-100 rounded-xl p-4 flex flex-col h-full relative overflow-hidden border border-gray-200">
-            {/* Blue glow from top-right corner */}
-            <div className="absolute inset-0 z-0 rounded-xl pointer-events-none" style={{
-              background: 'radial-gradient(circle at top right, rgba(59,130,246,0.5) 0%, rgba(59,130,246,0.0) 70%)',
-            }}></div>
+          <div className="col-span-12 md:col-span-6 bg-white/50 backdrop-blur rounded-xl p-4 flex flex-col h-full relative overflow-hidden border border-gray-200">
             <div className="flex flex-col h-full relative z-10">
               <div className="flex items-center justify-center pt-8 pb-0 pl-52 relative">
                 <img 
@@ -74,11 +66,7 @@ const Amenities = () => {
 
           {/* Bottom Row */}
           {/* Third Card - Left card on bottom row (full height) */}
-          <div className="col-span-12 md:col-span-4 bg-neutral-100 rounded-xl p-4 flex flex-col h-full relative overflow-hidden border border-gray-200">
-            {/* Green glow from top-left corner */}
-            <div className="absolute inset-0 z-0 rounded-xl pointer-events-none" style={{
-              background: 'radial-gradient(circle at top left, rgba(245, 84, 9, 0.4) 0%, rgba(81,135,0,0.0) 70%)',
-            }}></div>
+          <div className="col-span-12 md:col-span-4 bg-white/50 backdrop-blur rounded-xl p-4 flex flex-col h-full relative overflow-hidden border border-gray-200">
             <div className="flex justify-center items-center mb-0 order-1 relative">
               <div className="relative w-full flex items-center justify-center z-10">
                 <img 
@@ -102,11 +90,7 @@ const Amenities = () => {
           {/* Right side column - contains Integrations and Watch Demo */}
           <div className="col-span-12 md:col-span-8 flex flex-col gap-4">
             {/* Fourth Card */}
-            <div className="bg-neutral-100 rounded-xl p-8 flex flex-col h-full relative overflow-hidden border border-gray-200">
-              {/* Purple glow from top-right corner */}
-              <div className="absolute inset-0 z-0 rounded-xl pointer-events-none" style={{
-                background: 'radial-gradient(circle at top right, rgba(168,85,247,0.4) 0%, rgba(168,85,247,0.0) 70%)',
-              }}></div>
+            <div className="bg-white/50 backdrop-blur rounded-xl p-8 flex flex-col h-full relative overflow-hidden border border-gray-200">
               <div className="flex flex-col h-full">
                 <div className="w-full flex justify-end mb-4 pr-8">
                   <img 
@@ -125,7 +109,7 @@ const Amenities = () => {
             </div>
 
             {/* VIP Services Section */}
-            <div className="bg-neutral-100 rounded-xl p-8 flex flex-col md:flex-row justify-between items-center border border-gray-200">
+            <div className="bg-white/30 backdrop-blur rounded-xl p-8 flex flex-col md:flex-row justify-between items-center border border-gray-200">
               <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-6 md:mb-0 whitespace-nowrap">Check us out on Play Store</h2>
               <button className="bg-black text-white px-8 py-3 rounded-full font-medium hover:bg-neutral-800 transition-colors border border-yellow-400">
                 Download
