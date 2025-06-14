@@ -1,5 +1,5 @@
-import React, { useState, useRef, useCallback, useEffect } from 'react';
-import { motion, AnimatePresence, useScroll } from 'framer-motion';
+import React, { useState, useRef } from 'react';
+import { motion, AnimatePresence, useScroll, useMotionValueEvent } from 'framer-motion';
 import { IconMenu2, IconX } from '@tabler/icons-react';
 import { Link, useLocation } from 'react-router-dom';
 import logo from '../assets/logo.png';
@@ -10,71 +10,22 @@ function cn(...classes) {
   return classes.filter(Boolean).join(' ');
 }
 
-const SCROLL_THRESHOLD = 100;
-const DEBOUNCE_DELAY = 100;
-
 const Navbar = ({ className = '' }) => {
   const ref = useRef(null);
+  const { scrollY } = useScroll({
+    target: ref,
+    offset: ["start start", "end start"],
+  });
   const [visible, setVisible] = useState(false);
   const [hidden, setHidden] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [menuItemsVisible, setMenuItemsVisible] = useState(false);
+  const [windowHeight, setWindowHeight] = useState(window.innerHeight);
   const menuRef = useRef(null);
   const [isDownloadHovered, setIsDownloadHovered] = useState(false);
-  const lastScrollY = useRef(0);
-  const timeoutRef = useRef(null);
-  const rafId = useRef(null);
 
   const location = useLocation();
   const isHomePage = location.pathname === '/';
-
-  // Debounced scroll handler
-  const handleScroll = useCallback(() => {
-    if (timeoutRef.current) {
-      cancelAnimationFrame(rafId.current);
-      clearTimeout(timeoutRef.current);
-    }
-
-    rafId.current = requestAnimationFrame(() => {
-      timeoutRef.current = setTimeout(() => {
-        const currentScroll = window.scrollY;
-        
-        // Control shrink/blur effect
-        const shouldBeVisible = currentScroll > SCROLL_THRESHOLD;
-        if (shouldBeVisible !== visible) {
-          setVisible(shouldBeVisible);
-        }
-
-        // Control hide/show on scroll
-        const isScrollingDown = currentScroll > lastScrollY.current;
-        const shouldBeHidden = isScrollingDown && currentScroll > window.innerHeight && !isMobileMenuOpen;
-        
-        if (shouldBeHidden !== hidden) {
-          setHidden(shouldBeHidden);
-        }
-
-        lastScrollY.current = currentScroll;
-      }, DEBOUNCE_DELAY);
-    });
-  }, [visible, hidden, isMobileMenuOpen]);
-
-  // Cleanup on unmount
-  useEffect(() => {
-    return () => {
-      if (timeoutRef.current) {
-        clearTimeout(timeoutRef.current);
-      }
-      if (rafId.current) {
-        cancelAnimationFrame(rafId.current);
-      }
-    };
-  }, []);
-
-  // Use passive scroll listener
-  useEffect(() => {
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, [handleScroll]);
 
   const toggleMobileMenu = () => {
     if (!isMobileMenuOpen) {
@@ -87,7 +38,23 @@ const Navbar = ({ className = '' }) => {
     }
   };
 
-  // Scroll handling is now managed by the passive scroll listener
+  useMotionValueEvent(scrollY, "change", (latest) => {
+    const previous = scrollY.getPrevious();
+
+    // Control shrink/blur effect
+    if (latest > 100) {
+      setVisible(true);
+    } else {
+      setVisible(false);
+    }
+
+    // Control hide/show on scroll
+    if (latest > previous && latest > window.innerHeight && !isMobileMenuOpen) {
+      setHidden(true);
+    } else {
+      setHidden(false);
+    }
+  });
 
   const downloadAnimationVariants = {
     initial: { y: 15, opacity: 0 },
@@ -114,31 +81,56 @@ const Navbar = ({ className = '' }) => {
         animate={hidden ? "hidden" : "visible"}
         transition={{ duration: 0.35, ease: "easeInOut" }}
     >
-      {/* Desktop Navbar */}
+      {/* Desktop Navbar - Optimized */}
       <motion.div
-        className={cn(
-          "relative z-[60] mx-auto hidden w-full max-w-7xl flex-row items-center justify-between self-start rounded-full px-4 py-2 lg:flex dark:bg-transparent",
-          visible ? "bg-white/80 backdrop-blur-md shadow-lg" : "bg-transparent"
-        )}
+        animate={{
+          width: visible ? "40%" : "100%",
+          y: visible ? 20 : 0,
+        }}
+        transition={{
+          type: "tween",
+          duration: 0.6,
+          ease: "easeInOut",
+        }}
         style={{
           minWidth: "800px",
-          willChange: "transform, opacity",
-          transform: visible ? "translateY(20px) scale(0.95)" : "none",
-          opacity: visible ? 1 : 1,
-          transition: "transform 0.3s cubic-bezier(0.25, 0.1, 0.25, 1), opacity 0.2s ease-out, background 0.3s ease-out"
+          willChange: "transform, width",
+          transform: 'translateZ(0)', // Promote to its own layer
         }}
+        className={cn(
+          "relative z-[60] mx-auto hidden max-w-7xl self-start rounded-full lg:flex"
+        )}
       >
-        {/* Logo */}
-        <Link to="/" className="relative z-20 mr-4 flex items-center space-x-2 px-2 py-1 text-sm font-normal">
-          <img src={visible ? logo2 : logo} alt="Triply" className="h-8 w-auto" />
+        {/* Background effects layer */}
+        <motion.div
+          className="absolute inset-0 rounded-full"
+          style={{
+            backgroundColor: "rgba(255, 255, 255, 0.8)",
+            backdropFilter: "blur(10px)",
+            boxShadow: "0 0 24px rgba(34, 42, 53, 0.06), 0 1px 1px rgba(0, 0, 0, 0.05), 0 0 0 1px rgba(34, 42, 53, 0.04), 0 0 4px rgba(34, 42, 53, 0.08), 0 16px 68px rgba(47, 48, 55, 0.05), 0 1px 0 rgba(255, 255, 255, 0.1) inset",
+            willChange: "opacity",
+          }}
+          initial={{ opacity: 0 }}
+          animate={{
+            opacity: visible ? 1 : 0,
+          }}
+          transition={{
+            type: "tween",
+            duration: 0.6,
+            ease: "easeInOut",
+          }}
+        />
+        
+        {/* Content layer */}
+        <div className="relative z-10 flex w-full flex-row items-center justify-between px-4 py-2">
+          <Link to="/" className="relative z-20 mr-4 flex items-center space-x-2 px-2 py-1 text-sm font-normal">
+            <img src={visible ? logo2 : logo} alt="Triply" className="h-8 w-auto" />
             <span className={`font-medium ${visible || !isHomePage ? 'text-black' : 'text-gray-200'}`}>Triply</span>
-        </Link>
+          </Link>
 
-        {/* Navigation Items */}
           <NavItems items={navItems} visible={visible} isHomePage={isHomePage} />
 
-        {/* Auth Buttons */}
-        <div className="flex items-center space-x-4">
+          <div className="flex items-center space-x-4">
             <a
               href="https://play.google.com/store/apps/details?id=com.triply.app&pcampaignid=web_share"
               target="_blank"
@@ -156,9 +148,7 @@ const Navbar = ({ className = '' }) => {
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
               </svg>
               <div className="relative h-5">
-                {/* Sizer span to maintain width */}
                 <span className="font-medium opacity-0">Download</span>
-                {/* Animated text positioned over the sizer */}
                 <div className="absolute inset-0 flex items-center justify-center">
                   <AnimatePresence mode="wait">
                     <motion.span
@@ -175,32 +165,59 @@ const Navbar = ({ className = '' }) => {
                 </div>
               </div>
             </a>
+          </div>
         </div>
       </motion.div>
 
-      {/* Mobile Navbar */}
+      {/* Mobile Navbar - Optimized */}
       <motion.div
         className={cn(
-          "relative z-50 mx-auto flex w-full max-w-[calc(100vw-2rem)] flex-col items-center justify-between px-0 py-2 lg:hidden",
-          visible ? "bg-white/80 backdrop-blur-md shadow-lg" : "bg-transparent"
+          "relative z-50 mx-auto flex w-full max-w-[calc(100vw-2rem)] flex-col items-center justify-between bg-transparent lg:hidden"
         )}
+        animate={{
+          width: visible ? "90%" : "100%",
+          borderRadius: visible ? "23px" : "0px",
+          y: visible ? 20 : 0,
+        }}
+        transition={{
+          type: "spring",
+          stiffness: 200,
+          damping: 50,
+        }}
         style={{
-          willChange: "transform, opacity",
-          transform: visible ? "translateY(20px) scale(0.98)" : "none",
-          opacity: visible ? 1 : 1,
-          transition: "transform 0.3s cubic-bezier(0.25, 0.1, 0.25, 1), opacity 0.2s ease-out, background 0.3s ease-out"
+          willChange: "transform, width, border-radius",
+          transform: 'translateZ(0)',
         }}
       >
-          <div className={cn(
-            "flex w-full items-center justify-between px-4 transition-all duration-300 ease-in-out",
-            visible ? 'py-1' : 'py-3'
-          )}>
+        {/* Background effects layer */}
+        <motion.div
+          className="absolute inset-0 rounded-[inherit]"
+          style={{
+            backgroundColor: "rgba(255, 255, 255, 0.8)",
+            backdropFilter: "blur(10px)",
+            boxShadow: "0 0 24px rgba(34, 42, 53, 0.06), 0 1px 1px rgba(0, 0, 0, 0.05), 0 0 0 1px rgba(34, 42, 53, 0.04), 0 0 4px rgba(34, 42, 53, 0.08), 0 16px 68px rgba(47, 48, 55, 0.05), 0 1px 0 rgba(255, 255, 255, 0.1) inset",
+            willChange: "opacity",
+          }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: visible ? 1 : 0 }}
+          transition={{
+            type: "tween",
+            duration: 0.4,
+            ease: "easeInOut",
+          }}
+        />
+        
+        {/* Content layer */}
+        <div className={cn(
+          "relative z-10 flex w-full items-center justify-between px-4 transition-all duration-300 ease-in-out",
+          visible ? 'py-3' : 'py-4'
+        )} style={{ minHeight: '64px' }}>
           <Link to="/" className="flex items-center space-x-2">
-              <img src={visible ? logo2 : logo} alt="Triply" className={cn(
-                "w-auto transition-all duration-300 ease-in-out",
-                visible ? "h-7" : "h-8"
-              )} />
-              <span className={`text-lg font-medium ${visible || !isHomePage ? 'text-black' : 'text-gray-200'}`}>Triply</span>
+            <img src={visible ? logo2 : logo} alt="Triply" className={cn(
+              "w-auto transition-all duration-300 ease-in-out",
+              visible ? "h-7" : "h-8"
+            )} />
+            <span className={`text-lg font-medium ${visible || !isHomePage ? 'text-black' : 'text-gray-200'}`}>Triply</span>
           </Link>
           <button
             onClick={toggleMobileMenu}
@@ -218,7 +235,7 @@ const Navbar = ({ className = '' }) => {
             )}
           </button>
         </div>
-        </motion.div>
+      </motion.div>
       </motion.div>
 
         {/* Mobile Menu (Full Screen Overlay) */}
@@ -229,12 +246,13 @@ const Navbar = ({ className = '' }) => {
           }`}
           style={{
             backgroundColor: '#FFF7ED',
-            backgroundImage: 'linear-gradient(to left, rgba(108, 43, 199, 0.5) 0%, rgba(108, 43, 199, 0) 70%)',
+            background: `linear-gradient(to left, rgba(108, 43, 199, 0.2), #FFF7ED 70%), #FFF7ED`,
             height: `${windowHeight}px`,
             overflow: 'hidden',
             display: 'flex',
             flexDirection: 'column',
             willChange: 'transform',
+            opacity: 1,
           }}
         >
           {/* Close Button (Mobile Menu) */}
@@ -315,7 +333,7 @@ const Navbar = ({ className = '' }) => {
                 href="https://play.google.com/store/apps/details?id=com.triply.app&pcampaignid=web_share"
                 target="_blank"
                 rel="noopener noreferrer"
-              className={`w-full text-center bg-[#4f36b6] text-white hover:bg-[#3b2a89] hover:text-white py-4 rounded-full text-xl font-medium transition-all duration-200 ${
+              className={`w-full text-center bg-black text-white hover:bg-gray-900 hover:text-white py-4 rounded-full text-xl font-medium transition-colors duration-200 ${
                   menuItemsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
                 }`}
                 style={{
