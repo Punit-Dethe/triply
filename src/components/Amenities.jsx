@@ -48,7 +48,7 @@ const Amenities = () => {
           {/* Second Card - Right card on top row */}
           <div className="col-span-12 md:col-span-6 bg-white/70 backdrop-blur rounded-xl p-4 flex flex-col h-full relative overflow-hidden border border-gray-200">
             <div className="flex flex-col h-full relative z-10">
-              <div className="flex items-center justify-center pt-8 pb-0 pl-52 relative">
+              <div className="flex items-center justify-center md:justify-center pt-4 md:pt-8 pb-4 md:pb-0 md:pl-52 relative">
                 <img 
                   src={shieldImage} 
                   alt="Safety shield" 

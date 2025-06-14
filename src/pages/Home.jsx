@@ -31,10 +31,10 @@ const Home = () => {
                  background: 'linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,0.85) 30%, rgba(0,0,0,0.6) 60%, rgba(0,0,0,0) 100%)'
                }}>
           </div>
-          {/* White gradient at the bottom - 100% to 0% opacity */}
-          <div className="absolute bottom-0 left-0 right-0 h-[70px]" 
+          {/* Black gradient fading from 100% to 0% opacity */}
+          <div className="absolute bottom-0 left-0 right-0 h-[120px]" 
                style={{ 
-                 background: 'linear-gradient(to top, rgba(255,255,255,1) 0%, rgba(255,255,255,0.6) 50%, rgba(255,255,255,0) 100%)'
+                 background: 'linear-gradient(to top, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 100%)'
                }}>
           </div>
         </div>
@@ -44,9 +44,16 @@ const Home = () => {
             <span className="text-[#A855F7]">Reclaim</span> your commute time
           </h1>
           <p className="text-base sm:text-lg text-gray-200 mb-6">Comfortable Home to Office cab rides</p>
-          <div className="flex gap-4 flex-wrap">
-            <button className="bg-white text-black font-semibold px-8 py-3 rounded-full shadow hover:bg-gray-100 transition">Find my bus</button>
-            <button className="bg-black text-[#A855F7] border-2 border-[#A855F7] font-semibold px-8 py-3 rounded-full hover:bg-[#A855F7] hover:text-black transition">Download the app</button>
+          <div className="flex gap-4 overflow-x-auto pb-2 w-full">
+            <a 
+              href="#how-it-works" 
+              className="flex-shrink-0 bg-white text-black font-semibold px-6 sm:px-8 py-3 rounded-full shadow hover:bg-gray-100 transition whitespace-nowrap"
+            >
+              How it works
+            </a>
+            <button className="flex-shrink-0 bg-black text-[#A855F7] border-2 border-[#A855F7] font-semibold px-6 sm:px-8 py-3 rounded-full hover:bg-[#A855F7] hover:text-black transition whitespace-nowrap">
+              Get it now
+            </button>
           </div>
         </div>
         {/* Spacer to account for fixed navbar */}
@@ -58,7 +65,7 @@ const Home = () => {
       <Amenities />
       <WhyChooseUs />
           
-      <div className="relative" style={{
+      <div id="how-it-works" className="relative" style={{
         background: 'radial-gradient(circle at center, rgba(138, 92, 246, 0.16) 0%, rgba(249, 116, 22, 0.07) 40%, transparent 100%)',
       }}>
         <div className="relative pb-20">
