@@ -42,9 +42,11 @@ const AboutUs = () => {
               />
             </div>
           </motion.div>
-          <p className="mt-8 text-right text-lg leading-8 text-gray-600">
-            On a mission to remove the complexity of the daily commute.
-          </p>
+          <div className="mt-4 overflow-hidden">
+            <p className="text-center sm:text-right text-sm text-gray-600 whitespace-nowrap">
+              On a mission to remove the complexity of the daily commute.
+            </p>
+          </div>
         </div>
       </div>
     </div>

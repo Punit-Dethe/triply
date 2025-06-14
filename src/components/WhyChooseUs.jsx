@@ -1,5 +1,5 @@
 import React from 'react';
-import { ShieldCheck, Zap, BarChart2, CircleDollarSign } from 'lucide-react';
+import { ShieldCheck, Zap, BarChart2, IndianRupee } from 'lucide-react';
 import chatImg from '../assets/whycoseus/chat.png';
 import headsetImg from '../assets/whycoseus/headset.png';
 
@@ -13,7 +13,7 @@ const features = [
     textColor: 'text-[#E7DAF3]',
   },
   {
-    Icon: CircleDollarSign,
+    Icon: IndianRupee,
     iconBgColor: 'bg-[#E7DAF3]/20',
     iconColor: 'text-[#E7DAF3]',
     title: 'Cost Efficient Solutions',
