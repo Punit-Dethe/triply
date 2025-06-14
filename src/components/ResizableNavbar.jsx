@@ -81,7 +81,7 @@ const Navbar = ({ className = '' }) => {
         animate={hidden ? "hidden" : "visible"}
         transition={{ duration: 0.35, ease: "easeInOut" }}
     >
-      {/* Desktop Navbar - Optimized */}
+      {/* Desktop Navbar */}
       <motion.div
         animate={{
           width: visible ? "40%" : "100%",
@@ -95,7 +95,6 @@ const Navbar = ({ className = '' }) => {
         style={{
           minWidth: "800px",
           willChange: "transform, width",
-          transform: 'translateZ(0)', // Promote to its own layer
         }}
         className={cn(
           "relative z-[60] mx-auto hidden max-w-7xl self-start rounded-full lg:flex"
@@ -174,19 +173,26 @@ const Navbar = ({ className = '' }) => {
         className={cn(
           "relative z-50 mx-auto flex w-full max-w-[calc(100vw-2rem)] flex-col items-center justify-between bg-transparent lg:hidden"
         )}
+        initial={false}
         animate={{
-          width: visible ? "90%" : "100%",
-          borderRadius: visible ? "23px" : "0px",
+          scale: visible ? 0.95 : 1,
           y: visible ? 20 : 0,
+          borderRadius: visible ? "23px" : "0px",
         }}
         transition={{
           type: "spring",
+          damping: 25,
           stiffness: 200,
-          damping: 50,
+          mass: 0.5,
+          restDelta: 0.001
         }}
         style={{
-          willChange: "transform, width, border-radius",
-          transform: 'translateZ(0)',
+          width: '100%',
+          willChange: 'transform, border-radius',
+          WebkitTransform: 'translateZ(0)',
+          backfaceVisibility: 'hidden',
+          WebkitBackfaceVisibility: 'hidden',
+          WebkitFontSmoothing: 'subpixel-antialiased',
         }}
       >
         {/* Background effects layer */}
