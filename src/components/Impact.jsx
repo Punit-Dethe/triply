@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import impactBg from '../assets/more.avif';
+import impactBg from '../assets/just car.png';
 
 const stats = [
   {
@@ -40,7 +40,7 @@ const Impact = () => {
       className="relative w-full text-black px-4 sm:px-6 lg:px-8 h-[100vh] min-h-[800px] overflow-hidden"
     >
       <motion.div
-        className="absolute inset-0 z-0 bg-cover bg-center"
+        className="absolute inset-0 z-0 bg-cover bg-center object-cover"
         style={{
           backgroundImage: `url(${impactBg})`,
           y: y,

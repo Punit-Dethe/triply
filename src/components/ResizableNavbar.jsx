@@ -64,8 +64,8 @@ const Navbar = ({ className = '' }) => {
 
   const navItems = [
     { name: 'Home', hoverName: 'Main', link: '/' },
-    { name: 'Services', hoverName: 'Offerings', link: '#features' },
-    { name: 'About', hoverName: 'Info', link: '#about-us' },
+    { name: 'Services', hoverName: 'Offerings', link: '/#features' },
+    { name: 'About', hoverName: 'Info', link: '/#about-us' },
     { name: 'Contact', hoverName: 'Connect', link: '/contact' },
   ];
 
@@ -248,24 +248,55 @@ const Navbar = ({ className = '' }) => {
           >
             {/* Navigation Links (Mobile Menu) */}
             <div className="space-y-8 flex-1">
-              {navItems.map((item, index) => (
-                <Link
-                  key={item.name}
-                  to={item.link}
-                  className={`block text-5xl font-normal text-gray-800 hover:text-[#6c2bc7] transition-all duration-250 ${
-                    menuItemsVisible
-                      ? 'opacity-100 translate-x-0'
-                      : 'opacity-0 translate-x-8'
-                  }`}
-                  style={{
-                    transitionDelay: menuItemsVisible ? `${index * 75}ms` : '0ms',
-                    fontFamily: "'Work Sans', sans-serif"
-                  }}
-                  onClick={toggleMobileMenu}
-                >
-                  {item.name}
-                </Link>
-              ))}
+              {navItems.map((item, index) => {
+                const isAnchorLink = item.link.startsWith('#');
+                const handleClick = (e) => {
+                  toggleMobileMenu();
+                  if (isAnchorLink) {
+                    e.preventDefault();
+                    const element = document.getElementById(item.link.substring(1));
+                    if (element) {
+                      element.scrollIntoView({ behavior: 'smooth' });
+                    }
+                  }
+                };
+
+                return isAnchorLink ? (
+                  <a
+                    key={item.name}
+                    href={item.link}
+                    onClick={handleClick}
+                    className={`block text-5xl font-normal text-gray-800 hover:text-[#6c2bc7] transition-all duration-250 ${
+                      menuItemsVisible
+                        ? 'opacity-100 translate-x-0'
+                        : 'opacity-0 translate-x-8'
+                    }`}
+                    style={{
+                      transitionDelay: menuItemsVisible ? `${index * 75}ms` : '0ms',
+                      fontFamily: "'Work Sans', sans-serif"
+                    }}
+                  >
+                    {item.name}
+                  </a>
+                ) : (
+                  <Link
+                    key={item.name}
+                    to={item.link}
+                    className={`block text-5xl font-normal text-gray-800 hover:text-[#6c2bc7] transition-all duration-250 ${
+                      menuItemsVisible
+                        ? 'opacity-100 translate-x-0'
+                        : 'opacity-0 translate-x-8'
+                    }`}
+                    style={{
+                      transitionDelay: menuItemsVisible ? `${index * 75}ms` : '0ms',
+                      fontFamily: "'Work Sans', sans-serif"
+                    }}
+                    onClick={toggleMobileMenu}
+                  >
+                    {item.name}
+                  </Link>
+                );
+              })}
             </div>
 
             {/* Download Button (Mobile Menu) */}
@@ -304,46 +335,77 @@ const NavItems = ({ items, visible, isHomePage }) => {
     exit: { y: -15, opacity: 0 },
   };
 
+  const scrollToSection = (e, id) => {
+    e.preventDefault();
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <motion.div
       onMouseLeave={() => setHovered(null)}
       className="hidden flex-1 flex-row items-center justify-center space-x-2 text-sm font-medium transition duration-200 lg:flex lg:space-x-2"
     >
-      {items.map((item, idx) => (
-        <Link
-          key={idx}
-          to={item.link}
-          onMouseEnter={() => setHovered(idx)}
-          className={`relative inline-flex justify-center px-4 py-2 transition-colors duration-200 dark:text-gray-200 ${
-            isHomePage && !visible
-              ? 'text-gray-200 hover:text-purple-200'
-              : 'text-black hover:text-purple-800'
-          }`}
-        >
-          {/* longest of the two words */}
-          <span className="font-medium opacity-0">
-            {item.hoverName.length > item.name.length ? item.hoverName : item.name}
-          </span>
+      {items.map((item, idx) => {
+        const isAnchorLink = item.link.startsWith('#');
+        
+        const linkContent = (
+          <>
+            {/* longest of the two words */}
+            <span className="font-medium opacity-0">
+              {item.hoverName.length > item.name.length ? item.hoverName : item.name}
+            </span>
 
-          {/* Animated text position */}
-          <div className="absolute inset-0 flex items-center justify-center">
-            <AnimatePresence mode="wait">
-              <motion.span
-                key={hovered === idx ? item.hoverName : item.name}
-                variants={animationVariants}
-                initial="initial"
-                animate="animate"
-                exit="exit"
-                transition={{ duration: 0.2, ease: 'easeInOut' }}
-              >
-                {hovered === idx ? item.hoverName : item.name}
-              </motion.span>
-            </AnimatePresence>
-          </div>
-        </Link>
-      ))}
+            {/* Animated text position */}
+            <div className="absolute inset-0 flex items-center justify-center">
+              <AnimatePresence mode="wait">
+                <motion.span
+                  key={hovered === idx ? item.hoverName : item.name}
+                  variants={animationVariants}
+                  initial="initial"
+                  animate="animate"
+                  exit="exit"
+                  transition={{ duration: 0.2, ease: 'easeInOut' }}
+                >
+                  {hovered === idx ? item.hoverName : item.name}
+                </motion.span>
+              </AnimatePresence>
+            </div>
+          </>
+        );
+
+        return isAnchorLink ? (
+          <a
+            key={idx}
+            href={item.link}
+            onClick={(e) => scrollToSection(e, item.link.substring(1))}
+            onMouseEnter={() => setHovered(idx)}
+            className={`relative inline-flex justify-center px-4 py-2 transition-colors duration-200 dark:text-gray-200 cursor-pointer ${
+              isHomePage && !visible
+                ? 'text-gray-200 hover:text-purple-200'
+                : 'text-black hover:text-purple-800'
+            }`}
+          >
+            {linkContent}
+          </a>
+        ) : (
+          <Link
+            key={idx}
+            to={item.link}
+            onMouseEnter={() => setHovered(idx)}
+            className={`relative inline-flex justify-center px-4 py-2 transition-colors duration-200 dark:text-gray-200 ${
+              isHomePage && !visible
+                ? 'text-gray-200 hover:text-purple-200'
+                : 'text-black hover:text-purple-800'
+            }`}
+          >
+            {linkContent}
+          </Link>
+        );
+      })}
     </motion.div>
   );
 };
-
 export default Navbar;
