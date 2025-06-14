@@ -62,7 +62,7 @@ const Impact = () => {
       <div className="relative z-10 max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8 items-center h-full">
         {/* Left side: Content */}
         <div className="space-y-12 w-full max-w-full overflow-hidden">
-          <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-white sm:text-6xl" style={{ textShadow: '2px 2px 8px rgba(0,0,0,0.6)' }}>
+          <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-white sm:text-6xl mt-16 sm:mt-0" style={{ textShadow: '2px 2px 8px rgba(0,0,0,0.6)' }}>
             Better Cities. Better Living.
           </h1>
           
