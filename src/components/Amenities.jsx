@@ -1,8 +1,8 @@
 import React from 'react';
-import ecoFriendlyImage from '../assets/amenities/Gemini_Generated_Image_8mirk48mirk48mir(1).png';
-import ntbImage from '../assets/amenities/ntb.png';
+import ecoFriendlyImage from '../assets/amenities/ecoo.png';
+import ntbImage from '../assets/amenities/paper.png';
 import shieldImage from '../assets/amenities/shield2.png';
-import carImage from '../assets/amenities/car.png';
+import carImage from '../assets/amenities/carc.png';
 
 const Amenities = () => {
   return (
