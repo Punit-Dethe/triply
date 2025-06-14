@@ -77,7 +77,7 @@ const Amenities = () => {
           <div className="col-span-12 md:col-span-4 bg-neutral-100 rounded-xl p-4 flex flex-col h-full relative overflow-hidden border border-gray-200">
             {/* Green glow from top-left corner */}
             <div className="absolute inset-0 z-0 rounded-xl pointer-events-none" style={{
-              background: 'radial-gradient(circle at top left, rgba(81,135,0,0.4) 0%, rgba(81,135,0,0.0) 70%)',
+              background: 'radial-gradient(circle at top left, rgba(245, 84, 9, 0.4) 0%, rgba(81,135,0,0.0) 70%)',
             }}></div>
             <div className="flex justify-center items-center mb-0 order-1 relative">
               <div className="relative w-full flex items-center justify-center z-10">
