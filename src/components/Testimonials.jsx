@@ -181,7 +181,7 @@ export const Testimonials = () => {
                     onMouseEnter={() => setHoveredIndex(index)}
                     onMouseLeave={() => setHoveredIndex(null)}
                   >
-                    <div className="absolute top-0 left-0 w-full h-full bg-[#7C3AED] rounded-lg transform translate-x-3 translate-y-3 border-2 border-black"></div>
+                    <div className="absolute top-0 left-0 w-full h-full bg-[#46157f] rounded-lg transform translate-x-3 translate-y-3 border-2 border-black"></div>
                     <div className="relative bg-white p-6 border-2 border-black rounded-lg">
                       <AnimatePresence mode="wait">
                         <motion.div
