@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ArrowDown } from 'lucide-react';
@@ -12,7 +12,42 @@ import Features from '../components/Features';
 import Amenities from '../components/Amenities';
 import heroImage from '../assets/istockphoto-924908526-2048x2048-Photoroom (1).png';
 
+const TEXTS = [
+  { 
+    normal: 'we make your ride to work,',
+    highlight: 'stress free',
+    after: '.',
+  },
+  {
+    normal: 'comfort of your car,',
+    highlight: 'without the driving',
+    after: '.',
+  },
+  {
+    normal: 'doorstep to office ',
+    highlight: 'direct',
+    after: '.',
+  },
+  {
+    normal: 'On time cabs',
+    highlight: 'always',
+    after: '.',
+  },
+];
+
 const Home = () => {
+  const [currentTextIndex, setCurrentTextIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentTextIndex((prevIndex) => (prevIndex + 1) % TEXTS.length);
+    }, 3000);
+    
+    return () => clearInterval(interval);
+  }, []);
+  
+  const currentText = TEXTS[currentTextIndex];
+  
   return (
     <div className="min-h-screen bg-white">
       {/* Hero Section */}
@@ -39,19 +74,26 @@ const Home = () => {
           </div>
         </div>
         {/* Bottom-left overlay content */}
-        <div className="absolute bottom-0 left-0 z-20 w-full sm:w-auto p-6 sm:p-12 flex flex-col items-start">
-          <h1 className="text-3xl sm:text-5xl font-bold mb-2 text-white">
-            <span className="text-[#A855F7]">Reclaim</span> your commute time
-          </h1>
-          <p className="text-base sm:text-lg text-gray-200 mb-6">Comfortable Home to Office cab rides</p>
-          <div className="flex gap-4 overflow-x-auto pb-2 w-full">
+        <div className="absolute bottom-0 left-0 z-20 w-full sm:w-auto p-6 sm:p-12 pt-10 sm:pt-8 flex flex-col items-start">
+          <motion.h1 
+            key={currentTextIndex}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.5 }}
+            className="text-3xl sm:text-5xl font-bold text-white min-h-[100px] sm:min-h-[120px] flex flex-col justify-center pt-32 sm:pt-12"
+          >
+            <span>{currentText.normal} <span className="text-[#A855F7]">{currentText.highlight}</span><span className="text-white">{currentText.after}</span></span>
+          </motion.h1>
+          <p className="text-base sm:text-lg text-gray-200 mb-6 mt-2">Experience the future of corporate commuting</p>
+          <div className="flex gap-3 sm:gap-4 overflow-x-auto pb-2 w-full">
             <a 
               href="#how-it-works" 
-              className="flex-shrink-0 bg-white text-black font-semibold px-6 sm:px-8 py-3 rounded-full shadow hover:bg-gray-100 transition whitespace-nowrap"
+              className="flex-shrink-0 bg-white text-black font-semibold px-5 sm:px-8 py-2.5 sm:py-3 rounded-full shadow hover:bg-gray-100 transition whitespace-nowrap text-sm sm:text-base"
             >
               How it works
             </a>
-            <button className="flex-shrink-0 bg-black text-[#A855F7] border-2 border-[#A855F7] font-semibold px-6 sm:px-8 py-3 rounded-full hover:bg-[#A855F7] hover:text-black transition whitespace-nowrap">
+            <button className="flex-shrink-0 bg-black text-[#A855F7] border-2 border-[#A855F7] font-semibold px-5 sm:px-8 py-2.5 sm:py-3 rounded-full hover:bg-[#A855F7] hover:text-black transition whitespace-nowrap text-sm sm:text-base">
               Get it now
             </button>
           </div>
@@ -60,8 +102,14 @@ const Home = () => {
         <div className="h-24 relative z-10"></div>
       </div>
 
-      <AboutUs />
-      <Features />
+      <section id="about-us">
+        <AboutUs />
+      </section>
+      
+      <section id="features">
+        <Features />
+      </section>
+      
       <Amenities />
       <WhyChooseUs />
           

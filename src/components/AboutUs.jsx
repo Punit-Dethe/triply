@@ -10,7 +10,7 @@ const AboutUs = () => {
   const y = useTransform(scrollYProgress, [0, 1], ['-10%', '10%']);
 
   return (
-    <div ref={containerRef} className="bg-white py-24 sm:py-32">
+    <div id="about-us" ref={containerRef} className="bg-white py-24 sm:py-32">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         {/* Top Section: Title and Description */}
         <div className="grid grid-cols-1 gap-x-8 gap-y-16 lg:grid-cols-2">
