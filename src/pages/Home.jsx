@@ -52,14 +52,23 @@ const Home = () => {
     <div className="min-h-screen bg-white">
       {/* Hero Section */}
       <div className="relative -mt-24 w-full h-screen overflow-hidden">
-        {/* Image Background (replaces video) */}
+        {/* Image Background */}
         <div className="absolute inset-0 w-full h-full">
+          {/* Desktop Image (hidden on mobile) */}
           <img 
             src={heroImage}
             alt="Corporate car on the road" 
-            className="absolute top-0 left-0 w-full h-full object-cover"
-            style={{ minWidth: '100%', minHeight: '100%' }}
+            className="hidden sm:block w-full h-full object-cover"
           />
+          {/* Mobile Image (hidden on desktop) */}
+          <div className="block sm:hidden w-full h-full overflow-hidden">
+            <img 
+              src="/mobilehero.png"
+              alt="Corporate car on the road" 
+              className="w-full h-full object-cover"
+              style={{ objectPosition: '80% center' }}
+            />
+          </div>
           {/* More prominent black gradient at the top (215px) */}
           <div className="absolute top-0 left-0 right-0 h-[215px]" 
                style={{ 
