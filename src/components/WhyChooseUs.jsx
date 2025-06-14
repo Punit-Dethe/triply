@@ -1,5 +1,7 @@
 import React from 'react';
 import { ShieldCheck, Zap, BarChart2, CircleDollarSign } from 'lucide-react';
+import chatImg from '../assets/whycoseus/chat.png';
+import headsetImg from '../assets/whycoseus/headset.png';
 
 const features = [
   {
@@ -19,17 +21,15 @@ const features = [
     textColor: 'text-[#E7DAF3]',
   },
   {
-    Icon: BarChart2,
+    img: chatImg,
     iconBgColor: 'bg-[#E7DAF3]/20',
-    iconColor: 'text-[#E7DAF3]',
     title: 'Free Consultation',
     description: 'Contact us to discuss your employee transportation needs, including the number of cabs needed, optimal route planning, and scheduling, all at no cost.',
     textColor: 'text-[#E7DAF3]',
   },
   {
-    Icon: Zap,
+    img: headsetImg,
     iconBgColor: 'bg-[#E7DAF3]/20',
-    iconColor: 'text-[#E7DAF3]',
     title: 'Customer Support',
     description: 'We provide exceptional customer support through responsive inquiries, attentive in-ride experiences, and immediate assistance whenever needed.',
     textColor: 'text-[#E7DAF3]',
@@ -58,7 +58,11 @@ const WhyChooseUs = () => {
                 <div className="absolute left-0 top-0 h-full w-1 bg-white rounded-full" />
                 <div className="inline-block p-5 rounded-2xl bg-gray-900">
                     <div className={`p-4 rounded-xl ${feature.iconBgColor}`}>
-                        <feature.Icon className={`h-10 w-10 ${feature.iconColor}`} aria-hidden="true" />
+                        {feature.img ? (
+                          <img src={feature.img} alt={feature.title + ' icon'} className="h-10 w-10 object-contain" />
+                        ) : (
+                          <feature.Icon className={`h-10 w-10 ${feature.iconColor}`} aria-hidden="true" />
+                        )}
                     </div>
                 </div>
                 <h3 className={`mt-6 text-xl font-bold leading-8 ${feature.textColor}`}>{feature.title}</h3>
