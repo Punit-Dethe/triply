@@ -1,5 +1,5 @@
-import React, { useState, useRef } from 'react';
-import { motion, AnimatePresence, useScroll, useMotionValueEvent } from 'framer-motion';
+import React, { useState, useRef, useCallback, useEffect } from 'react';
+import { motion, AnimatePresence, useScroll } from 'framer-motion';
 import { IconMenu2, IconX } from '@tabler/icons-react';
 import { Link, useLocation } from 'react-router-dom';
 import logo from '../assets/logo.png';
@@ -10,22 +10,71 @@ function cn(...classes) {
   return classes.filter(Boolean).join(' ');
 }
 
+const SCROLL_THRESHOLD = 100;
+const DEBOUNCE_DELAY = 100;
+
 const Navbar = ({ className = '' }) => {
   const ref = useRef(null);
-  const { scrollY } = useScroll({
-    target: ref,
-    offset: ["start start", "end start"],
-  });
   const [visible, setVisible] = useState(false);
   const [hidden, setHidden] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [menuItemsVisible, setMenuItemsVisible] = useState(false);
-  const [windowHeight, setWindowHeight] = useState(window.innerHeight);
   const menuRef = useRef(null);
   const [isDownloadHovered, setIsDownloadHovered] = useState(false);
+  const lastScrollY = useRef(0);
+  const timeoutRef = useRef(null);
+  const rafId = useRef(null);
 
   const location = useLocation();
   const isHomePage = location.pathname === '/';
+
+  // Debounced scroll handler
+  const handleScroll = useCallback(() => {
+    if (timeoutRef.current) {
+      cancelAnimationFrame(rafId.current);
+      clearTimeout(timeoutRef.current);
+    }
+
+    rafId.current = requestAnimationFrame(() => {
+      timeoutRef.current = setTimeout(() => {
+        const currentScroll = window.scrollY;
+        
+        // Control shrink/blur effect
+        const shouldBeVisible = currentScroll > SCROLL_THRESHOLD;
+        if (shouldBeVisible !== visible) {
+          setVisible(shouldBeVisible);
+        }
+
+        // Control hide/show on scroll
+        const isScrollingDown = currentScroll > lastScrollY.current;
+        const shouldBeHidden = isScrollingDown && currentScroll > window.innerHeight && !isMobileMenuOpen;
+        
+        if (shouldBeHidden !== hidden) {
+          setHidden(shouldBeHidden);
+        }
+
+        lastScrollY.current = currentScroll;
+      }, DEBOUNCE_DELAY);
+    });
+  }, [visible, hidden, isMobileMenuOpen]);
+
+  // Cleanup on unmount
+  useEffect(() => {
+    return () => {
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+      }
+      if (rafId.current) {
+        cancelAnimationFrame(rafId.current);
+      }
+    };
+  }, []);
+
+  // Use passive scroll listener
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [handleScroll]);
 
   const toggleMobileMenu = () => {
     if (!isMobileMenuOpen) {
@@ -38,23 +87,7 @@ const Navbar = ({ className = '' }) => {
     }
   };
 
-  useMotionValueEvent(scrollY, "change", (latest) => {
-    const previous = scrollY.getPrevious();
-
-    // Control shrink/blur effect
-    if (latest > 100) {
-      setVisible(true);
-    } else {
-      setVisible(false);
-    }
-
-    // Control hide/show on scroll
-    if (latest > previous && latest > window.innerHeight && !isMobileMenuOpen) {
-      setHidden(true);
-    } else {
-      setHidden(false);
-    }
-  });
+  // Scroll handling is now managed by the passive scroll listener
 
   const downloadAnimationVariants = {
     initial: { y: 15, opacity: 0 },
@@ -83,27 +116,17 @@ const Navbar = ({ className = '' }) => {
     >
       {/* Desktop Navbar */}
       <motion.div
-        animate={{
-          backdropFilter: visible ? "blur(10px)" : "none",
-          boxShadow: visible
-            ? "0 0 24px rgba(34, 42, 53, 0.06), 0 1px 1px rgba(0, 0, 0, 0.05), 0 0 0 1px rgba(34, 42, 53, 0.04), 0 0 4px rgba(34, 42, 53, 0.08), 0 16px 68px rgba(47, 48, 55, 0.05), 0 1px 0 rgba(255, 255, 255, 0.1) inset"
-            : "none",
-          width: visible ? "40%" : "100%",
-          y: visible ? 20 : 0,
-            backgroundColor: visible ? "rgba(255, 255, 255, 0.8)" : "rgba(255, 255, 255, 0)",
-        }}
-        transition={{
-            type: "tween",
-            duration: 0.6,
-            ease: "easeInOut",
-        }}
+        className={cn(
+          "relative z-[60] mx-auto hidden w-full max-w-7xl flex-row items-center justify-between self-start rounded-full px-4 py-2 lg:flex dark:bg-transparent",
+          visible ? "bg-white/80 backdrop-blur-md shadow-lg" : "bg-transparent"
+        )}
         style={{
           minWidth: "800px",
-          willChange: "transform, width, backdrop-filter, box-shadow",
+          willChange: "transform, opacity",
+          transform: visible ? "translateY(20px) scale(0.95)" : "none",
+          opacity: visible ? 1 : 1,
+          transition: "transform 0.3s cubic-bezier(0.25, 0.1, 0.25, 1), opacity 0.2s ease-out, background 0.3s ease-out"
         }}
-        className={cn(
-            "relative z-[60] mx-auto hidden w-full max-w-7xl flex-row items-center justify-between self-start rounded-full bg-transparent px-4 py-2 lg:flex dark:bg-transparent"
-        )}
       >
         {/* Logo */}
         <Link to="/" className="relative z-20 mr-4 flex items-center space-x-2 px-2 py-1 text-sm font-normal">
@@ -158,27 +181,14 @@ const Navbar = ({ className = '' }) => {
       {/* Mobile Navbar */}
       <motion.div
         className={cn(
-            "relative z-50 mx-auto flex w-full max-w-[calc(100vw-2rem)] flex-col items-center justify-between bg-transparent px-0 py-2 lg:hidden"
+          "relative z-50 mx-auto flex w-full max-w-[calc(100vw-2rem)] flex-col items-center justify-between px-0 py-2 lg:hidden",
+          visible ? "bg-white/80 backdrop-blur-md shadow-lg" : "bg-transparent"
         )}
-        animate={{
-          backdropFilter: visible ? "blur(10px)" : "none",
-          boxShadow: visible
-            ? "0 0 24px rgba(34, 42, 53, 0.06), 0 1px 1px rgba(0, 0, 0, 0.05), 0 0 0 1px rgba(34, 42, 53, 0.04), 0 0 4px rgba(34, 42, 53, 0.08), 0 16px 68px rgba(47, 48, 55, 0.05), 0 1px 0 rgba(255, 255, 255, 0.1) inset"
-            : "none",
-          width: visible ? "90%" : "100%",
-          paddingRight: visible ? "16px" : "0px",
-          paddingLeft: visible ? "16px" : "0px",
-          borderRadius: visible ? "23px" : "2rem",
-          y: visible ? 20 : 0,
-            backgroundColor: visible ? "rgba(255, 255, 255, 0.8)" : "rgba(255, 255, 255, 0)",
-        }}
-        transition={{
-          type: "spring",
-          stiffness: 200,
-          damping: 50,
-        }}
         style={{
-          willChange: "transform, width, backdrop-filter, box-shadow, padding, border-radius",
+          willChange: "transform, opacity",
+          transform: visible ? "translateY(20px) scale(0.98)" : "none",
+          opacity: visible ? 1 : 1,
+          transition: "transform 0.3s cubic-bezier(0.25, 0.1, 0.25, 1), opacity 0.2s ease-out, background 0.3s ease-out"
         }}
       >
           <div className={cn(
