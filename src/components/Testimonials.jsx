@@ -121,7 +121,7 @@ export const Testimonials = () => {
   };
 
   return (
-    <section className="py-20 sm:py-32 bg-transparent relative overflow-hidden">
+    <section className="py-20 sm:py-36 bg-transparent relative overflow-hidden">
       <div
         aria-hidden="true"
         className="absolute bottom-0 left-0 w-full h-[400px] z-0"
@@ -181,7 +181,7 @@ export const Testimonials = () => {
                     onMouseEnter={() => setHoveredIndex(index)}
                     onMouseLeave={() => setHoveredIndex(null)}
                   >
-                    <div className="absolute top-0 left-0 w-full h-full bg-[#46157f] rounded-lg transform translate-x-3 translate-y-3 border-2 border-black"></div>
+                    <div className="absolute top-0 left-0 w-full h-full bg-black rounded-lg transform translate-x-3 translate-y-3 border-2 border-black"></div>
                     <div className="relative bg-white p-6 border-2 border-black rounded-lg">
                       <AnimatePresence mode="wait">
                         <motion.div
