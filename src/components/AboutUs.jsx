@@ -24,10 +24,7 @@ const AboutUs = () => {
           <div className="lg:pt-2 relative">
              <div className="absolute inset-0 bg-orange-400/10 blur-3xl rounded-full -z-1" />
             <p className="relative text-lg leading-8 text-gray-600">
-              FlixLogix (Triply) is a leading provider of corporate employee transportation, offering safe, reliable, and comfortable commutes with sanitized cabs, real-time tracking, and on-time pickups. Our platform empowers companies to ensure employee safety, reduce traffic congestion, and lower carbon footprint. With a user-friendly dashboard and mobile app, we make workplace commutes efficient, affordable, and stress-free.
-            </p>
-            <p className="relative text-base leading-7 text-gray-700 mt-2">
-              <strong>Key Features:</strong> Secure rides for female employees, 24/7 customer support, point-to-point billing, preventive fleet maintenance, and eco-friendly operations. Trusted by top organizations for elevating workplace productivity and well-being.
+              FlixLogix (Triply) provides safe, reliable corporate transportation with real-time tracking, on-time pickups, and sanitized cabs. Our platform helps companies ensure employee safety, reduce traffic congestion, and lower carbon emissions through eco-friendly operations. Trusted by top organizations, we offer 24/7 support, secure rides for female employees, preventive fleet maintenance, and a user-friendly app with point-to-point billing for efficient, stress-free commutes that enhance workplace productivity and employee well-being.
             </p>
           </div>
         </div>
