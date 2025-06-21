@@ -10,7 +10,7 @@ import AboutUs from '../components/AboutUs';
 import WhyChooseUs from '../components/WhyChooseUs';
 import Features from '../components/Features';
 import Amenities from '../components/Amenities';
-import heroImage from '../assets/istockphoto-924908526-2048x2048-Photoroom (1).png';
+import YouTube from 'react-youtube';
 
 const TEXTS = [
   { 
@@ -51,16 +51,39 @@ const Home = () => {
   return (
     <div className="min-h-screen bg-white">
       {/* Hero Section */}
-      <div className="relative -mt-24 w-full h-screen overflow-hidden">
-        {/* Image Background */}
+      <div className="relative -mt-24 w-full h-screen overflow-hidden bg-black">
+        {/* Video Background */}
         <div className="absolute inset-0 w-full h-full">
-          {/* Desktop Image (hidden on mobile) */}
-          <img 
-            src={heroImage}
-            alt="Corporate car on the road" 
-            className="hidden sm:block w-full h-full object-cover"
-          />
-          {/* Mobile Image (hidden on desktop) */}
+          {/* YouTube Video Background */}
+          <div className="hidden sm:block absolute inset-0 w-full h-full overflow-hidden">
+            <div className="absolute inset-0 w-full h-full">
+              <YouTube
+                videoId="kb1dXcf3QQs"
+                opts={{
+                  playerVars: {
+                    autoplay: 1,
+                    controls: 0,
+                    showinfo: 0,
+                    mute: 1,
+                    loop: 1,
+                    playlist: 'kb1dXcf3QQs',
+                    playsinline: 1,
+                    modestbranding: 1,
+                    rel: 0
+                  },
+                  width: '100%',
+                  height: '100%'
+                }}
+                className="absolute inset-0 w-full h-full"
+                containerClassName="absolute inset-0 w-full h-full"
+                iframeClassName="absolute top-0 left-0 w-full h-full"
+                onReady={(e) => {
+                  e.target.mute();
+                }}
+              />
+            </div>
+          </div>
+          {/* Fallback Image for Mobile */}
           <div className="block sm:hidden w-full h-full overflow-hidden">
             <img 
               src="/mobilehero.png"
