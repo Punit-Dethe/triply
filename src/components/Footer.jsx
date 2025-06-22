@@ -1,7 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Youtube, Instagram, Twitter, Facebook } from 'lucide-react';
-import logo from '../assets/logo.png';
+// Logo is loaded from public folder
+const logo = '/logo.ico';
 
 const Footer = () => {
   return (
@@ -12,7 +13,7 @@ const Footer = () => {
           {/* Company Info */}
           <div className="col-span-1 md:col-span-1">
             <Link to="/" className="flex items-center space-x-2">
-              <img src={logo} alt="Triply Logo" className="h-8" />
+              <img src={logo} alt="Triply Logo" className="h-8 w-auto" />
               <span className="text-xl font-bold text-purple-400">Triply</span>
             </Link>
             <p className="mt-4 text-gray-400">

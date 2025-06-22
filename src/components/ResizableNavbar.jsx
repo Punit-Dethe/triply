@@ -2,8 +2,9 @@ import React, { useState, useRef } from 'react';
 import { motion, AnimatePresence, useScroll, useMotionValueEvent } from 'framer-motion';
 import { IconMenu2, IconX } from '@tabler/icons-react';
 import { Link, useLocation } from 'react-router-dom';
-import logo from '../assets/logo.png';
-import logo2 from '../assets/logo2.ico';
+// Logo is loaded from public folder
+const logo = '/logo.ico';
+const logo2 = '/logo2.ico';
 
 // Utility function for class names
 function cn(...classes) {
