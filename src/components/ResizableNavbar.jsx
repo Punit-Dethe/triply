@@ -178,7 +178,7 @@ const Navbar = ({ className = '' }) => {
         animate={{
           scale: visible ? 0.95 : 1,
           y: visible ? 20 : 0,
-          borderRadius: visible ? "23px" : "0px",
+          borderRadius: "23px",
         }}
         transition={{
           type: "spring",
