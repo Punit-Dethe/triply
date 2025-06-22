@@ -58,7 +58,7 @@ const Home = () => {
           <div className="hidden sm:block absolute inset-0 w-full h-full overflow-hidden">
             <div className="absolute inset-0 w-full h-full">
               <YouTube
-                videoId="kb1dXcf3QQs"
+                videoId="iI6mxiB1JUM"
                 opts={{
                   playerVars: {
                     autoplay: 1,
@@ -66,19 +66,23 @@ const Home = () => {
                     showinfo: 0,
                     mute: 1,
                     loop: 1,
-                    playlist: 'kb1dXcf3QQs',
+                    playlist: 'iI6mxiB1JUM',
                     playsinline: 1,
                     modestbranding: 1,
-                    rel: 0
+                    rel: 0,
+                    disablekb: 1,
+                    fs: 0,
+                    iv_load_policy: 3
                   },
                   width: '100%',
                   height: '100%'
                 }}
                 className="absolute inset-0 w-full h-full"
                 containerClassName="absolute inset-0 w-full h-full"
-                iframeClassName="absolute top-0 left-0 w-full h-full"
+                iframeClassName="absolute top-0 left-0 w-full h-full pointer-events-none"
                 onReady={(e) => {
                   e.target.mute();
+                  e.target.playVideo();
                 }}
               />
             </div>
