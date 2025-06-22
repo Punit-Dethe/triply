@@ -52,62 +52,30 @@ const Home = () => {
     <div className="min-h-screen bg-white">
       {/* Hero Section */}
       <div className="relative -mt-24 w-full h-screen overflow-hidden bg-black">
-        {/* Video Background */}
+        {/* Background Image */}
         <div className="absolute inset-0 w-full h-full">
-          {/* YouTube Video Background */}
-          <div className="hidden sm:block absolute inset-0 w-full h-full overflow-hidden">
-            <div className="absolute inset-0 w-full h-full">
-              <YouTube
-                videoId="iI6mxiB1JUM"
-                opts={{
-                  playerVars: {
-                    autoplay: 1,
-                    controls: 0,
-                    showinfo: 0,
-                    mute: 1,
-                    loop: 1,
-                    playlist: 'iI6mxiB1JUM',
-                    playsinline: 1,
-                    modestbranding: 1,
-                    rel: 0,
-                    disablekb: 1,
-                    fs: 0,
-                    iv_load_policy: 3
-                  },
-                  width: '100%',
-                  height: '100%'
-                }}
-                className="absolute inset-0 w-full h-full"
-                containerClassName="absolute inset-0 w-full h-full"
-                iframeClassName="absolute top-0 left-0 w-full h-full pointer-events-none"
-                onReady={(e) => {
-                  e.target.mute();
-                  e.target.playVideo();
-                }}
-              />
-            </div>
-          </div>
-          {/* Fallback Image for Mobile */}
-          <div className="block sm:hidden w-full h-full overflow-hidden">
-            <img 
-              src="/mobilehero.png"
-              alt="Corporate car on the road" 
-              className="w-full h-full object-cover"
-              style={{ objectPosition: '80% center' }}
-            />
-          </div>
+          <img 
+            src="/src/assets/hero.png"
+            alt="Hero background" 
+            className="w-full h-full object-cover"
+            style={{ objectPosition: 'center' }}
+          />
+          
           {/* More prominent black gradient at the top (215px) */}
-          <div className="absolute top-0 left-0 right-0 h-[215px]" 
-               style={{ 
-                 background: 'linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,0.85) 30%, rgba(0,0,0,0.6) 60%, rgba(0,0,0,0) 100%)'
-               }}>
-          </div>
+          <div 
+            className="absolute top-0 left-0 right-0 h-[215px]" 
+            style={{ 
+              background: 'linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,0.85) 30%, rgba(0,0,0,0.6) 60%, rgba(0,0,0,0) 100%)'
+            }}
+          />
+          
           {/* Black gradient fading from 100% to 0% opacity */}
-          <div className="absolute bottom-0 left-0 right-0 h-[120px]" 
-               style={{ 
-                 background: 'linear-gradient(to top, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 100%)'
-               }}>
-          </div>
+          <div 
+            className="absolute bottom-0 left-0 right-0 h-[120px]" 
+            style={{ 
+              background: 'linear-gradient(to top, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 100%)'
+            }}
+          />
         </div>
         {/* Bottom-left overlay content */}
         <div className="absolute bottom-0 left-0 z-20 w-full sm:w-auto p-6 sm:p-12 pt-10 sm:pt-8 flex flex-col items-start">
