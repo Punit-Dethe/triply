@@ -55,7 +55,7 @@ const Home = () => {
         {/* Background Image */}
         <div className="absolute inset-0 w-full h-full">
           <img 
-            src="/src/assets/hero.png"
+            src="/hero.png"
             alt="Hero background" 
             className="w-full h-full object-cover"
             style={{ objectPosition: 'center' }}
