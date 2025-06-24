@@ -9,6 +9,7 @@ import video2 from '../assets/videos/Video2.mp4';
 import video3 from '../assets/videos/Video3.mp4';
 import video4 from '../assets/videos/Video4.mp4';
 
+
 const features = [
   {
     title: 'Select your route',
@@ -33,6 +34,7 @@ const features = [
     description: 'renew your ride after selected time',
     icon: Repeat,
     video: video4,
+
   },
 ];
 
