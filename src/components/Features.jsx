@@ -91,10 +91,10 @@ const Features = () => {
     };
   }, []);
 
-  // Add dead zone at start (first 25% of scroll) then scroll to end
+  // Add dead zone at start (first 15% of scroll) then smooth scroll until 75%
   const x = useTransform(
     scrollYProgress,
-    [0, 0.15, 0.50],  // Dead zone for first 25%, then scroll until 75%
+    [0, 0.05, 0.75],  // Dead zone for first 15%, then scroll until 75%
     [0, 0, -scrollEndOffset]  // No movement during dead zone
   );
 
