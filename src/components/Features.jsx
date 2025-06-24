@@ -91,10 +91,10 @@ const Features = () => {
     };
   }, []);
 
-  // Add dead zone at start (first 10% of scroll) then scroll to end
+  // Add dead zone at start (first 25% of scroll) then scroll to end
   const x = useTransform(
     scrollYProgress,
-    [0, 0.1, 0.6],  // Dead zone for first 10%, then scroll until 60%
+    [0, 0.15, 0.50],  // Dead zone for first 25%, then scroll until 75%
     [0, 0, -scrollEndOffset]  // No movement during dead zone
   );
 
@@ -110,10 +110,10 @@ const Features = () => {
         {/* Text Content */}
         <div ref={textContainerRef} className="w-full max-w-6xl mx-auto px-8 md:px-12 z-10 mb-1 sm:mb-4 md:mb-6">
             <div className="flex flex-col md:flex-row justify-between items-start">
-                <h2 className="text-4xl md:text-5xl lg:text-7xl font-bold tracking-tighter leading-tight max-w-lg">
+                <h2 className="text-4xl md:text-5xl lg:text-7xl font-bold tracking-tighter leading-tight max-w-lg text-orange-50">
                     Your corporate ride partner.
                 </h2>
-                <p className="text-gray-400 mt-2 md:mt-2 max-w-xs text-base md:text-lg">
+                <p className="text-orange-100/90 mt-2 md:mt-2 max-w-xs text-base md:text-lg">
                     Empowering productivity & elevating commutes for workplace. Our vision is to provide employees with a safe, reliable, comfortable, and affordable commuting experience.
                 </p>
             </div>
@@ -156,8 +156,8 @@ const Features = () => {
                       
                       {/* Text content at the bottom */}
                       <div className="max-w-md text-left">
-                        <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white tracking-tight mb-1 sm:mb-2 md:mb-4">{feature.title}</h3>
-                        <p className="text-sm sm:text-base md:text-lg text-neutral-200">{feature.description}</p>
+                        <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold text-orange-50 tracking-tight mb-1 sm:mb-2 md:mb-4">{feature.title}</h3>
+                        <p className="text-sm sm:text-base md:text-lg text-orange-100/90">{feature.description}</p>
                       </div>
                     </div>
                   </div>
