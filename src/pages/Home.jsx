@@ -90,7 +90,7 @@ const Home = () => {
             <span>{currentText.normal} <span className="text-[#A855F7]">{currentText.highlight}</span><span className="text-white">{currentText.after}</span></span>
           </motion.h1>
           <p className="text-base sm:text-lg text-gray-200 mb-6 mt-2 whitespace-nowrap overflow-hidden text-ellipsis">Experience the future of corporate commuting</p>
-          <div className="flex gap-3 sm:gap-4 overflow-x-auto pb-2 w-full">
+          <div className="flex gap-3 sm:gap-4 overflow-x-auto pb-8 sm:pb-2 w-full">
             <a 
               href="#how-it-works" 
               className="flex-shrink-0 bg-white text-black font-semibold px-5 sm:px-8 py-2.5 sm:py-3 rounded-full shadow hover:bg-gray-100 transition whitespace-nowrap text-sm sm:text-base"
