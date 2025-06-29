@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Globe, Phone, MapPin, ChevronDown } from 'lucide-react';
+import { Globe, Phone, MapPin, ChevronDown, Mail } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const faqData = [
