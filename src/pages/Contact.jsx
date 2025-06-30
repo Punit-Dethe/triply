@@ -60,7 +60,8 @@ const Contact = () => {
   const [formData, setFormData] = useState({ 
     name: '', 
     phone: '',
-    email: '', 
+    email: '',
+    query: '',
     message: '' 
   });
   const [openIndex, setOpenIndex] = useState(null);
@@ -78,10 +79,11 @@ const Contact = () => {
     e.preventDefault();
     
     // Create email subject and body
-    const subject = `New Contact Form Submission from ${formData.name}`;
+    const subject = `Query: ${formData.query} - ${formData.name}`;
     const body = `Name: ${formData.name}%0D%0A` +
                  `Phone: ${formData.phone}%0D%0A` +
-                 `Email: ${formData.email}%0D%0A%0D%0A` +
+                 `Email: ${formData.email}%0D%0A` +
+                 `Query: ${formData.query}%0D%0A%0D%0A` +
                  `Message:%0D%0A${formData.message}`;
     
     // Open default email client
@@ -91,7 +93,8 @@ const Contact = () => {
     setFormData({ 
       name: '', 
       phone: '',
-      email: '', 
+      email: '',
+      query: '',
       message: '' 
     });
   };
@@ -224,7 +227,21 @@ const Contact = () => {
 
                 
                 <div>
-                  <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-1">How can we help?</label>
+                  <label htmlFor="query" className="block text-sm font-medium text-gray-700 mb-1">Your Query in Short</label>
+                  <input 
+                    type="text" 
+                    id="query"
+                    name="query" 
+                    value={formData.query} 
+                    onChange={handleChange} 
+                    className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-black focus:border-transparent mb-4" 
+                    placeholder="Briefly describe your query..."
+                    required
+                  />
+                </div>
+                
+                <div>
+                  <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-1">How can we help? (Details)</label>
                   <textarea 
                     id="message"
                     name="message" 
@@ -232,7 +249,7 @@ const Contact = () => {
                     onChange={handleChange} 
                     rows="6" 
                     className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-black focus:border-transparent" 
-                    placeholder="Tell us about your transportation needs..."
+                    placeholder="Please provide more details about your query..."
                     required
                   ></textarea>
                 </div>
