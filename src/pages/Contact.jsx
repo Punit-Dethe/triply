@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Globe, Phone, MapPin, ChevronDown, Mail } from 'lucide-react';
+import { Phone, MapPin, ChevronDown, Mail } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const faqData = [
@@ -58,11 +58,9 @@ const AccordionItem = ({ faq, isOpen, onClick, index }) => (
 
 const Contact = () => {
   const [formData, setFormData] = useState({ 
-    firstName: '', 
-    lastName: '', 
+    name: '', 
+    phone: '',
     email: '', 
-    phone: '', 
-    company: '',
     message: '' 
   });
   const [openIndex, setOpenIndex] = useState(null);
@@ -76,32 +74,26 @@ const Contact = () => {
     }));
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    setIsSubmitting(true);
     
-    try {
-      // Here you would typically make an API call to submit the form
-      console.log('Form submitted:', formData);
-      
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      
-      alert('Thank you for your message! Our team will get back to you soon.');
-      setFormData({ 
-        firstName: '', 
-        lastName: '', 
-        email: '', 
-        phone: '', 
-        company: '',
-        message: '' 
-      });
-    } catch (error) {
-      console.error('Error submitting form:', error);
-      alert('There was an error submitting your message. Please try again.');
-    } finally {
-      setIsSubmitting(false);
-    }
+    // Create email subject and body
+    const subject = `New Contact Form Submission from ${formData.name}`;
+    const body = `Name: ${formData.name}%0D%0A` +
+                 `Phone: ${formData.phone}%0D%0A` +
+                 `Email: ${formData.email}%0D%0A%0D%0A` +
+                 `Message:%0D%0A${formData.message}`;
+    
+    // Open default email client
+    window.location.href = `mailto:contact@triply.com?subject=${encodeURIComponent(subject)}&body=${body}`;
+    
+    // Reset form
+    setFormData({ 
+      name: '', 
+      phone: '',
+      email: '', 
+      message: '' 
+    });
   };
 
   const handleToggle = (index) => setOpenIndex(openIndex === index ? null : index);
@@ -191,33 +183,33 @@ const Contact = () => {
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid sm:grid-cols-2 gap-4">
                   <div>
-                    <label htmlFor="firstName" className="block text-sm font-medium text-gray-700 mb-1">First Name</label>
+                    <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">Name</label>
                     <input 
                       type="text" 
-                      id="firstName"
-                      name="firstName" 
-                      value={formData.firstName} 
+                      id="name"
+                      name="name" 
+                      value={formData.name} 
                       onChange={handleChange} 
                       className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-black focus:border-transparent" 
                       required 
                     />
                   </div>
                   <div>
-                    <label htmlFor="lastName" className="block text-sm font-medium text-gray-700 mb-1">Last Name</label>
+                    <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-1">Phone Number</label>
                     <input 
-                      type="text" 
-                      id="lastName"
-                      name="lastName" 
-                      value={formData.lastName} 
+                      type="tel" 
+                      id="phone"
+                      name="phone" 
+                      value={formData.phone} 
                       onChange={handleChange} 
                       className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-black focus:border-transparent" 
-                      required 
+                      required
                     />
                   </div>
                 </div>
                 
                 <div>
-                  <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">Work Email</label>
+                  <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">Email</label>
                   <input 
                     type="email" 
                     id="email"
@@ -229,30 +221,7 @@ const Contact = () => {
                   />
                 </div>
                 
-                <div className="grid sm:grid-cols-2 gap-4">
-                  <div>
-                    <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-1">Phone Number</label>
-                    <input 
-                      type="tel" 
-                      id="phone"
-                      name="phone" 
-                      value={formData.phone} 
-                      onChange={handleChange} 
-                      className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-black focus:border-transparent" 
-                    />
-                  </div>
-                  <div>
-                    <label htmlFor="company" className="block text-sm font-medium text-gray-700 mb-1">Company</label>
-                    <input 
-                      type="text" 
-                      id="company"
-                      name="company" 
-                      value={formData.company} 
-                      onChange={handleChange} 
-                      className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-black focus:border-transparent" 
-                    />
-                  </div>
-                </div>
+
                 
                 <div>
                   <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-1">How can we help?</label>
@@ -261,7 +230,7 @@ const Contact = () => {
                     name="message" 
                     value={formData.message} 
                     onChange={handleChange} 
-                    rows="4" 
+                    rows="6" 
                     className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-black focus:border-transparent" 
                     placeholder="Tell us about your transportation needs..."
                     required
@@ -271,10 +240,9 @@ const Contact = () => {
                 <div>
                   <button 
                     type="submit" 
-                    disabled={isSubmitting}
-                    className={`w-full bg-black hover:bg-gray-900 text-white font-bold py-4 px-6 rounded-lg transition-colors ${isSubmitting ? 'opacity-70 cursor-not-allowed' : ''}`}
+                    className="w-full bg-black hover:bg-gray-900 text-white font-bold py-4 px-6 rounded-lg transition-colors"
                   >
-                    {isSubmitting ? 'Sending...' : 'Send Message'}
+                    Open Email to Send Message
                   </button>
                   <p className="text-xs text-gray-500 mt-3 text-center">
                     By submitting this form, you agree to our{' '}
