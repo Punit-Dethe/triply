@@ -173,6 +173,7 @@ const Contact = () => {
             </motion.div>
 
             <motion.div 
+              id="contact-form"
               className="bg-white p-8 sm:p-10 rounded-2xl border-2 border-black shadow-[8px_8px_0px_#000000]"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -261,10 +262,8 @@ const Contact = () => {
                   >
                     Open Email to Send Message
                   </button>
-                  <p className="text-xs text-gray-500 mt-3 text-center">
-                    By submitting this form, you agree to our{' '}
-                    <a href="/privacy" className="underline hover:text-black">Privacy Policy</a> and{' '}
-                    <a href="/terms" className="underline hover:text-black">Terms of Service</a>.
+                  <p className="text-sm text-gray-600 mt-4 text-center">
+                    We're committed to solving every query with care and attention. Our team will get back to you soon!
                   </p>
                 </div>
               </form>
@@ -285,7 +284,16 @@ const Contact = () => {
             </h2>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto">
               Everything you need to know about our transportation services. Can't find the answer you're looking for?{' '}
-              <a href="mailto:support@triply.com" className="text-black underline hover:no-underline">Contact us</a>.
+              <a 
+                href="#contact-form" 
+                className="text-black underline hover:no-underline hover:text-gray-800 transition-colors cursor-pointer"
+                onClick={(e) => {
+                  e.preventDefault();
+                  document.getElementById('contact-form')?.scrollIntoView({ behavior: 'smooth' });
+                }}
+              >
+                Contact us
+              </a>.
             </p>
           </div>
           
