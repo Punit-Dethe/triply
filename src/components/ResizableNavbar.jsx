@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence, useScroll, useMotionValueEvent } from 'framer-motion';
 import { IconMenu2, IconX } from '@tabler/icons-react';
 import { Link, useLocation } from 'react-router-dom';
@@ -64,11 +64,88 @@ const Navbar = ({ className = '' }) => {
   };
 
   const navItems = [
-    { name: 'Home', hoverName: 'Main', link: '/' },
-    { name: 'Services', hoverName: 'Offerings', link: '#features' },
-    { name: 'About', hoverName: 'Info', link: '#about-us' },
-    { name: 'Contact', hoverName: 'Connect', link: '/contact' },
+    { name: 'Home', hoverName: 'Main', link: '/', sectionId: null },
+    { name: 'Services', hoverName: 'Offerings', link: '#features', sectionId: 'features' },
+    { name: 'About', hoverName: 'Info', link: '#about', sectionId: 'about-us' },
+    { name: 'Contact', hoverName: 'Connect', link: '/contact', sectionId: null },
   ];
+
+  const scrollToSection = (sectionId) => {
+    if (!sectionId) return;
+    
+    const scroll = () => {
+      const element = document.getElementById(sectionId);
+      if (element) {
+        const elementPosition = element.getBoundingClientRect().top + window.pageYOffset;
+        const offsetPosition = elementPosition - 100;
+        
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: 'smooth'
+        });
+        return true;
+      }
+      return false;
+    };
+
+    if (scroll()) return;
+
+    const maxAttempts = 5;
+    let attempts = 0;
+    
+    const tryScroll = setInterval(() => {
+      attempts++;
+      if (scroll() || attempts >= maxAttempts) {
+        clearInterval(tryScroll);
+      }
+    }, 100);
+  };
+
+  const handleNavigation = (e, item) => {
+    e.preventDefault();
+    
+    if (item.sectionId) {
+      if (!isHomePage) {
+        sessionStorage.setItem('scrollToSection', item.sectionId);
+        window.location.href = `/${item.link}`;
+      } else {
+        scrollToSection(item.sectionId);
+      }
+    } else {
+      window.location.href = item.link;
+    }
+  };
+
+  const handleMobileNavigation = (e, item) => {
+    e.preventDefault();
+    
+    if (item.sectionId) {
+      if (!isHomePage) {
+        sessionStorage.setItem('scrollToSection', item.sectionId);
+        window.location.href = `/${item.link}`;
+      } else {
+        scrollToSection(item.sectionId);
+        toggleMobileMenu();
+      }
+    } else {
+      window.location.href = item.link;
+    }
+  };
+
+  useEffect(() => {
+    if (isHomePage) {
+      const hash = window.location.hash.substring(1);
+      const sectionId = hash || sessionStorage.getItem('scrollToSection');
+      
+      if (sectionId) {
+        window.history.replaceState(null, null, ' ');
+        
+        scrollToSection(sectionId);
+        
+        sessionStorage.removeItem('scrollToSection');
+      }
+    }
+  }, [isHomePage]);
 
   return (
     <>
@@ -126,7 +203,7 @@ const Navbar = ({ className = '' }) => {
             <span className={`font-medium ${visible || !isHomePage ? 'text-black' : 'text-gray-200'}`}>Triply</span>
           </Link>
 
-          <NavItems items={navItems} visible={visible} isHomePage={isHomePage} />
+          <NavItems items={navItems} visible={visible} isHomePage={isHomePage} onNavClick={handleNavigation} />
 
           <div className="flex items-center space-x-4">
             <a
@@ -211,7 +288,6 @@ const Navbar = ({ className = '' }) => {
           }}
         />
         
-        {/* Content layer */}
         <div className={cn(
           "relative z-10 flex w-full items-center justify-between px-4 transition-all duration-300 ease-in-out",
           visible ? 'py-3' : 'py-4'
@@ -297,7 +373,7 @@ const Navbar = ({ className = '' }) => {
                   <a
                     key={item.name}
                     href={item.link}
-                    onClick={handleClick}
+                    onClick={(e) => handleMobileNavigation(e, item)}
                     className={`block text-5xl font-normal text-gray-800 hover:text-[#6c2bc7] transition-all duration-250 ${
                       menuItemsVisible
                         ? 'opacity-100 translate-x-0'
@@ -358,7 +434,7 @@ const Navbar = ({ className = '' }) => {
   );
 };
 
-const NavItems = ({ items, visible, isHomePage }) => {
+  const NavItems = ({ items, visible, isHomePage, onNavClick }) => {
   const [hovered, setHovered] = useState(null);
 
   const animationVariants = {
@@ -412,7 +488,7 @@ const NavItems = ({ items, visible, isHomePage }) => {
           <a
             key={idx}
             href={item.link}
-            onClick={(e) => scrollToSection(e, item.link.substring(1))}
+            onClick={(e) => onNavClick(e, item)}
             onMouseEnter={() => setHovered(idx)}
             className={`relative inline-flex justify-center px-4 py-2 transition-colors duration-200 dark:text-gray-200 cursor-pointer ${
               isHomePage && !visible
