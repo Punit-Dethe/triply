@@ -138,7 +138,7 @@ const Navbar = ({ className = '' }) => {
               onMouseEnter={() => setIsDownloadHovered(true)}
               onMouseLeave={() => setIsDownloadHovered(false)}
               className={cn(
-                "relative inline-flex items-center justify-center px-5 py-2 text-sm font-medium text-white rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 gap-1 shadow-md hover:shadow-lg transition-colors duration-200",
+                "relative inline-flex items-center justify-center px-5 py-2 text-sm font-medium text-white rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 gap-1 shadow-md hover:shadow-lg transition-colors duration-200 hover:text-white",
                 visible
                   ? "bg-black hover:bg-gray-800 focus:ring-black"
                   : "bg-[#4f36b6] hover:bg-[#3b2a89] focus:ring-[#4f36b6]"
