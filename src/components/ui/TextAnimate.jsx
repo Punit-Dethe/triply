@@ -25,7 +25,6 @@ const TextAnimate = React.forwardRef(
     },
     ref
   ) => {
-    // If children is not a string, animate it as a single block.
     if (typeof children !== "string") {
       return (
         <motion.div

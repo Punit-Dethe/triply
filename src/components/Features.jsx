@@ -49,7 +49,7 @@ const Features = () => {
       const textContainer = textContainerRef.current;
 
       if (viewport && motionDiv) {
-        // Calculate the width needed to show all cards
+
         const scrollWidth = motionDiv.scrollWidth;
         const clientWidth = viewport.clientWidth;
         const extraGap = 5; // px, adjust as needed
@@ -66,10 +66,10 @@ const Features = () => {
     updateLayout();
     window.addEventListener('resize', updateLayout);
 
-    // --- Fix: Trigger updateLayout after a short delay (for late layout changes) ---
+
     const timeoutId = setTimeout(updateLayout, 200);
 
-    // --- Fix: Listen for image load events inside the scroll area ---
+
     const motionDiv = motionDivRef.current;
     let images = [];
     if (motionDiv) {
@@ -86,19 +86,19 @@ const Features = () => {
     };
   }, []);
 
-  // Start horizontal scrolling very early, but make it last longer
+
   const x = useTransform(scrollYProgress, [0, 0.5], [0, -scrollEndOffset]);
 
   return (
     <section id="features" ref={targetRef} className="relative h-[300vh] bg-black text-white">
       <div className="sticky top-0 h-screen overflow-hidden flex flex-col">
-        {/* Added extra space at top - only visible on mobile */}
+
         <div className="h-[12vh] sm:h-0"></div>
         
-        {/* Desktop-only top spacing - REDUCED */}
+
         <div className="hidden sm:block sm:h-[7vh] md:h-[9vh] lg:h-[12vh]"></div>
         
-        {/* Text Content */}
+
         <div ref={textContainerRef} className="w-full max-w-6xl mx-auto px-8 md:px-12 z-10 mb-1 sm:mb-4 md:mb-6">
             <div className="flex flex-col md:flex-row justify-between items-start">
                 <h2 className="text-4xl md:text-5xl lg:text-7xl font-bold tracking-tighter leading-tight max-w-lg">
@@ -110,7 +110,7 @@ const Features = () => {
             </div>
         </div>
         
-        {/* Horizontal Scroll Section Wrapper */}
+
         <div ref={viewportRef} className="w-full overflow-x-hidden flex-1">
           <motion.div 
             ref={motionDivRef}
@@ -125,18 +125,18 @@ const Features = () => {
                       boxShadow: '0 0 15px rgba(146, 51, 234, 0.31), 0 0 30px rgba(0, 0, 0, 0.1)'
                     }}
                   >
-                    {/* Add dual gradients - purple from bottom-right and orange from top-left */}
+
                     <div className="absolute inset-0" style={{
                       background: 'linear-gradient(to top left, rgba(146, 51, 234, 0.25), transparent 70%), linear-gradient(to bottom right, rgba(234, 88, 12, 0.15), transparent 70%)',
                       borderRadius: '12px'
                     }}></div>
                     
-                    {/* Number indicator in top right */}
+
                     <div className="absolute top-2 right-2 sm:top-4 md:top-8 sm:right-4 md:right-8 w-12 h-12 sm:w-16 md:w-20 sm:h-16 md:h-20 flex items-center justify-center">
                       <span className="text-3xl sm:text-4xl md:text-5xl font-bold text-neutral-800 opacity-40">0{index + 1}</span>
                     </div>
                     
-                    {/* Content aligned to bottom */}
+
                     <div className="relative z-10 max-w-md text-left">
                       <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold text-black tracking-tight mb-2 sm:mb-3 md:mb-4">{feature.title}</h3>
                       <p className="text-sm sm:text-base md:text-lg text-neutral-700">{feature.description}</p>
@@ -147,7 +147,7 @@ const Features = () => {
           </motion.div>
         </div>
         
-        {/* Added space at bottom - only visible on mobile */}
+
         <div className="h-[8vh] sm:h-0"></div>
       </div>
     </section>

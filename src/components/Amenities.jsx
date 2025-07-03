@@ -7,16 +7,16 @@ import carImage from '../assets/amenities/carc.png';
 const Amenities = () => {
   return (
     <section className="w-full bg-white py-16 md:py-24 relative overflow-hidden">
-      {/* Orange glow in the background - positioned a bit up and left from center */}
+
       <div className="absolute w-[800px] h-[800px] bg-orange-500 rounded-full opacity-10 blur-3xl" 
            style={{ left: 'calc(40% - 400px)', top: 'calc(40% - 400px)' }}></div>
       
-      {/* Purple glow in the background - positioned a bit down and right from center */}
+
       <div className="absolute w-[800px] h-[800px] bg-purple-600 rounded-full opacity-15 blur-3xl"
            style={{ left: 'calc(60% - 400px)', top: 'calc(60% - 400px)' }}></div>
            
       <div className="container mx-auto px-4 md:px-8 lg:px-12 max-w-7xl relative z-10">
-        {/* Title and Subtitle */}
+
         <div className="mb-10 md:mb-16">
           <h2 className="text-4xl md:text-5xl font-bold mb-4 tracking-tight">Amenities Offered By Us</h2>
           <p className="text-lg text-gray-600 max-w-2xl">
@@ -25,8 +25,8 @@ const Amenities = () => {
         </div>
         
         <div className="grid grid-cols-12 gap-4">
-          {/* Top Row */}
-          {/* First Card - Left card on top row */}
+
+
           <div className="col-span-12 md:col-span-6 bg-white/70 backdrop-blur rounded-xl p-4 flex flex-col h-full relative overflow-hidden border border-gray-200">
             <div className="flex flex-col h-full relative z-10">
               <div className="flex-1 flex items-center justify-center mb-4 relative">
@@ -45,7 +45,7 @@ const Amenities = () => {
             </div>
           </div>
 
-          {/* Second Card - Right card on top row */}
+
           <div className="col-span-12 md:col-span-6 bg-white/70 backdrop-blur rounded-xl p-4 flex flex-col h-full relative overflow-hidden border border-gray-200">
             <div className="flex flex-col h-full relative z-10">
               <div className="flex items-center justify-center md:justify-center pt-4 md:pt-8 pb-4 md:pb-0 md:pl-52 relative">
@@ -64,8 +64,8 @@ const Amenities = () => {
             </div>
           </div>
 
-          {/* Bottom Row */}
-          {/* Third Card - Left card on bottom row (full height) */}
+
+
           <div className="col-span-12 md:col-span-4 bg-white/70 backdrop-blur rounded-xl p-4 flex flex-col h-full relative overflow-hidden border border-gray-200">
             <div className="flex justify-center items-center mb-0 order-1 relative">
               <div className="relative w-full flex items-center justify-center z-10">
@@ -87,9 +87,9 @@ const Amenities = () => {
             </div>
           </div>
 
-          {/* Right side column - contains Integrations and Watch Demo */}
+
           <div className="col-span-12 md:col-span-8 flex flex-col gap-4">
-            {/* Fourth Card */}
+
             <div className="bg-white/70 backdrop-blur rounded-xl p-8 flex flex-col h-full relative overflow-hidden border border-gray-200">
               <div className="flex flex-col h-full">
                 <div className="w-full flex justify-end mb-4 pr-8">
@@ -108,7 +108,7 @@ const Amenities = () => {
               </div>
             </div>
 
-            {/* VIP Services Section */}
+
             <div className="bg-white/30 backdrop-blur rounded-xl p-8 flex flex-col md:flex-row justify-between items-center border border-gray-200">
               <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-6 md:mb-0 whitespace-nowrap">Check us out on Play Store</h2>
               <a 

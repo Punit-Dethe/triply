@@ -46,11 +46,10 @@ export const Testimonials = () => {
   const timeoutRef = useRef(null);
 
   const handleToggle = (cardIndex) => {
-    // This allows swapping between the current and previous testimonial for a card
     const current = testimonials[cardIndex];
     const previous = previousTestimonials[cardIndex];
     
-    if (!previous) return; // No history to toggle
+    if (!previous) return;
 
     setTestimonials(currentT => {
       const newT = [...currentT];
@@ -67,7 +66,7 @@ export const Testimonials = () => {
   useEffect(() => {
     const runTimer = () => {
       const delay = isFirstRun.current ? 10000 : 5000;
-      isFirstRun.current = false; // Set to false after the first run
+      isFirstRun.current = false;
 
       timeoutRef.current = setTimeout(() => {
         setTestimonials(currentTestimonials => {
@@ -75,7 +74,6 @@ export const Testimonials = () => {
           const oldTestimonial = currentTestimonials[cardIndexToUpdate.current];
           const newTestimonial = allTestimonials[nextTestimonialIndex.current];
 
-          // Store the old testimonial for manual navigation
           setPreviousTestimonials(prev => {
               const newPrev = [...prev];
               newPrev[cardIndexToUpdate.current] = oldTestimonial;
@@ -89,7 +87,7 @@ export const Testimonials = () => {
         cardIndexToUpdate.current = (cardIndexToUpdate.current + 1) % 3;
         nextTestimonialIndex.current = (nextTestimonialIndex.current + 1) % allTestimonials.length;
         
-        runTimer(); // Schedule the next update
+        runTimer();
       }, delay);
     };
 
@@ -141,7 +139,7 @@ export const Testimonials = () => {
           variants={containerVariants}
           className="flex flex-col lg:flex-row justify-between items-center gap-12"
         >
-          {/* Left side - Heading */}
+
           <motion.div 
             variants={itemVariants}
             className="lg:w-5/12 text-left"
@@ -160,7 +158,7 @@ export const Testimonials = () => {
             </button>
           </motion.div>
 
-          {/* Right side - Testimonial Cards */}
+
           <motion.div 
             className="lg:w-6/12 flex justify-center"
             variants={itemVariants}

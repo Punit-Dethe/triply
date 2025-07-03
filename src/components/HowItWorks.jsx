@@ -3,7 +3,7 @@ import { motion, AnimatePresence, useInView, useMotionValue, useTransform, useSp
 import { Route, CreditCard, Ticket, Repeat } from 'lucide-react';
 import { BackgroundGradient } from './ui/BackgroundGradient';
 
-// Videos
+
 import video1 from '../assets/videos/Video.mp4';
 import video2 from '../assets/videos/Video2.mp4';
 import video3 from '../assets/videos/Video3.mp4';
@@ -82,7 +82,7 @@ export const HowItWorks = () => {
     },
   };
 
-  // Handle video timeupdate events for the active video
+
   useEffect(() => {
     const currentVideo = videoRefs.current[activeIndex];
     if (!currentVideo) return;
@@ -101,7 +101,7 @@ export const HowItWorks = () => {
     };
   }, [activeIndex]);
 
-  // Handle video ended events for auto-advancing
+
   useEffect(() => {
     const currentVideo = videoRefs.current[activeIndex];
     if (!currentVideo) return;
@@ -118,9 +118,9 @@ export const HowItWorks = () => {
     };
   }, [activeIndex]);
   
-  // Control video playback when active index changes
+
   useEffect(() => {
-    // Stop all videos first
+
     videoRefs.current.forEach((video, i) => {
       if (video && i !== activeIndex) {
         video.pause();
@@ -128,21 +128,21 @@ export const HowItWorks = () => {
     }
     });
     
-    // Play the active video
+
     const currentVideo = videoRefs.current[activeIndex];
     if (currentVideo) {
-      // Reset progress
+
       motionProgress.set(0);
       currentVideo.currentTime = 0;
       
-      // Try to play with a slight delay to allow for UI updates
+
       setTimeout(() => {
         const playPromise = currentVideo.play();
         
         if (playPromise !== undefined) {
           playPromise.catch(error => {
             console.error('Video play failed:', error);
-            // Add more aggressive retry logic
+
             setTimeout(() => {
               currentVideo.play().catch(e => console.error('Retry failed:', e));
             }, 500);
@@ -175,7 +175,7 @@ export const HowItWorks = () => {
           className="absolute inset-0 z-0 bg-white backdrop-blur-sm"
         />
         
-        {/* Mobile-only Top Gradient */}
+
         <div
           aria-hidden="true"
           className="md:hidden absolute top-0 left-0 right-0 h-1/4 z-10"
@@ -183,7 +183,7 @@ export const HowItWorks = () => {
             background: 'linear-gradient(to bottom, rgba(249, 115, 22, 0.05) 0%, transparent 100%)'
           }}
         />
-        {/* Mobile-only Bottom Gradient */}
+
         <div
           aria-hidden="true"
           className="md:hidden absolute bottom-0 left-0 right-0 h-1/4 z-10"
@@ -192,7 +192,7 @@ export const HowItWorks = () => {
           }}
         />
 
-        {/* Mobile-only LEFT side continuous orange glow */}
+
         <div 
           aria-hidden="true"
           className="md:hidden absolute top-0 left-0 bottom-0 w-1/3 z-10"
@@ -201,7 +201,7 @@ export const HowItWorks = () => {
           }}
         />
 
-        {/* Right side continuous orange glow */}
+
         <motion.div
           className="absolute top-0 right-0 bottom-0 w-1/3 z-10"
           initial={{ opacity: 0 }}
@@ -219,7 +219,7 @@ export const HowItWorks = () => {
         <div className="container mx-auto px-4 relative z-10">
           <div className="grid lg:grid-cols-2 gap-16 items-start">
             
-            {/* Left Column: Text Content */}
+
             <div className="flex flex-col">
               <motion.div variants={itemVariants} className="text-center md:text-left mb-12">
           <h2 className="text-4xl md:text-5xl font-bold text-gray-800 tracking-tight">How it works</h2>
@@ -277,7 +277,7 @@ export const HowItWorks = () => {
           </motion.div>
             </div>
 
-            {/* Right Column: Phone/Video */}
+
             <motion.div variants={itemVariants} className="lg:sticky lg:top-24 mt-12 lg:mt-0 flex justify-center">
               <BackgroundGradient
                 className="rounded-[3.2rem]"

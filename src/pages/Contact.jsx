@@ -77,19 +77,13 @@ const Contact = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    
-    // Create email subject and body
     const subject = `Query: ${formData.query} - ${formData.name}`;
     const body = `Name: ${formData.name}%0D%0A` +
                  `Phone: ${formData.phone}%0D%0A` +
                  `Email: ${formData.email}%0D%0A` +
                  `Query: ${formData.query}%0D%0A%0D%0A` +
                  `Message:%0D%0A${formData.message}`;
-    
-    // Open default email client
     window.location.href = `mailto:contact@triply.com?subject=${encodeURIComponent(subject)}&body=${body}`;
-    
-    // Reset form
     setFormData({ 
       name: '', 
       phone: '',
@@ -103,7 +97,6 @@ const Contact = () => {
 
   return (
     <div className="bg-white">
-      {/* Hero Section */}
       <section className="relative py-20 sm:py-36 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-white to-gray-50 z-0"></div>
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -271,8 +264,6 @@ const Contact = () => {
           </div>
         </div>
       </section>
-
-      {/* FAQ Section */}
       <section className="py-20 sm:py-32 bg-gray-50">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl mx-auto text-center mb-16">
@@ -326,8 +317,6 @@ const Contact = () => {
           </div>
         </div>
       </section>
-      
-      {/* CTA Section */}
       <section className="py-20 bg-black text-white">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div className="max-w-3xl mx-auto">

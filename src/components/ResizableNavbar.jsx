@@ -2,11 +2,11 @@ import React, { useState, useRef } from 'react';
 import { motion, AnimatePresence, useScroll, useMotionValueEvent } from 'framer-motion';
 import { IconMenu2, IconX } from '@tabler/icons-react';
 import { Link, useLocation } from 'react-router-dom';
-// Logo is loaded from public folder
+
 const logo = '/logo.ico';
 const logo2 = '/logo2.ico';
 
-// Utility function for class names
+
 function cn(...classes) {
   return classes.filter(Boolean).join(' ');
 }
@@ -42,14 +42,14 @@ const Navbar = ({ className = '' }) => {
   useMotionValueEvent(scrollY, "change", (latest) => {
     const previous = scrollY.getPrevious();
 
-    // Control shrink/blur effect
+
     if (latest > 100) {
       setVisible(true);
     } else {
       setVisible(false);
     }
 
-    // Control hide/show on scroll
+
     if (latest > previous && latest > window.innerHeight && !isMobileMenuOpen) {
       setHidden(true);
     } else {
@@ -82,7 +82,7 @@ const Navbar = ({ className = '' }) => {
         animate={hidden ? "hidden" : "visible"}
         transition={{ duration: 0.35, ease: "easeInOut" }}
     >
-      {/* Desktop Navbar */}
+
       <motion.div
         animate={{
           width: visible ? "40%" : "100%",
@@ -101,7 +101,6 @@ const Navbar = ({ className = '' }) => {
           "relative z-[60] mx-auto hidden max-w-7xl self-start rounded-full lg:flex"
         )}
       >
-        {/* Background effects layer */}
         <motion.div
           className="absolute inset-0 rounded-full"
           style={{
@@ -121,7 +120,6 @@ const Navbar = ({ className = '' }) => {
           }}
         />
         
-        {/* Content layer */}
         <div className="relative z-10 flex w-full flex-row items-center justify-between px-4 py-2">
           <Link to="/" className="relative z-20 mr-4 flex items-center space-x-2 px-2 py-1 text-sm font-normal">
             <img src={visible ? logo2 : logo} alt="Triply" className="h-8 w-auto" />
@@ -169,7 +167,7 @@ const Navbar = ({ className = '' }) => {
         </div>
       </motion.div>
 
-      {/* Mobile Navbar - Optimized */}
+
       <motion.div
         className={cn(
           "relative z-50 mx-auto flex w-full max-w-[calc(100vw-2rem)] flex-col items-center justify-between bg-transparent lg:hidden"
@@ -196,7 +194,6 @@ const Navbar = ({ className = '' }) => {
           WebkitFontSmoothing: 'subpixel-antialiased',
         }}
       >
-        {/* Background effects layer */}
         <motion.div
           className="absolute inset-0 rounded-[inherit]"
           style={{
@@ -245,7 +242,7 @@ const Navbar = ({ className = '' }) => {
       </motion.div>
       </motion.div>
 
-        {/* Mobile Menu (Full Screen Overlay) */}
+
         <div 
           ref={menuRef}
           className={`fixed top-0 left-0 w-screen z-[9999] lg:hidden transition-all duration-500 ease-in-out ${
@@ -262,7 +259,7 @@ const Navbar = ({ className = '' }) => {
             opacity: 1,
           }}
         >
-          {/* Close Button (Mobile Menu) */}
+
           <button
             onClick={toggleMobileMenu}
             className="absolute top-4 right-4 p-2 focus:outline-none z-10"
@@ -273,7 +270,7 @@ const Navbar = ({ className = '' }) => {
             </svg>
           </button>
 
-          {/* Mobile Menu Content */}
+
           <div 
             className="flex-1 flex flex-col pl-6 pr-6 pt-40 pb-6 overflow-y-auto"
             style={{
@@ -281,7 +278,7 @@ const Navbar = ({ className = '' }) => {
               paddingBottom: 'calc(env(safe-area-inset-bottom) + 1.5rem)'
             }}
           >
-            {/* Navigation Links (Mobile Menu) */}
+
             <div className="space-y-8 flex-1">
               {navItems.map((item, index) => {
                 const isAnchorLink = item.link.startsWith('#');
@@ -334,7 +331,7 @@ const Navbar = ({ className = '' }) => {
               })}
             </div>
 
-            {/* Download Button (Mobile Menu) */}
+
             <div className="mt-auto mb-8">
               <a
                 href="https://play.google.com/store/apps/details?id=com.triply.app&pcampaignid=web_share"
@@ -388,12 +385,12 @@ const NavItems = ({ items, visible, isHomePage }) => {
         
         const linkContent = (
           <>
-            {/* longest of the two words */}
+
             <span className="font-medium opacity-0">
               {item.hoverName.length > item.name.length ? item.hoverName : item.name}
             </span>
 
-            {/* Animated text position */}
+
             <div className="absolute inset-0 flex items-center justify-center">
               <AnimatePresence mode="wait">
                 <motion.span

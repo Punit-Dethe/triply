@@ -7,7 +7,7 @@ const DevToolbar = () => {
     plugins: []
   };
 
-  // Only render in development
+
   if (import.meta.env.PROD) {
     return null;
   }

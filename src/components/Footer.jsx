@@ -9,7 +9,7 @@ const Footer = () => {
     <footer className="bg-black text-white py-12">
       <div className="container mx-auto px-6">
         <div className="flex flex-col md:flex-row justify-between items-center md:items-start space-y-8 md:space-y-0">
-          {/* Logo and Tagline */}
+
           <div className="text-center md:text-left">
             <Link to="/" className="flex items-center justify-center md:justify-start space-x-2">
               <img src="/logo.ico" alt="Triply Logo" className="h-10 w-auto" />
@@ -20,7 +20,7 @@ const Footer = () => {
             </p>
           </div>
 
-          {/* Main Navigation Links */}
+
           <div className="flex items-center space-x-6 md:space-x-8">
             <Link to="/" className="text-gray-300 hover:text-white font-medium whitespace-nowrap">Home</Link>
             <Link to="/services" className="text-gray-300 hover:text-white font-medium whitespace-nowrap">Services</Link>
@@ -28,7 +28,7 @@ const Footer = () => {
             <Link to="/contact" className="text-gray-300 hover:text-white font-medium whitespace-nowrap">Contact</Link>
           </div>
 
-          {/* Social Media Links */}
+
           <div className="flex flex-col items-center md:items-end space-y-4">
             <div className="flex space-x-4">
               <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors">
@@ -47,7 +47,7 @@ const Footer = () => {
           </div>
         </div>
 
-        {/* Copyright */}
+
         <div className="mt-12 pt-6 border-t border-gray-800 text-center">
           <p className="text-gray-500 text-sm">
             &copy; {currentYear} Triply. All rights reserved.

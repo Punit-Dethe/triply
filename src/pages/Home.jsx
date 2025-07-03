@@ -50,9 +50,9 @@ const Home = () => {
   
   return (
     <div className="min-h-screen bg-white">
-      {/* Hero Section */}
+
       <div className="relative -mt-24 w-full h-screen overflow-hidden bg-black">
-        {/* Background Image */}
+
         <div className="absolute inset-0 w-full h-full">
           <img 
             src="/hero.png"
@@ -61,7 +61,7 @@ const Home = () => {
             style={{ objectPosition: 'center' }}
           />
           
-          {/* More prominent black gradient at the top (215px) */}
+
           <div 
             className="absolute top-0 left-0 right-0 h-[215px]" 
             style={{ 
@@ -69,7 +69,7 @@ const Home = () => {
             }}
           />
           
-          {/* Black gradient fading from 100% to 0% opacity */}
+
           <div 
             className="absolute bottom-0 left-0 right-0 h-[120px]" 
             style={{ 
@@ -77,7 +77,7 @@ const Home = () => {
             }}
           />
         </div>
-        {/* Bottom-left overlay content */}
+
         <div className="absolute bottom-0 left-0 z-20 w-full sm:w-auto p-6 sm:p-12 pt-10 sm:pt-8 flex flex-col items-start">
           <motion.h1 
             key={currentTextIndex}
@@ -97,12 +97,17 @@ const Home = () => {
             >
               How it works
             </a>
-            <button className="flex-shrink-0 bg-transparent text-white border-2 border-white font-semibold px-5 sm:px-8 py-2.5 sm:py-3 rounded-full hover:bg-[#A855F7] hover:text-black hover:border-[#A855F7] transition whitespace-nowrap text-sm sm:text-base">
+            <a 
+              href="https://play.google.com/store/apps/details?id=com.triply.app&pcampaignid=web_share"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex-shrink-0 bg-transparent text-white border-2 border-white font-semibold px-5 sm:px-8 py-2.5 sm:py-3 rounded-full hover:bg-[#A855F7] hover:text-black hover:border-[#A855F7] transition whitespace-nowrap text-sm sm:text-base"
+            >
               Get it now
-            </button>
+            </a>
           </div>
         </div>
-        {/* Spacer to account for fixed navbar */}
+
         <div className="h-24 relative z-10"></div>
       </div>
 
