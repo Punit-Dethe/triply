@@ -88,7 +88,7 @@ const FAQ = () => {
                     </button>
                 </div>
 
-                {/* Right Column (Accordion) */}
+                {/* Right Column*/}
                 <div className="mt-12 lg:mt-0">
                     <div className="space-y-2">
                         {faqData.map((faq, index) => (
