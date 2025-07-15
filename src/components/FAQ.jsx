@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { IconChevronDown, IconMessageCircle } from '@tabler/icons-react';
+import { Link } from 'react-router-dom';
 
 const faqData = [
     {
@@ -82,10 +83,13 @@ const FAQ = () => {
                     <p className="text-lg text-gray-600 mb-8 max-w-md">
                         Frequently asked questions about our service. If you can't find the answer you're looking for, feel free to reach out to us.
                     </p>
-                    <button className="flex items-center space-x-2 px-6 py-3 border border-gray-300 rounded-full text-gray-700 font-medium hover:bg-gray-50 transition-colors">
+                    <Link 
+                        to="/contact" 
+                        className="inline-flex items-center space-x-2 px-6 py-3 border border-gray-300 rounded-full text-gray-700 font-medium hover:bg-purple-50 hover:text-purple-700 hover:border-purple-300 transition-colors cursor-pointer"
+                    >
                         <IconMessageCircle size={20} />
                         <span>Talk to us</span>
-                    </button>
+                    </Link>
                 </div>
 
                 {/* Right Column*/}

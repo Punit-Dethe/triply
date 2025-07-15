@@ -138,7 +138,10 @@ export const Testimonials = () => {
               Real stories from Bangalore office commuters who've made the switch to Triply. See how
               we're transforming daily travel experiences across the city.
             </p>
-            <Link to="/contact" className="mt-8 flex items-center gap-2 text-black font-semibold hover:text-gray-800 transition-colors">
+            <Link
+              to="/contact"
+              className="mt-8 flex items-center gap-2 text-black font-semibold hover:text-gray-800 transition-colors"
+            >
               <span>Contact Us</span>
               <div className="w-6 h-6 bg-black rounded-full flex items-center justify-center">
                 <ArrowRight className="w-4 h-4 text-white" />
