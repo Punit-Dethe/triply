@@ -12,13 +12,13 @@ import video4 from '../assets/videos/Video4.mp4';
 
 const features = [
   {
-    title: 'Select your route',
+    title: 'Select your route and pricing plan',
     description: 'select your route and book your ride',
     icon: Route,
     video: video1,
   },
   {
-    title: 'select your pricing plan',
+    title: 'Setup your roster',
     description: 'select your pricing plan and book your ride',
     icon: CreditCard,
     video: video2,
