@@ -121,9 +121,7 @@ const Contact = () => {
               </div>
 
               <p className="text-xl text-gray-700 max-w-xl">
-                We specialize in affordable, reliable cab-sharing for office goers. Whether you're
-                corporate HR or an individual commuter, we make your journey smoother and
-                hassle-free.
+              Skip the surge pricing, long waits, and unreliable rides. With fixed routes, flexible plans, and punctual pickups, we make your work travel hassle free whether you're commuting solo or with colleagues.
               </p>
 
               <div className="space-y-6 pt-4">

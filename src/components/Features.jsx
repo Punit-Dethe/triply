@@ -5,7 +5,7 @@ const features = [
   {
     title: 'Safe Rides',
     description:
-      'Prioritizing the safety of female employees is paramount for all corporations. We ensure secure transportation with trained drivers and real-time tracking.',
+      'Your safety is our top priority—especially for women commuters. All Triply rides feature verified drivers, real-time GPS tracking, and proactive support to ensure a secure and stress-free journey, every day.',
   },
   {
     title: 'On Time Pickup',
@@ -20,7 +20,7 @@ const features = [
   {
     title: 'Cost Efficient',
     description:
-      'We strategize rides to minimize company expenses, employing a point-to-point billing system that optimizes transportation costs.',
+      'We make daily commuting affordable with optimized routes and transparent, point-to-point billing. Whether your riding solo or sharing, Triply helps you save without compromising comfort or reliability',
   },
   {
     title: 'Preventive Maintenance',

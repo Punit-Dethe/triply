@@ -39,8 +39,7 @@ const Amenities = () => {
               <div className="text-left">
                 <h2 className="text-3xl md:text-4xl font-bold mb-4 leading-tight">Newspaper, Tissues<br />and Clean Water bottle</h2>
                 <p className="text-neutral-700 text-sm md:text-base">
-                  Each of our cabs keeps tissue box, water bottles and newspaper for Employees comfort during their daily commute.
-                </p>
+                Every Triply cab is stocked with essentials like tissues, water bottles, and a daily newspaper—because we believe your ride to work should be as comfortable as your workspace.                </p>
               </div>
             </div>
           </div>
@@ -58,8 +57,7 @@ const Amenities = () => {
               <div className="text-left">
                 <h2 className="text-3xl md:text-4xl font-bold mb-4 leading-tight">Unparalleled<br />Safety Measures</h2>
                 <p className="text-neutral-700 text-sm md:text-base">
-                  Ensuring the Safety of your Employees is our highest Priority with 100% safe and sanitized rides.
-                </p>
+                We prioritize well-being with fully sanitized cabs, trained drivers, and real-time tracking ensuring every ride is safe, secure, and stress free.                </p>
               </div>
             </div>
           </div>
