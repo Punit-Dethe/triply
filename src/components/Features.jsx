@@ -102,9 +102,9 @@ const Features = () => {
           className="w-full max-w-6xl mx-auto px-8 md:px-12 z-10 mb-1 sm:mb-4 md:mb-6"
         >
           <div className="flex flex-col md:flex-row justify-between items-start">
-            <h2 className="text-4xl md:text-5xl lg:text-7xl font-bold tracking-tighter leading-tight max-w-lg">
-              Your corporate ride partner.
-            </h2>
+<h2 className="text-3xl md:text-4xl lg:text-6xl font-bold tracking-tighter leading-tight max-w-lg">
+            Your Everyday Office Commute 
+            Reimagined</h2>
             <p className="text-gray-400 mt-2 md:mt-2 max-w-xs text-base md:text-lg">
               At Triply, our vision is to provide working professionals with a reliable,
               comfortable, and affordable commute. We’re building a future where getting to work is
