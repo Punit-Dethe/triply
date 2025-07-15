@@ -12,28 +12,38 @@ const AboutUs = () => {
   return (
     <div id="about-us" ref={containerRef} className="bg-white py-24 sm:py-32">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
-
         <div className="grid grid-cols-1 gap-x-8 gap-y-16 lg:grid-cols-2">
           <div>
-            <p className="text-base font-semibold leading-7 text-purple-600">About FlixLogix / Triply</p>
+            <p className="text-base font-semibold leading-7 text-purple-600">
+              About Triply (FlixLogix)
+            </p>
             <h1 className="mt-2 text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl">
               Corporate Employee Transportation – Safe, Reliable & Smart Commutes
             </h1>
-            <h2 className="mt-4 text-2xl font-semibold text-gray-800">Your Trusted Corporate Ride Partner</h2>
+            <h2 className="mt-4 text-2xl font-semibold text-gray-800">
+              Your Trusted Corporate Ride Partner
+            </h2>
           </div>
           <div className="lg:pt-2 relative">
-             <div className="absolute inset-0 bg-orange-400/10 blur-3xl rounded-full -z-1" />
+            <div className="absolute inset-0 bg-orange-400/10 blur-3xl rounded-full -z-1" />
             <p className="relative text-lg leading-8 text-gray-600">
-              FlixLogix (Triply) provides safe, reliable corporate transportation with real-time tracking, on-time pickups, and sanitized cabs. Our platform helps companies ensure employee safety, reduce traffic congestion, and lower carbon emissions through eco-friendly operations. Trusted by top organizations, we offer 24/7 support, secure rides for female employees, preventive fleet maintenance, and a user-friendly app with point-to-point billing for efficient, stress-free commutes that enhance workplace productivity and employee well-being.
+              Triply provides safe, reliable corporate transportation with real-time
+              tracking, on-time pickups, and sanitized cabs. Our platform helps companies ensure
+              employee safety, reduce traffic congestion, and lower carbon emissions through
+              eco-friendly operations. Trusted by top organizations, we offer 24/7 support, secure
+              rides for female employees, preventive fleet maintenance, and a user-friendly app with
+              point-to-point billing for efficient, stress-free commutes that enhance workplace
+              productivity and employee well-being.
             </p>
           </div>
         </div>
 
-
         <div className="mt-16 sm:mt-24 lg:w-3/5 ml-auto">
           <motion.div style={{ y }} className="relative">
-
-            <div className="absolute -inset-4 bg-purple-500/25 blur-3xl rounded-3xl z-0" aria-hidden="true" />
+            <div
+              className="absolute -inset-4 bg-purple-500/25 blur-3xl rounded-3xl z-0"
+              aria-hidden="true"
+            />
 
             <div className="relative isolate overflow-hidden bg-gray-100 rounded-3xl">
               <img
@@ -55,4 +65,4 @@ const AboutUs = () => {
   );
 };
 
-export default AboutUs; 
+export default AboutUs;

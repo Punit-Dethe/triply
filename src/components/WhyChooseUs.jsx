@@ -46,7 +46,7 @@ const WhyChooseUs = () => {
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="mx-auto max-w-2xl lg:max-w-none lg:text-left">
           <div className="inline-block mb-4">
-            <span className="text-white">FlixLogix</span>
+            <span className="text-white">Triply (FlixLogix)</span>
           </div>
           <h2 className="text-4xl font-bold tracking-tight sm:text-5xl">Why Choose Us</h2>
           <p className="mt-6 text-lg leading-8 text-gray-300 max-w-3xl">
