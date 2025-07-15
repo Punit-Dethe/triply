@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import { TextAnimate } from './ui/TextAnimate';
 import cityScape from '../assets/city.png';
 
@@ -137,12 +138,12 @@ export const Testimonials = () => {
               Real stories from Bangalore office commuters who've made the switch to Triply. See how
               we're transforming daily travel experiences across the city.
             </p>
-            <button className="mt-8 flex items-center gap-2 text-black font-semibold">
+            <Link to="/contact" className="mt-8 flex items-center gap-2 text-black font-semibold hover:text-gray-800 transition-colors">
               <span>Contact Us</span>
               <div className="w-6 h-6 bg-black rounded-full flex items-center justify-center">
                 <ArrowRight className="w-4 h-4 text-white" />
               </div>
-            </button>
+            </Link>
           </motion.div>
 
           <motion.div className="lg:w-6/12 flex justify-center" variants={itemVariants}>
