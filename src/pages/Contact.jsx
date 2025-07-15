@@ -358,10 +358,10 @@ const Contact = () => {
       <section className="py-20 bg-black text-white">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div className="max-w-3xl mx-auto">
-            <h2 className="text-4xl md:text-5xl font-bold tracking-tight mb-6">
-            Ready to upgrade your daily office commute?            </h2>
-            <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
-Be part of the growing community choosing smarter office travel with Triply.            </p>
+<h2 className="text-5xl md:text-6xl font-bold tracking-tight mb-6">
+            Ready to upgrade your daily office commute?            </h2>
+            <p className="text-xl text-gray-400 mb-8 max-w-2xl mx-auto">
+                 Be part of the growing community choosing smarter office travel with Triply.            </p><br></br>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
                 to="/download"
