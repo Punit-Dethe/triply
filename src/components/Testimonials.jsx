@@ -6,40 +6,30 @@ import cityScape from '../assets/city.png';
 
 const allTestimonials = [
   {
-    quote: '"FlixLogix has redefined the benchmarks in Employee Transportation. They offer clear reporting, significant cost reductions, and an enhanced experience for employees."',
-    company: 'Meddo',
-    author: 'Swati Sinha',
-    position: 'HR'
+    quote:
+      '"Triply feels like a solution built exactly for people like me. No stress about surge pricing or last-minute cancellations. I know exactly when my cab will arrive and who I\'m riding with. It\'s made my office commute 10x easier."',
+    author: 'Ananya GS',
+    location: 'Koramangala',
   },
   {
-    quote: '"Their customer service is truly unparalleled. Their team is always ready to go the extra mile, ensuring every interaction is seamless and every concern addressed promptly."',
-    company: 'COHO',
-    author: 'Uday Lakkar',
-    position: 'Founder and CEO'
+    quote:
+      '"As someone who used to spend nearly ₹600 a day on Ola/Uber, Triply is a game changer. I now spend a fraction of that and still get reliable, comfortable rides to work. Plus, the fact that it\'s electric makes me feel better about my choices."',
+    author: 'Rahul Nair',
+    location: 'Indranagar',
   },
   {
-    quote: '"The commitment to customer satisfaction and safety is commendable. Their proactive approach to addressing inquiries makes every ride a worry-free experience."',
-    company: 'Ak Tours',
-    author: 'Amit Kumar',
-    position: 'Founder and CEO'
-  }
+    quote:
+      '"The fixed timing and routes are a huge relief. No bargaining, no delays, and the app just works. Honestly, I didn\'t realize how much mental bandwidth I was wasting on daily travel until I started using Triply."',
+    author: 'Sneha Kulkarni',
+    location: 'Indiranagar',
+  },
 ];
-
-const meddoLogo = ( <div className="font-bold text-xl tracking-wider text-black">Meddo</div> );
-const cohoLogo = ( <div className="font-extrabold text-xl tracking-tighter text-black">COHO</div> );
-const akToursLogo = ( <div className="font-serif text-xl tracking-widest text-black">AK TOURS</div> );
-
-const logos = {
-  Meddo: meddoLogo,
-  COHO: cohoLogo,
-  'Ak Tours': akToursLogo
-};
 
 export const Testimonials = () => {
   const [testimonials, setTestimonials] = useState(allTestimonials.slice(0, 3));
   const [previousTestimonials, setPreviousTestimonials] = useState([null, null, null]);
   const [hoveredIndex, setHoveredIndex] = useState(null);
-  
+
   const cardIndexToUpdate = useRef(0);
   const nextTestimonialIndex = useRef(0);
   const isFirstRun = useRef(true);
@@ -48,15 +38,15 @@ export const Testimonials = () => {
   const handleToggle = (cardIndex) => {
     const current = testimonials[cardIndex];
     const previous = previousTestimonials[cardIndex];
-    
+
     if (!previous) return;
 
-    setTestimonials(currentT => {
+    setTestimonials((currentT) => {
       const newT = [...currentT];
       newT[cardIndex] = previous;
       return newT;
     });
-    setPreviousTestimonials(currentP => {
+    setPreviousTestimonials((currentP) => {
       const newP = [...currentP];
       newP[cardIndex] = current;
       return newP;
@@ -69,24 +59,24 @@ export const Testimonials = () => {
       isFirstRun.current = false;
 
       timeoutRef.current = setTimeout(() => {
-        setTestimonials(currentTestimonials => {
+        setTestimonials((currentTestimonials) => {
           const newTestimonials = [...currentTestimonials];
           const oldTestimonial = currentTestimonials[cardIndexToUpdate.current];
           const newTestimonial = allTestimonials[nextTestimonialIndex.current];
 
-          setPreviousTestimonials(prev => {
-              const newPrev = [...prev];
-              newPrev[cardIndexToUpdate.current] = oldTestimonial;
-              return newPrev;
+          setPreviousTestimonials((prev) => {
+            const newPrev = [...prev];
+            newPrev[cardIndexToUpdate.current] = oldTestimonial;
+            return newPrev;
           });
 
           newTestimonials[cardIndexToUpdate.current] = newTestimonial;
           return newTestimonials;
         });
-        
+
         cardIndexToUpdate.current = (cardIndexToUpdate.current + 1) % 3;
         nextTestimonialIndex.current = (nextTestimonialIndex.current + 1) % allTestimonials.length;
-        
+
         runTimer();
       }, delay);
     };
@@ -139,16 +129,13 @@ export const Testimonials = () => {
           variants={containerVariants}
           className="flex flex-col lg:flex-row justify-between items-center gap-12"
         >
-
-          <motion.div 
-            variants={itemVariants}
-            className="lg:w-5/12 text-left"
-          >
+          <motion.div variants={itemVariants} className="lg:w-5/12 text-left">
             <h2 className="text-5xl md:text-6xl font-bold text-black tracking-tighter leading-tight">
               Testimonials
             </h2>
             <p className="mt-6 text-lg text-gray-800 max-w-md">
-              Hear what our clients have to say about our corporate transportation services. We pride ourselves on delivering exceptional experiences that exceed expectations.
+              Real stories from Bangalore office commuters who've made the switch to Triply. See how
+              we're transforming daily travel experiences across the city.
             </p>
             <button className="mt-8 flex items-center gap-2 text-black font-semibold">
               <span>Contact Us</span>
@@ -158,18 +145,14 @@ export const Testimonials = () => {
             </button>
           </motion.div>
 
-
-          <motion.div 
-            className="lg:w-6/12 flex justify-center"
-            variants={itemVariants}
-          >
+          <motion.div className="lg:w-6/12 flex justify-center" variants={itemVariants}>
             <div className="space-y-6 w-full max-w-lg">
               {testimonials.map((testimonial, index) => {
                 let alignmentClass = '';
                 if (index === 0) alignmentClass = 'lg:ml-auto';
                 if (index === 1) alignmentClass = 'lg:mr-auto';
                 if (index === 2) alignmentClass = 'lg:ml-auto';
-                
+
                 const hasHistory = previousTestimonials[index] !== null;
 
                 return (
@@ -190,32 +173,40 @@ export const Testimonials = () => {
                           transition={{ duration: 0.3 }}
                           className="min-h-[140px]"
                         >
-                          <TextAnimate as="p" by="word" className="text-sm text-black mb-4 leading-snug">
+                          <TextAnimate
+                            as="p"
+                            by="word"
+                            className="text-sm text-black mb-4 leading-snug"
+                          >
                             {testimonial.quote}
                           </TextAnimate>
                           <div className="flex flex-col">
-                          <TextAnimate by="word">
-                            {logos[testimonial.company]}
-                          </TextAnimate>
-                            <p className="text-xs text-gray-600 mt-1">
-                              {testimonial.author}, {testimonial.position}
+                            <p className="text-sm font-semibold text-black">
+                              — {testimonial.author}
                             </p>
+                            <p className="text-xs text-gray-600 mt-1">{testimonial.location}</p>
                           </div>
                         </motion.div>
                       </AnimatePresence>
                       <AnimatePresence>
                         {hoveredIndex === index && hasHistory && (
-                          <motion.div 
+                          <motion.div
                             className="absolute bottom-2 right-2 flex gap-1"
                             initial={{ opacity: 0, y: 5 }}
                             animate={{ opacity: 1, y: 0 }}
                             exit={{ opacity: 0, y: 5 }}
                             transition={{ duration: 0.2 }}
                           >
-                            <button onClick={() => handleToggle(index)} className="p-1 transition-opacity hover:opacity-70">
+                            <button
+                              onClick={() => handleToggle(index)}
+                              className="p-1 transition-opacity hover:opacity-70"
+                            >
                               <ChevronLeft className="w-4 h-4 text-black" />
                             </button>
-                            <button onClick={() => handleToggle(index)} className="p-1 transition-opacity hover:opacity-70">
+                            <button
+                              onClick={() => handleToggle(index)}
+                              className="p-1 transition-opacity hover:opacity-70"
+                            >
                               <ChevronRight className="w-4 h-4 text-black" />
                             </button>
                           </motion.div>
@@ -223,7 +214,7 @@ export const Testimonials = () => {
                       </AnimatePresence>
                     </div>
                   </motion.div>
-                )
+                );
               })}
             </div>
           </motion.div>
@@ -233,4 +224,4 @@ export const Testimonials = () => {
   );
 };
 
-export default Testimonials; 
+export default Testimonials;
