@@ -5,24 +5,24 @@ import { Link } from 'react-router-dom';
 
 const faqData = [
   {
-    question: 'What areas do you serve?',
+    question: 'What is Triply and how is it different from apps like Ola and Uber?',
     answer:
-      'We operate in all major metropolitan areas. Our services are available for both local commutes and intercity travel, with dedicated routes for corporate clients.',
+      'Triply is a shared cab service designed specifically for daily office commutes. Unlike ride-hailing apps that assign rides in real-time, Triply offers fixed routes and time slots with a subscription-based model. We use a mix of electric and fuel-based cabs to ensure reliable service while steadily transitioning toward sustainable mobility.',
   },
   {
-    question: 'How do I book a ride for my team?',
+    question: 'How do I book a seat with Triply?',
     answer:
-      'You can book rides through our corporate portal, mobile app, or by contacting our dedicated account managers for enterprise solutions.',
+      'Booking a seat is easy! Simply download the Triply app, select your preferred route, choose a pricing package (monthly, weekly, or single trip), set up your ride roster based on your office schedule, and you\'re done. Triply handles the rest, ensuring timely cab arrivals every day.',
   },
   {
-    question: 'What safety measures are in place?',
+    question: 'Is Triply safe and reliable for daily office commute?',
     answer:
-      'All our vehicles undergo regular maintenance, and our drivers are professionally trained and background-checked. We also implement strict health and safety protocols.',
+      'Absolutely. All Triply cabs—whether EV or non-EV—are GPS-enabled, regularly maintained, and driven by verified drivers. We provide a safe, consistent, and punctual commute experience tailored for working professionals.',
   },
   {
-    question: 'Can I get a dedicated vehicle for my company?',
+    question: 'What if I need to change my pickup time or location?',
     answer:
-      'Yes, we offer dedicated vehicle solutions for corporate clients with custom scheduling and routing options to fit your business needs.',
+      'You can easily update your pickup time or location through the Triply app before your scheduled ride. Changes are subject to availability on your selected route and time slot.',
   },
 ];
 

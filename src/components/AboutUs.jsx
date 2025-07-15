@@ -18,23 +18,17 @@ const AboutUs = () => {
               About Triply (FlixLogix)
             </p>
             <h1 className="mt-2 text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl">
-              Corporate Employee Transportation – Safe, Reliable & Smart Commutes
+            Office Transportation: Safe, Reliable & Smart Commutes
             </h1>
             <h2 className="mt-4 text-2xl font-semibold text-gray-800">
-              Your Trusted Corporate Ride Partner
+            Your Trusted Every Day Ride Partner
             </h2>
           </div>
           <div className="lg:pt-2 relative">
             <div className="absolute inset-0 bg-orange-400/10 blur-3xl rounded-full -z-1" />
             <p className="relative text-lg leading-8 text-gray-600">
-              Triply provides safe, reliable corporate transportation with real-time
-              tracking, on-time pickups, and sanitized cabs. Our platform helps companies ensure
-              employee safety, reduce traffic congestion, and lower carbon emissions through
-              eco-friendly operations. Trusted by top organizations, we offer 24/7 support, secure
-              rides for female employees, preventive fleet maintenance, and a user-friendly app with
-              point-to-point billing for efficient, stress-free commutes that enhance workplace
-              productivity and employee well-being.
-            </p>
+            Triply offers safe, reliable daily commute solutions for working professionals.
+            With real-time tracking, on-time pickups, and sanitized cabs, we ensure a smooth ride to and from the office. Choose from flexible plans—single trip, weekly, or monthly—on fixed routes and time slots. Our growing EV fleet, verified drivers, and 24/7 support make commuting efficient, affordable, and secure—especially for female passengers.            </p>
           </div>
         </div>
 
