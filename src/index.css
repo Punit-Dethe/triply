@@ -7,6 +7,21 @@
 @layer base {
   html {
     scroll-behavior: smooth;
+    scroll-padding-top: 2rem;
+  }
+  
+  * {
+    scroll-behavior: smooth;
+  }
+  
+  @media (prefers-reduced-motion: no-preference) {
+    html {
+      scroll-behavior: smooth;
+    }
+    
+    html:focus-within {
+      scroll-behavior: smooth;
+    }
   }
   
   body {
