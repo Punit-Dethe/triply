@@ -117,8 +117,7 @@ const Contact = () => {
                   Get in Touch
                 </span>
                 <h1 className="text-5xl md:text-6xl font-bold text-black tracking-tighter leading-tight">
-                  Let's Talk About Your Office Commute Needs
-                </h1>
+                Looking for a Better Office Ride? We're Here to Help.                </h1>
               </div>
 
               <p className="text-xl text-gray-700 max-w-xl">

@@ -16,8 +16,7 @@ const Footer = () => {
               <span className="text-2xl font-bold text-white">Triply</span>
             </Link>
             <p className="mt-3 text-gray-400 max-w-xs">
-              Smarter Commutes, Happier Offices.
-            </p>
+            Smarter Rides, Better Mornings.            </p>
           </div>
 
 
