@@ -87,7 +87,7 @@ const Features = () => {
   }, []);
 
 
-  const x = useTransform(scrollYProgress, [0, 0.5], [0, -scrollEndOffset]);
+  const x = useTransform(scrollYProgress, [0, 0.15, 0.65], [0, 0, -scrollEndOffset]);
 
   return (
     <section id="features" ref={targetRef} className="relative h-[300vh] bg-black text-white">
