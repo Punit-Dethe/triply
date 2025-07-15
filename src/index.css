@@ -5,6 +5,10 @@
 
 /* Custom styles */
 @layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  
   body {
     @apply bg-gray-50 text-gray-900;
   }
