@@ -2,7 +2,7 @@
 
 # Live Site - https://triply-hazel.vercel.app/
 
-A modern, responsive landing page built with React, Vite, and Tailwind CSS. This project includes multiple pages, a responsive navigation bar, and a clean, professional design.
+A modern and minimalistic, responsive landing page built with React, Vite, and Tailwind CSS. This project includes multiple pages, a responsive navigation bar, and a clean, professional design.
 
 ## Features
 
